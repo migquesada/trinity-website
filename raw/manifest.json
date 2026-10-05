@@ -1,0 +1,1242 @@
+[
+ {
+  "path": "/",
+  "file": "raw/index.html",
+  "ok": true
+ },
+ {
+  "path": "/account/login",
+  "file": "raw/account/login.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/first-blog",
+  "file": "raw/blogs/first-blog.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news",
+  "file": "raw/blogs/news.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news?page=10",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=11",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=12",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=13",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=14",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=2",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=3",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=4",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=5",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=6",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=7",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=8",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news?page=9",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/10-things-you-need-to-know-about-lupus",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/35-years-of-epic-service",
+  "file": "raw/blogs/news/35-years-of-epic-service.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/alcohol-and-your-health",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/blood-donation-basics-who-can-why-and-where-to-donate-blood",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/bonds-explained-what-they-are-and-how-they-work",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/building-a-cyber-secure-culture",
+  "file": "raw/blogs/news/building-a-cyber-secure-culture.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/business-continuity-management-as-a-strategic-imperative",
+  "file": "raw/blogs/news/business-continuity-management-as-a-strategic-imperative.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/cholesterol-what-you-need-to-know",
+  "file": "raw/blogs/news/cholesterol-what-you-need-to-know.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/chronic-kidney-disease-facts",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/common-swine-diseases",
+  "file": "raw/blogs/news/common-swine-diseases.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/common-types-of-cyber-attacks",
+  "file": "raw/blogs/news/common-types-of-cyber-attacks.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/conjunctivitis-prevention",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/consumer-rights-what-s-in-it-for-the-sellers",
+  "file": "raw/blogs/news/consumer-rights-what-s-in-it-for-the-sellers.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/continuing-the-legacy-of-excellence-new-brokerslink-regional-manager-for-asia-pacific",
+  "file": "raw/blogs/news/continuing-the-legacy-of-excellence-new-brokerslink-regional-manager-for-asia-pacific.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/coronary-artery-disease-prevention",
+  "file": "raw/blogs/news/coronary-artery-disease-prevention.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/covid-19-vaccine-frequently-asked-questions",
+  "file": "raw/blogs/news/covid-19-vaccine-frequently-asked-questions.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/cutting-down-on-added-sugars",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/cybercrime",
+  "file": "raw/blogs/news/cybercrime.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/cybersecurity-assessment-setting-guidelines-and-policies",
+  "file": "raw/blogs/news/cybersecurity-assessment-setting-guidelines-and-policies.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/dealing-with-digital-fatigue",
+  "file": "raw/blogs/news/dealing-with-digital-fatigue.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/debunking-hypertension-myths",
+  "file": "raw/blogs/news/debunking-hypertension-myths.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/dengue-prevention-tips",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/diabetes-management-tips",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/earthquake-preparedness",
+  "file": "raw/blogs/news/earthquake-preparedness.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/employee-benefits-that-work-for-your-company",
+  "file": "raw/blogs/news/employee-benefits-that-work-for-your-company.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/empower-your-business-with-trinity-s-trade-credit-insurance",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/essential-health-tests-for-women",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/fighting-viral-hepatitis-understanding-the-disease-transmission-and-prevention",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/fire-prevention-tips-during-the-holiday-season",
+  "file": "raw/blogs/news/fire-prevention-tips-during-the-holiday-season.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/flu-season-preparedness-important-facts-and-tips",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/flu-vs-cold-what-s-the-difference",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/focus-independent-brokers-are-critical-to-unlocking-the-value-of-technology-in-asia",
+  "file": "raw/blogs/news/focus-independent-brokers-are-critical-to-unlocking-the-value-of-technology-in-asia.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/full-political-violence",
+  "file": "raw/blogs/news/full-political-violence.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/full-political-violence-insurance-what-it-covers-and-why-businesses-need-it",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/gout-basics-understanding-the-reason-behind-your-joint-pain",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/health-checks-all-men-should-do",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/heart-disease-myths-and-facts",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/hepatitis-a-b-and-c-what-s-the-difference",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/holiday-food-safety",
+  "file": "raw/blogs/news/holiday-food-safety.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/holiday-travel-tips",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/honoring-our-legacy-embracing-the-future-leadership-transition-announcement",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/how-can-cybercrime-insurance-help-your-company",
+  "file": "raw/blogs/news/how-can-cybercrime-insurance-help-your-company.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/how-do-we-know-if-our-child-s-development-is-on-track",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/how-to-eat-with-mindfulness",
+  "file": "raw/blogs/news/how-to-eat-with-mindfulness.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/how-to-have-a-heartburn-free-holiday",
+  "file": "raw/blogs/news/how-to-have-a-heartburn-free-holiday.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/how-to-make-new-year-s-resolutions-stick",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/how-to-prevent-heat-related-illnesses",
+  "file": "raw/blogs/news/how-to-prevent-heat-related-illnesses.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/how-to-reduce-breast-cancer-risk",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/how-to-support-your-immune-system",
+  "file": "raw/blogs/news/how-to-support-your-immune-system.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/importance-of-directors-and-officers-liability-insurance",
+  "file": "raw/blogs/news/importance-of-directors-and-officers-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/inspiring-acts-of-heroism-the-fire-next-door",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/insurance-coverages-that-you-should-check-in-your-policy",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/keeping-it-natural-8-testosterone-boosters-for-a-healthier-you-health-university-of-utah-harvard-health-publishing-and-urology-specialists-of-oregon",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/keeping-your-bones-healthy",
+  "file": "raw/blogs/news/keeping-your-bones-healthy.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/lung-cancer-what-you-need-to-know",
+  "file": "raw/blogs/news/lung-cancer-what-you-need-to-know.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/mindscapes-introducing-trinity-s-mental-health-plan",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/mitigating-underinsurance-risks-the-importance-of-regular-independent-valuations",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/nail-ing-it-right-a-closer-look-at-nails-as-health-indicators",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/nutrition-tips-for-shift-worker",
+  "file": "raw/blogs/news/nutrition-tips-for-shift-worker.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/optimizing-sleep-for-shift-workers",
+  "file": "raw/blogs/news/optimizing-sleep-for-shift-workers.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/overcoming-a-typhoon-aftermath-helpful-tips-for-your-property-and-vehicle",
+  "file": "raw/blogs/news/overcoming-a-typhoon-aftermath-helpful-tips-for-your-property-and-vehicle.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/pancreatic-mass-often-evades-early-detection-here-s-how-to-catch-it-now",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/physical-activity-and-health-staying-active-duringthis-pandemic-crisis-and-the-rainy-days",
+  "file": "raw/blogs/news/physical-activity-and-health-staying-active-duringthis-pandemic-crisis-and-the-rainy-days.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/polycystic-ovary-syndrome-facts",
+  "file": "raw/blogs/news/polycystic-ovary-syndrome-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/post-holiday-health-tips",
+  "file": "raw/blogs/news/post-holiday-health-tips.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/preparation-for-the-rainy-days",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/preventing-asthma-flare-ups-in-hot-weather",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/preventing-digital-eye-strain",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/protect-your-business-against-emerging-risks",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/protect-your-customers-data",
+  "file": "raw/blogs/news/protect-your-customers-data.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/protecting-your-business-in-transit-understanding-marine-cargo-hull-and-aviation-insurance",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/rainy-day-diseases-prevention",
+  "file": "raw/blogs/news/rainy-day-diseases-prevention.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/senior-health-and-wellness-tips",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/signs-that-you-have-a-thyroid-problem",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/six-ways-to-take-care-of-your-kidneys",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/sleep-and-weight-what-s-the-connection",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/smart-snacking-at-work",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/taking-care-of-your-voice",
+  "file": "raw/blogs/news/taking-care-of-your-voice.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/the-importance-and-benefits-of-an-insurance-policy-audit",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/the-importance-of-electronic-equipment-insurance",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/the-importance-of-enterprise-risk-management-in-a-post-pandemic-world",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/the-roles-of-an-insurance-broker",
+  "file": "raw/blogs/news/the-roles-of-an-insurance-broker.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/tips-for-a-safe-and-enjoyable-summer-vacation",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/tips-to-improving-social-wellness",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/tips-to-prevent-and-manage-rabies",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/tips-to-prevent-back-pain",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/tips-to-quit-smoking-for-good",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/tips-to-safeguard-facility",
+  "file": "raw/blogs/news/tips-to-safeguard-facility.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-advisory-telephone-number-migration",
+  "file": "raw/blogs/news/trinity-advisory-telephone-number-migration.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-blast-directors-and-officers-liability-insurance",
+  "file": "raw/blogs/news/trinity-blast-directors-and-officers-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-cyber-crime",
+  "file": "raw/blogs/news/trinity-cyber-crime.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-eblast-how-to-maintain-your-vehicle-during-the-enhanced-community-quarantine-period",
+  "file": "raw/blogs/news/trinity-eblast-how-to-maintain-your-vehicle-during-the-enhanced-community-quarantine-period.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-added-sugars",
+  "file": "raw/blogs/news/trinity-health-blast-added-sugars.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-antioxidants",
+  "file": "raw/blogs/news/trinity-health-blast-antioxidants.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-breastfeeding-facts",
+  "file": "raw/blogs/news/trinity-health-blast-breastfeeding-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-caffeine-facts",
+  "file": "raw/blogs/news/trinity-health-blast-caffeine-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-coronavirus",
+  "file": "raw/blogs/news/trinity-health-blast-coronavirus.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-coronavirus-update-interactive-affected-zone-map",
+  "file": "raw/blogs/news/trinity-health-blast-coronavirus-update-interactive-affected-zone-map.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-dengue",
+  "file": "raw/blogs/news/trinity-health-blast-dengue.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-diphtheria-facts",
+  "file": "raw/blogs/news/trinity-health-blast-diphtheria-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-egg-nutrition-facts",
+  "file": "raw/blogs/news/trinity-health-blast-egg-nutrition-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-firecracker-safety",
+  "file": "raw/blogs/news/trinity-health-blast-firecracker-safety.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-food-fortification",
+  "file": "raw/blogs/news/trinity-health-blast-food-fortification.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-goiter",
+  "file": "raw/blogs/news/trinity-health-blast-goiter.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-gout",
+  "file": "raw/blogs/news/trinity-health-blast-gout.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-grocery-safety-tips",
+  "file": "raw/blogs/news/trinity-health-blast-grocery-safety-tips.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-hand-hygiene",
+  "file": "raw/blogs/news/trinity-health-blast-hand-hygiene.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-hiv-awareness",
+  "file": "raw/blogs/news/trinity-health-blast-hiv-awareness.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-hmo",
+  "file": "raw/blogs/news/trinity-health-blast-hmo.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-home-exercise",
+  "file": "raw/blogs/news/trinity-health-blast-home-exercise.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-kidney-stones-prevention",
+  "file": "raw/blogs/news/trinity-health-blast-kidney-stones-prevention.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-measles",
+  "file": "raw/blogs/news/trinity-health-blast-measles.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-mental-health-in-the-time-of-covid-19-crisis",
+  "file": "raw/blogs/news/trinity-health-blast-mental-health-in-the-time-of-covid-19-crisis.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-menu-clues",
+  "file": "raw/blogs/news/trinity-health-blast-menu-clues.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-office-ergonomics",
+  "file": "raw/blogs/news/trinity-health-blast-office-ergonomics.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-pneumonia-facts",
+  "file": "raw/blogs/news/trinity-health-blast-pneumonia-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-polio",
+  "file": "raw/blogs/news/trinity-health-blast-polio.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-rabies-awareness",
+  "file": "raw/blogs/news/trinity-health-blast-rabies-awareness.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-sleep-well-be-well",
+  "file": "raw/blogs/news/trinity-health-blast-sleep-well-be-well.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-sodium-facts",
+  "file": "raw/blogs/news/trinity-health-blast-sodium-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-summer-safety",
+  "file": "raw/blogs/news/trinity-health-blast-summer-safety.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-tips-to-get-a-good-sleep",
+  "file": "raw/blogs/news/trinity-health-blast-tips-to-get-a-good-sleep.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-traditional-medicine",
+  "file": "raw/blogs/news/trinity-health-blast-traditional-medicine.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-urinary-tract-infection",
+  "file": "raw/blogs/news/trinity-health-blast-urinary-tract-infection.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-viral-hepatitis-facts",
+  "file": "raw/blogs/news/trinity-health-blast-viral-hepatitis-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-white-rice-vs-brown-rice",
+  "file": "raw/blogs/news/trinity-health-blast-white-rice-vs-brown-rice.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-health-blast-work-from-home-tips",
+  "file": "raw/blogs/news/trinity-health-blast-work-from-home-tips.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-hotlines",
+  "file": "raw/blogs/news/trinity-hotlines.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-insurance-brokers-celebrates-30-years-of-quality-service",
+  "file": "raw/blogs/news/trinity-insurance-brokers-celebrates-30-years-of-quality-service.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-insurance-brokers-inc-30-years-of-innovation",
+  "file": "raw/blogs/news/trinity-insurance-brokers-inc-30-years-of-innovation.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-livestock",
+  "file": "raw/blogs/news/trinity-livestock.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/trinity-your-health-guardians",
+  "file": "raw/blogs/news/trinity-your-health-guardians.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/tuberculosis-facts",
+  "file": "raw/blogs/news/tuberculosis-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/typhoon-preparedness-tips-during-pandemic",
+  "file": "raw/blogs/news/typhoon-preparedness-tips-during-pandemic.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/understanding-alzheimer-s-disease-what-you-need-to-know",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-appendicitis",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-cataract-causes-symptoms-treatment-and-prevention",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-cholelithiasis",
+  "file": "raw/blogs/news/understanding-cholelithiasis.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/understanding-copd-what-you-should-know",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-fire-and-how-to-prevent-it",
+  "file": "raw/blogs/news/understanding-fire-and-how-to-prevent-it.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/understanding-hiv-a-simple-guide",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-inflation-and-market-volatility",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-insurance-claims",
+  "file": "raw/blogs/news/understanding-insurance-claims.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/understanding-leptospirosis-rainy-seasons-silent-threat",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-loss-prevention",
+  "file": "raw/blogs/news/understanding-loss-prevention.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/understanding-mental-health",
+  "file": "raw/blogs/news/understanding-mental-health.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/understanding-pneumonia-what-you-need-to-know",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-poultry-and-livestock-insurance",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/understanding-prostate-cancer",
+  "file": "raw/blogs/news/understanding-prostate-cancer.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/understanding-triglycerides",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/uterine-fibroids-symptoms-causes-and-diagnosis",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/watch-your-back-causes-symptoms-treatment-for-scoliosis",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/what-is-directors-and-officers-liability-insurance",
+  "file": "raw/blogs/news/what-is-directors-and-officers-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/what-is-insurance-policy-audit",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/what-is-phishing-and-what-can-you-do-to-protect-yourself",
+  "file": "raw/blogs/news/what-is-phishing-and-what-can-you-do-to-protect-yourself.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/what-to-do-after-a-flood-helpful-tips-for-your-house-and-car",
+  "file": "raw/blogs/news/what-to-do-after-a-flood-helpful-tips-for-your-house-and-car.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/what-you-need-to-know-about-cervical-cancer",
+  "file": "raw/blogs/news/what-you-need-to-know-about-cervical-cancer.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/what-you-need-to-know-about-gastroesophageal-reflux-disease",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/what-you-need-to-know-about-hmpv",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/what-you-need-to-know-about-migraine",
+  "file": "raw/blogs/news/what-you-need-to-know-about-migraine.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/what-you-need-to-know-about-monkeypox",
+  "file": "raw/blogs/news/what-you-need-to-know-about-monkeypox.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/what-you-need-to-know-about-refractive-errors",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/what-you-need-to-know-about-uti",
+  "ok": false
+ },
+ {
+  "path": "/blogs/news/why-should-you-have-a-professional-liability-insurance",
+  "file": "raw/blogs/news/why-should-you-have-a-professional-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/second-blog",
+  "file": "raw/blogs/second-blog.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/videos",
+  "file": "raw/blogs/videos.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/videos/insurance-explained-how-do-insurance-companies-make-money-and-how-do-they-work",
+  "file": "raw/blogs/videos/insurance-explained-how-do-insurance-companies-make-money-and-how-do-they-work.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/videos/what-is-insurance-and-how-does-it-work",
+  "file": "raw/blogs/videos/what-is-insurance-and-how-does-it-work.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/articles",
+  "file": "raw/collections/articles.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/cyber-security",
+  "file": "raw/collections/cyber-security.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/employee-benefits",
+  "file": "raw/collections/employee-benefits.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/for-you",
+  "file": "raw/collections/for-you.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/general-insurance",
+  "file": "raw/collections/general-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/products",
+  "file": "raw/collections/products.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/service-solutions",
+  "file": "raw/collections/service-solutions.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/specialty-lines",
+  "file": "raw/collections/specialty-lines.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/trinity-health-blast",
+  "file": "raw/collections/trinity-health-blast.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/trinity-health-blast-and-hmo",
+  "file": "raw/collections/trinity-health-blast-and-hmo.html",
+  "ok": true
+ },
+ {
+  "path": "/collections/trinity-shop",
+  "file": "raw/collections/trinity-shop.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/30-years-in-providing-customized-risk-solutions",
+  "file": "raw/pages/30-years-in-providing-customized-risk-solutions.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/about-us",
+  "file": "raw/pages/about-us.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/amended-migrant-workers-act-amwa-insurance",
+  "file": "raw/pages/amended-migrant-workers-act-amwa-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/bonds",
+  "file": "raw/pages/bonds.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/career",
+  "file": "raw/pages/career.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/casualty-and-liability-insurance",
+  "file": "raw/pages/casualty-and-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/chairmans-message",
+  "file": "raw/pages/chairmans-message.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/claims",
+  "file": "raw/pages/claims.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/claims-management",
+  "file": "raw/pages/claims-management.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/contact-us",
+  "file": "raw/pages/contact-us.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/contractors-all-risk-car-erection-all-risk-ear-insurance",
+  "file": "raw/pages/contractors-all-risk-car-erection-all-risk-ear-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/copyright",
+  "file": "raw/pages/copyright.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/corporate-governance",
+  "file": "raw/pages/corporate-governance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/critical-illness",
+  "file": "raw/pages/critical-illness.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/cybercrime-insurance",
+  "file": "raw/pages/cybercrime-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/cybersecurity",
+  "file": "raw/pages/cybersecurity.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/data-privacy-consent-form",
+  "file": "raw/pages/data-privacy-consent-form.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/directors-and-officers-liability-insurance",
+  "file": "raw/pages/directors-and-officers-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/disclaimer",
+  "file": "raw/pages/disclaimer.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/electronic-equipment-insurance-eei",
+  "file": "raw/pages/electronic-equipment-insurance-eei.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/employee-benefit-plan-design",
+  "file": "raw/pages/employee-benefit-plan-design.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/employee-benefits",
+  "file": "raw/pages/employee-benefits.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/faq",
+  "file": "raw/pages/faq.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/file-a-claim",
+  "file": "raw/pages/file-a-claim.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/full-political-violence-insurance",
+  "file": "raw/pages/full-political-violence-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/general-insurance",
+  "file": "raw/pages/general-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/group-medical-insurance",
+  "file": "raw/pages/group-medical-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/group-term-life-and-personal-accident-insurance",
+  "file": "raw/pages/group-term-life-and-personal-accident-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/hmo",
+  "file": "raw/pages/hmo.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/hmo-medical-claims",
+  "file": "raw/pages/hmo-medical-claims.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/hospital-income-insurance",
+  "file": "raw/pages/hospital-income-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/industries-we-serve",
+  "file": "raw/pages/industries-we-serve.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/industry-benchmarking",
+  "file": "raw/pages/industry-benchmarking.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/insurance-policy-audit",
+  "file": "raw/pages/insurance-policy-audit.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/international-medical-insurance-peso-and-dollar-denominated-plan",
+  "file": "raw/pages/international-medical-insurance-peso-and-dollar-denominated-plan.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/marine-and-cargo-hull-claims",
+  "file": "raw/pages/marine-and-cargo-hull-claims.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/marine-cargo-hull-and-aviation-insurance",
+  "file": "raw/pages/marine-cargo-hull-and-aviation-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/meet-our-cebu-team",
+  "file": "raw/pages/meet-our-cebu-team.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/meet-the-team",
+  "file": "raw/pages/meet-the-team.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/motor-claims",
+  "file": "raw/pages/motor-claims.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/motorcar-insurance",
+  "file": "raw/pages/motorcar-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/non-motor-claims",
+  "file": "raw/pages/non-motor-claims.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/parametric-insurance",
+  "file": "raw/pages/parametric-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/payments",
+  "ok": false
+ },
+ {
+  "path": "/pages/poultry-and-livestock-insurance",
+  "file": "raw/pages/poultry-and-livestock-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/privacy-policy",
+  "file": "raw/pages/privacy-policy.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/product-recall-and-contamination",
+  "file": "raw/pages/product-recall-and-contamination.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/professional-indemnity-insurance",
+  "file": "raw/pages/professional-indemnity-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/property-fire-claims",
+  "file": "raw/pages/property-fire-claims.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/property-fire-insurance",
+  "file": "raw/pages/property-fire-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/request-for-quote",
+  "file": "raw/pages/request-for-quote.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/risk-management-and-loss-prevention",
+  "file": "raw/pages/risk-management-and-loss-prevention.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/service-solutions",
+  "file": "raw/pages/service-solutions.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/shipowner-s-healthcare-program-for-seafarers-and-dependents",
+  "file": "raw/pages/shipowner-s-healthcare-program-for-seafarers-and-dependents.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/site-map",
+  "file": "raw/pages/site-map.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/technical-underwriting",
+  "file": "raw/pages/technical-underwriting.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/terms-and-conditions",
+  "file": "raw/pages/terms-and-conditions.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/third-party-administration",
+  "file": "raw/pages/third-party-administration.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/travel-insurance",
+  "file": "raw/pages/travel-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/travel-insurance-claims",
+  "file": "raw/pages/travel-insurance-claims.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/travel-insurance-starr",
+  "file": "raw/pages/travel-insurance-starr.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/trinity-insurance-brokers",
+  "file": "raw/pages/trinity-insurance-brokers.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/wellness-program-development-and-management",
+  "file": "raw/pages/wellness-program-development-and-management.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/whistleblowing-form",
+  "file": "raw/pages/whistleblowing-form.html",
+  "ok": true
+ },
+ {
+  "path": "/pages/why-trinity",
+  "file": "raw/pages/why-trinity.html",
+  "ok": true
+ },
+ {
+  "path": "/products/big-bike-insurance-inquiry-only",
+  "file": "raw/products/big-bike-insurance-inquiry-only.html",
+  "ok": true
+ },
+ {
+  "path": "/products/bike-insurance",
+  "file": "raw/products/bike-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/search",
+  "file": "raw/search.html",
+  "ok": true
+ }
+]
