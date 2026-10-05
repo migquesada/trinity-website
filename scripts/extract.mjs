@@ -56,7 +56,7 @@ function clean(root, document) {
     if (keepBg) { style.push(`background-image:url('${keepBg}')`); el.setAttribute('class', ((el.getAttribute('class') || '') + ' bg').trim()); }
     if (keepRatio && keepBg) style.push(`padding-top:${keepRatio}`);
     if (style.length) el.setAttribute('style', style.join(';'));
-    if (tag === 'A') { el.setAttribute('href', fixHref(el.getAttribute('href') || '')); if ((el.getAttribute('href') || '').startsWith('/')) el.removeAttribute('target'); if (!el.textContent.trim() && !el.querySelector('img') && !el.getAttribute('class')) el.remove(); }
+    if (tag === 'A') { el.setAttribute('href', fixHref(el.getAttribute('href') || '')); if ((el.getAttribute('href') || '').startsWith('/')) el.removeAttribute('target'); if (!el.textContent.trim() && !el.querySelector('img,[data-keep-bg],.bg') && !el.getAttribute('class')) el.remove(); }
   });
   root.querySelectorAll('span,font,center,label,i:empty').forEach(el => el.replaceWith(...el.childNodes));
   // drop empty wrappers, collapse single-child div chains
@@ -137,7 +137,8 @@ for (const m of manifest) {
   pages.push({ path: m.path, title, description, template, hero, sections });
 }
 
-posts.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+const ts = d => { const t = Date.parse(String(d).replace(/ ([+-]\d{2})(\d{2})$/, '$1:$2').replace(' ', 'T')); return isNaN(t) ? 0 : t; };
+posts.sort((a, b) => ts(b.date) - ts(a.date));
 await mkdir('content/pages', { recursive: true });
 for (const p of pages) await writeFile(`content/pages/${slugOf(p.path)}.json`, JSON.stringify(p, null, 1));
 await writeFile('content/posts.json', JSON.stringify(posts, null, 1));

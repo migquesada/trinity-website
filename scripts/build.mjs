@@ -21,6 +21,7 @@ await cp('assets', join(OUT, 'assets'), { recursive: true });
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const url = p => {
   if (!p || /^(https?:|mailto:|tel:|#|data:)/.test(p)) return p;
+  if (BASE_PATH && (p === BASE_PATH || p.startsWith(BASE_PATH + '/'))) return p;
   return BASE_PATH + p;
 };
 
@@ -110,7 +111,7 @@ ${body}
 
 const hero = (title, image, sub = '') => `<section class="page-head${image ? ' has-img' : ''}"${image ? ` style="background-image:url('${localImg(image)}')"` : ''}><div class="wrap"><h1>${esc(title)}</h1>${sub}</div></section>`;
 const sectionsHtml = secs => secs.map(s => `<section class="sec ${s.type}">${rewrite(s.html)}</section>`).join('\n');
-const fmtDate = d => { const t = new Date(d); return isNaN(t) ? d : t.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); };
+const fmtDate = d => { const t = new Date(String(d).replace(/ ([+-]\d{2})(\d{2})$/, '$1:$2').replace(' ', 'T')); return isNaN(t) ? d : t.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); };
 
 async function emit(path, html) {
   const file = path === '/' ? join(OUT, 'index.html') : join(OUT, path.replace(/^\//, ''), 'index.html');
@@ -119,6 +120,8 @@ async function emit(path, html) {
 }
 
 // ---------- pages ----------
+const card = a => `<article class="post-card"><a href="${url(a.path)}" class="thumb"${a.image ? ` style="background-image:url('${localImg(a.image)}')"` : ''}></a><div class="post-info"><h4><a href="${url(a.path)}">${esc(a.title)}</a></h4>${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}</div></article>`;
+
 const searchIndex = [];
 for (const p of pages) {
   if (p.path.startsWith('/collections/')) continue; // Shopify-only listings
@@ -130,15 +133,16 @@ for (const p of pages) {
       <h3>Inquire about this plan</h3><div data-form="inquiry" data-kind="product" data-subject="${esc(p.product.title)}"></div></div>
     </div></div></section>`;
   } else {
-    const h = p.template === 'home' ? '' : hero(p.hero?.title || p.title, p.hero?.image);
-    body = h + sectionsHtml(p.sections);
+    const h = p.template === 'home' || !p.hero ? '' : hero(p.hero.title || p.title, p.hero.image);
+    body = h + sectionsHtml(p.sections.map(s => s.type === 'type_featured_blog'
+      ? { ...s, html: `<div class="container"><h3 class="tc">ARTICLES</h3><div class="post-grid three">${posts.slice(0, 3).map(card).join('')}</div><p class="tc" style="margin-top:30px"><a class="btn btn-outline" href="/blogs/news">View All</a></p></div>` }
+      : s));
   }
   await emit(p.path, layout({ path: p.path, title: p.title, description: p.description, image: p.hero?.image || p.product?.image, body, bodyClass: 'tpl-' + p.template }));
   searchIndex.push({ t: p.product?.title || p.hero?.title || p.title, u: p.path, d: (p.description || '').slice(0, 160) });
 }
 
 // ---------- blog ----------
-const card = a => `<article class="post-card"><a href="${url(a.path)}" class="thumb"${a.image ? ` style="background-image:url('${localImg(a.image)}')"` : ''}></a><div class="post-info"><h4><a href="${url(a.path)}">${esc(a.title)}</a></h4>${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}</div></article>`;
 await emit('/blogs/news', layout({ path: '/blogs/news', title: 'News', description: 'News, health blasts and insurance insights from Trinity Insurance Brokers.',
   body: hero('News', null) + `<section class="sec blog-list"><div class="container"><div class="post-grid" data-paginate="12">${posts.filter(p => p.blog === 'news').map(card).join('')}</div><nav class="pager" aria-label="Pagination"></nav></div></section>` }));
 for (let i = 0; i < posts.length; i++) {

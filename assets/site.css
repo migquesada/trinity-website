@@ -159,3 +159,10 @@ hr{border:0;border-top:1px solid var(--line);margin:40px 0}
 }
 .type_feature_columns>.container>h3{text-align:center}
 .type_feature_columns h3 h4{font-size:20px;text-transform:uppercase}
+/* home "over 3 decades" banner: text card over background image */
+.type_banner3 .row>*>div{position:relative}
+.type_banner3 .bg+.tl{position:absolute;inset:0;display:flex;align-items:center;padding:30px clamp(20px,5vw,70px)}
+@media(max-width:767px){.type_banner3 .bg+.tl{position:static}.type_banner3 .bg+.tl+*{display:none}}
+.type_banner3 .row{align-items:stretch}
+.post-grid.three{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.site-footer{background:#083d51}
