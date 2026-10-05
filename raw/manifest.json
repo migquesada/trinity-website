@@ -21,59 +21,73 @@
  },
  {
   "path": "/blogs/news?page=10",
-  "ok": false
+  "file": "raw/blogs/news__page_10.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=11",
-  "ok": false
+  "file": "raw/blogs/news__page_11.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=12",
-  "ok": false
+  "file": "raw/blogs/news__page_12.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=13",
-  "ok": false
+  "file": "raw/blogs/news__page_13.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=14",
-  "ok": false
+  "file": "raw/blogs/news__page_14.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=2",
-  "ok": false
+  "file": "raw/blogs/news__page_2.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=3",
-  "ok": false
+  "file": "raw/blogs/news__page_3.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=4",
-  "ok": false
+  "file": "raw/blogs/news__page_4.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=5",
-  "ok": false
+  "file": "raw/blogs/news__page_5.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=6",
-  "ok": false
+  "file": "raw/blogs/news__page_6.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=7",
-  "ok": false
+  "file": "raw/blogs/news__page_7.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=8",
-  "ok": false
+  "file": "raw/blogs/news__page_8.html",
+  "ok": true
  },
  {
   "path": "/blogs/news?page=9",
-  "ok": false
+  "file": "raw/blogs/news__page_9.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/10-things-you-need-to-know-about-lupus",
-  "ok": false
+  "file": "raw/blogs/news/10-things-you-need-to-know-about-lupus.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/35-years-of-epic-service",
@@ -82,15 +96,18 @@
  },
  {
   "path": "/blogs/news/alcohol-and-your-health",
-  "ok": false
+  "file": "raw/blogs/news/alcohol-and-your-health.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/blood-donation-basics-who-can-why-and-where-to-donate-blood",
-  "ok": false
+  "file": "raw/blogs/news/blood-donation-basics-who-can-why-and-where-to-donate-blood.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/bonds-explained-what-they-are-and-how-they-work",
-  "ok": false
+  "file": "raw/blogs/news/bonds-explained-what-they-are-and-how-they-work.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/building-a-cyber-secure-culture",
@@ -109,7 +126,8 @@
  },
  {
   "path": "/blogs/news/chronic-kidney-disease-facts",
-  "ok": false
+  "file": "raw/blogs/news/chronic-kidney-disease-facts.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/common-swine-diseases",
@@ -123,7 +141,8 @@
  },
  {
   "path": "/blogs/news/conjunctivitis-prevention",
-  "ok": false
+  "file": "raw/blogs/news/conjunctivitis-prevention.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/consumer-rights-what-s-in-it-for-the-sellers",
@@ -147,7 +166,8 @@
  },
  {
   "path": "/blogs/news/cutting-down-on-added-sugars",
-  "ok": false
+  "file": "raw/blogs/news/cutting-down-on-added-sugars.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/cybercrime",
@@ -171,11 +191,13 @@
  },
  {
   "path": "/blogs/news/dengue-prevention-tips",
-  "ok": false
+  "file": "raw/blogs/news/dengue-prevention-tips.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/diabetes-management-tips",
-  "ok": false
+  "file": "raw/blogs/news/diabetes-management-tips.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/earthquake-preparedness",
@@ -189,15 +211,18 @@
  },
  {
   "path": "/blogs/news/empower-your-business-with-trinity-s-trade-credit-insurance",
-  "ok": false
+  "file": "raw/blogs/news/empower-your-business-with-trinity-s-trade-credit-insurance.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/essential-health-tests-for-women",
-  "ok": false
+  "file": "raw/blogs/news/essential-health-tests-for-women.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/fighting-viral-hepatitis-understanding-the-disease-transmission-and-prevention",
-  "ok": false
+  "file": "raw/blogs/news/fighting-viral-hepatitis-understanding-the-disease-transmission-and-prevention.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/fire-prevention-tips-during-the-holiday-season",
@@ -206,11 +231,13 @@
  },
  {
   "path": "/blogs/news/flu-season-preparedness-important-facts-and-tips",
-  "ok": false
+  "file": "raw/blogs/news/flu-season-preparedness-important-facts-and-tips.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/flu-vs-cold-what-s-the-difference",
-  "ok": false
+  "file": "raw/blogs/news/flu-vs-cold-what-s-the-difference.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/focus-independent-brokers-are-critical-to-unlocking-the-value-of-technology-in-asia",
@@ -224,23 +251,28 @@
  },
  {
   "path": "/blogs/news/full-political-violence-insurance-what-it-covers-and-why-businesses-need-it",
-  "ok": false
+  "file": "raw/blogs/news/full-political-violence-insurance-what-it-covers-and-why-businesses-need-it.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/gout-basics-understanding-the-reason-behind-your-joint-pain",
-  "ok": false
+  "file": "raw/blogs/news/gout-basics-understanding-the-reason-behind-your-joint-pain.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/health-checks-all-men-should-do",
-  "ok": false
+  "file": "raw/blogs/news/health-checks-all-men-should-do.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/heart-disease-myths-and-facts",
-  "ok": false
+  "file": "raw/blogs/news/heart-disease-myths-and-facts.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/hepatitis-a-b-and-c-what-s-the-difference",
-  "ok": false
+  "file": "raw/blogs/news/hepatitis-a-b-and-c-what-s-the-difference.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/holiday-food-safety",
@@ -249,11 +281,13 @@
  },
  {
   "path": "/blogs/news/holiday-travel-tips",
-  "ok": false
+  "file": "raw/blogs/news/holiday-travel-tips.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/honoring-our-legacy-embracing-the-future-leadership-transition-announcement",
-  "ok": false
+  "file": "raw/blogs/news/honoring-our-legacy-embracing-the-future-leadership-transition-announcement.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/how-can-cybercrime-insurance-help-your-company",
@@ -262,7 +296,8 @@
  },
  {
   "path": "/blogs/news/how-do-we-know-if-our-child-s-development-is-on-track",
-  "ok": false
+  "file": "raw/blogs/news/how-do-we-know-if-our-child-s-development-is-on-track.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/how-to-eat-with-mindfulness",
@@ -276,7 +311,8 @@
  },
  {
   "path": "/blogs/news/how-to-make-new-year-s-resolutions-stick",
-  "ok": false
+  "file": "raw/blogs/news/how-to-make-new-year-s-resolutions-stick.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/how-to-prevent-heat-related-illnesses",
@@ -285,7 +321,8 @@
  },
  {
   "path": "/blogs/news/how-to-reduce-breast-cancer-risk",
-  "ok": false
+  "file": "raw/blogs/news/how-to-reduce-breast-cancer-risk.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/how-to-support-your-immune-system",
@@ -299,15 +336,18 @@
  },
  {
   "path": "/blogs/news/inspiring-acts-of-heroism-the-fire-next-door",
-  "ok": false
+  "file": "raw/blogs/news/inspiring-acts-of-heroism-the-fire-next-door.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/insurance-coverages-that-you-should-check-in-your-policy",
-  "ok": false
+  "file": "raw/blogs/news/insurance-coverages-that-you-should-check-in-your-policy.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/keeping-it-natural-8-testosterone-boosters-for-a-healthier-you-health-university-of-utah-harvard-health-publishing-and-urology-specialists-of-oregon",
-  "ok": false
+  "file": "raw/blogs/news/keeping-it-natural-8-testosterone-boosters-for-a-healthier-you-health-university-of-utah-harvard-health-publishing-and-urology-specialists-of-oregon.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/keeping-your-bones-healthy",
@@ -321,15 +361,18 @@
  },
  {
   "path": "/blogs/news/mindscapes-introducing-trinity-s-mental-health-plan",
-  "ok": false
+  "file": "raw/blogs/news/mindscapes-introducing-trinity-s-mental-health-plan.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/mitigating-underinsurance-risks-the-importance-of-regular-independent-valuations",
-  "ok": false
+  "file": "raw/blogs/news/mitigating-underinsurance-risks-the-importance-of-regular-independent-valuations.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/nail-ing-it-right-a-closer-look-at-nails-as-health-indicators",
-  "ok": false
+  "file": "raw/blogs/news/nail-ing-it-right-a-closer-look-at-nails-as-health-indicators.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/nutrition-tips-for-shift-worker",
@@ -348,7 +391,8 @@
  },
  {
   "path": "/blogs/news/pancreatic-mass-often-evades-early-detection-here-s-how-to-catch-it-now",
-  "ok": false
+  "file": "raw/blogs/news/pancreatic-mass-often-evades-early-detection-here-s-how-to-catch-it-now.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/physical-activity-and-health-staying-active-duringthis-pandemic-crisis-and-the-rainy-days",
@@ -367,19 +411,23 @@
  },
  {
   "path": "/blogs/news/preparation-for-the-rainy-days",
-  "ok": false
+  "file": "raw/blogs/news/preparation-for-the-rainy-days.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/preventing-asthma-flare-ups-in-hot-weather",
-  "ok": false
+  "file": "raw/blogs/news/preventing-asthma-flare-ups-in-hot-weather.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/preventing-digital-eye-strain",
-  "ok": false
+  "file": "raw/blogs/news/preventing-digital-eye-strain.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/protect-your-business-against-emerging-risks",
-  "ok": false
+  "file": "raw/blogs/news/protect-your-business-against-emerging-risks.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/protect-your-customers-data",
@@ -388,7 +436,8 @@
  },
  {
   "path": "/blogs/news/protecting-your-business-in-transit-understanding-marine-cargo-hull-and-aviation-insurance",
-  "ok": false
+  "file": "raw/blogs/news/protecting-your-business-in-transit-understanding-marine-cargo-hull-and-aviation-insurance.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/rainy-day-diseases-prevention",
@@ -397,23 +446,28 @@
  },
  {
   "path": "/blogs/news/senior-health-and-wellness-tips",
-  "ok": false
+  "file": "raw/blogs/news/senior-health-and-wellness-tips.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/signs-that-you-have-a-thyroid-problem",
-  "ok": false
+  "file": "raw/blogs/news/signs-that-you-have-a-thyroid-problem.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/six-ways-to-take-care-of-your-kidneys",
-  "ok": false
+  "file": "raw/blogs/news/six-ways-to-take-care-of-your-kidneys.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/sleep-and-weight-what-s-the-connection",
-  "ok": false
+  "file": "raw/blogs/news/sleep-and-weight-what-s-the-connection.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/smart-snacking-at-work",
-  "ok": false
+  "file": "raw/blogs/news/smart-snacking-at-work.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/taking-care-of-your-voice",
@@ -422,15 +476,18 @@
  },
  {
   "path": "/blogs/news/the-importance-and-benefits-of-an-insurance-policy-audit",
-  "ok": false
+  "file": "raw/blogs/news/the-importance-and-benefits-of-an-insurance-policy-audit.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/the-importance-of-electronic-equipment-insurance",
-  "ok": false
+  "file": "raw/blogs/news/the-importance-of-electronic-equipment-insurance.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/the-importance-of-enterprise-risk-management-in-a-post-pandemic-world",
-  "ok": false
+  "file": "raw/blogs/news/the-importance-of-enterprise-risk-management-in-a-post-pandemic-world.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/the-roles-of-an-insurance-broker",
@@ -439,23 +496,28 @@
  },
  {
   "path": "/blogs/news/tips-for-a-safe-and-enjoyable-summer-vacation",
-  "ok": false
+  "file": "raw/blogs/news/tips-for-a-safe-and-enjoyable-summer-vacation.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/tips-to-improving-social-wellness",
-  "ok": false
+  "file": "raw/blogs/news/tips-to-improving-social-wellness.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/tips-to-prevent-and-manage-rabies",
-  "ok": false
+  "file": "raw/blogs/news/tips-to-prevent-and-manage-rabies.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/tips-to-prevent-back-pain",
-  "ok": false
+  "file": "raw/blogs/news/tips-to-prevent-back-pain.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/tips-to-quit-smoking-for-good",
-  "ok": false
+  "file": "raw/blogs/news/tips-to-quit-smoking-for-good.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/tips-to-safeguard-facility",
@@ -694,15 +756,18 @@
  },
  {
   "path": "/blogs/news/understanding-alzheimer-s-disease-what-you-need-to-know",
-  "ok": false
+  "file": "raw/blogs/news/understanding-alzheimer-s-disease-what-you-need-to-know.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-appendicitis",
-  "ok": false
+  "file": "raw/blogs/news/understanding-appendicitis.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-cataract-causes-symptoms-treatment-and-prevention",
-  "ok": false
+  "file": "raw/blogs/news/understanding-cataract-causes-symptoms-treatment-and-prevention.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-cholelithiasis",
@@ -711,7 +776,8 @@
  },
  {
   "path": "/blogs/news/understanding-copd-what-you-should-know",
-  "ok": false
+  "file": "raw/blogs/news/understanding-copd-what-you-should-know.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-fire-and-how-to-prevent-it",
@@ -720,11 +786,13 @@
  },
  {
   "path": "/blogs/news/understanding-hiv-a-simple-guide",
-  "ok": false
+  "file": "raw/blogs/news/understanding-hiv-a-simple-guide.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-inflation-and-market-volatility",
-  "ok": false
+  "file": "raw/blogs/news/understanding-inflation-and-market-volatility.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-insurance-claims",
@@ -733,7 +801,8 @@
  },
  {
   "path": "/blogs/news/understanding-leptospirosis-rainy-seasons-silent-threat",
-  "ok": false
+  "file": "raw/blogs/news/understanding-leptospirosis-rainy-seasons-silent-threat.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-loss-prevention",
@@ -747,11 +816,13 @@
  },
  {
   "path": "/blogs/news/understanding-pneumonia-what-you-need-to-know",
-  "ok": false
+  "file": "raw/blogs/news/understanding-pneumonia-what-you-need-to-know.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-poultry-and-livestock-insurance",
-  "ok": false
+  "file": "raw/blogs/news/understanding-poultry-and-livestock-insurance.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/understanding-prostate-cancer",
@@ -760,15 +831,18 @@
  },
  {
   "path": "/blogs/news/understanding-triglycerides",
-  "ok": false
+  "file": "raw/blogs/news/understanding-triglycerides.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/uterine-fibroids-symptoms-causes-and-diagnosis",
-  "ok": false
+  "file": "raw/blogs/news/uterine-fibroids-symptoms-causes-and-diagnosis.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/watch-your-back-causes-symptoms-treatment-for-scoliosis",
-  "ok": false
+  "file": "raw/blogs/news/watch-your-back-causes-symptoms-treatment-for-scoliosis.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/what-is-directors-and-officers-liability-insurance",
@@ -777,7 +851,8 @@
  },
  {
   "path": "/blogs/news/what-is-insurance-policy-audit",
-  "ok": false
+  "file": "raw/blogs/news/what-is-insurance-policy-audit.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/what-is-phishing-and-what-can-you-do-to-protect-yourself",
@@ -796,11 +871,13 @@
  },
  {
   "path": "/blogs/news/what-you-need-to-know-about-gastroesophageal-reflux-disease",
-  "ok": false
+  "file": "raw/blogs/news/what-you-need-to-know-about-gastroesophageal-reflux-disease.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/what-you-need-to-know-about-hmpv",
-  "ok": false
+  "file": "raw/blogs/news/what-you-need-to-know-about-hmpv.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/what-you-need-to-know-about-migraine",
@@ -814,11 +891,13 @@
  },
  {
   "path": "/blogs/news/what-you-need-to-know-about-refractive-errors",
-  "ok": false
+  "file": "raw/blogs/news/what-you-need-to-know-about-refractive-errors.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/what-you-need-to-know-about-uti",
-  "ok": false
+  "file": "raw/blogs/news/what-you-need-to-know-about-uti.html",
+  "ok": true
  },
  {
   "path": "/blogs/news/why-should-you-have-a-professional-liability-insurance",
