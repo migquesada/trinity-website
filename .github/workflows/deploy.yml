@@ -1,0 +1,79 @@
+name: Build & Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      snapshot:
+        description: 'Re-snapshot the live Shopify site into raw/'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      has_site: ${{ steps.build.outputs.has_site }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Unpack uploaded bundle (bundle.tar.gz at repo root)
+        run: |
+          if [ -f bundle.tar.gz ]; then
+            tar xzf bundle.tar.gz
+            git rm -q bundle.tar.gz
+            git config user.name "trinity-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add -A
+            git commit -m "Unpack bundle" || true
+            git push
+          fi
+      - name: Snapshot live site
+        if: ${{ github.event.inputs.snapshot == 'true' || hashFiles('.snapshot') != '' }}
+        run: |
+          node scripts/snapshot.mjs
+          rm -f .snapshot
+          git config user.name "trinity-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Snapshot live site" || true
+          git push
+      - name: Install deps
+        run: if [ -f package.json ]; then npm install --no-audit --no-fund; fi
+      - name: Restore image cache
+        uses: actions/cache@v4
+        with:
+          path: .imgcache
+          key: img-${{ github.run_id }}
+          restore-keys: img-
+      - name: Build
+        id: build
+        run: |
+          if [ -f scripts/build.mjs ]; then
+            IMG_MODE=download node scripts/build.mjs
+            echo "has_site=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_site=false" >> $GITHUB_OUTPUT
+          fi
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.build.outputs.has_site == 'true'
+        with:
+          path: dist
+  deploy:
+    needs: build
+    if: needs.build.outputs.has_site == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
