@@ -1,0 +1,16 @@
+{
+ "path": "/pages/contact-us",
+ "title": "Contact Us",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Contact Us",
+  "image": "https://trinity-insures.com/cdn/shop/files/2_1600x.png?v=1662713195"
+ },
+ "sections": [
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div><p><div data-form=\"inquiry\"></div></p><h4>Makati Head Office</h4><p>7504 Bagtikan St., San Antonio Village, Makati City, 1203 Metro Manila<br>Telephone: +632 8810 1653&#160;</p><p>Email address: <a href=\"mailto:trinity@trinityinsures.com\">trinity@trinity-insures.com</a></p></div><iframe src=\"https://maps.google.com/maps?width=100%25&height=600&hl=en&q=7504%20Bagtikan%20Street+(Trinity%20Insurance%20Brokers%20Inc.)&t=&z=14&ie=UTF8&iwloc=B&output=embed\" height=\"200\"></iframe><br><div><h4>Cebu Office</h4><p>Unit 610 The Meridian by Avenir, Golam Drive, Brgy. Kasambagan, 6000 Cebu City <br>Telephone:&#160;032-887 4002</p><iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.22172934813!2d123.90988480000001!3d10.3241324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999d870a37435%3A0x5a68a7f60d546f3!2sThe%20Meridian!5e0!3m2!1sen!2sph!4v1664847356529!5m2!1sen!2sph\" height=\"200\"></iframe></div><br></div></div>"
+  }
+ ]
+}

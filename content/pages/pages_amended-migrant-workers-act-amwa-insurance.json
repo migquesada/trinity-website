@@ -1,0 +1,17 @@
+{
+ "path": "/pages/amended-migrant-workers-act-amwa-insurance",
+ "title": "Amended Migrant Workers Act (AMWA) Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/migrant_1200x.png?v=1671691441\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Amended Migrant Workers Act (AMWA) Insurance</h3><div><p>A required insurance coverage for migrant Filipino workers for the duration of their employment contract.</p><p><strong>What are the information/documents needed for Amended Migrant Workers Act Insurance?&#160;</strong></p><ul><li>Assured’s Name</li><li>Destination</li><li>Contract</li><li>Broker of Record (BOR) – form will be provided by Trinity</li></ul></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

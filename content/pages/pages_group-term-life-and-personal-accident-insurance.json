@@ -1,0 +1,17 @@
+{
+ "path": "/pages/group-term-life-and-personal-accident-insurance",
+ "title": "Group Term Life and Personal Accident Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/group-term_1200x.png?v=1671694579\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Group Term Life and Personal Accident Insurance</h3><p>Your employees are the backbone of your business. Offering them <strong>protection against accidents</strong> demonstrates you value their well-being. Show your team you’ve got their back—on and off the job.<br><br>Group Term Life and Group Personal Accident Insurance provide essential financial security in times of unexpected loss or injury.<br><br>At Trinity, we offer <strong>comprehensive Group Term Life and Group Personal Accident Insurance</strong>, a yearly renewable insurance. It pays the face amount of the policy in case a member of the group dies due to natural and accidental causes within the coverage period (term). This policy likewise indemnifies the insured in case of permanent disability or dismemberment.<br><br>What is the information needed for Group Term Life and Group Personal Accident Insurance?<br><strong>• With Existing Plan:</strong><br>o Company Name <br>o Nature of Business<br>o Location<br>o Copy of the contract/schedule of benefits<br>o Utilization report<br>o List of employees and dependents with date of birth, civil status, gender, amount of insurance, position/job level<br>o Nature of business<br>o Broker of Record (BOR) - form will be provided by Trinity<br>o KYC form – form will be provided by Trinity<br><br><strong>• Virgin Account:</strong><br>o Company Name <br>o Nature of Business<br>o Location<br>o Preferred plan benefits, if possible<br>o List of employees and dependents with date of birth, civil status, gender, position/job level<br>o Nature of business<br>o Broker of Record (BOR) - form will be provided by Trinity<br>o KYC form – form will be provided by Trinity<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself <strong>PEACE OF MIND!</strong> Let’s discuss how we can protect your company from the unexpected. <strong>INQUIRE NOW!</strong><br><br>At Trinity, we are always eager to serve you!</p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

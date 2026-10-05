@@ -1,0 +1,57 @@
+{
+ "path": "/",
+ "title": "Trinity Insurance and Reinsurance Brokers, Inc.",
+ "description": "Trinity Insurance and Reinsurance Brokers, Inc. is a Brokerslink partner. Brokerslink delivers a powerful alternative to the world’s largest brokers. Clients and markets get the best of both worlds: the expertise, services, and reach of an international giant, with the embedded local knowledge and relationships that on",
+ "template": "home",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_banner3",
+   "html": "<div class=\"type_css_btna\"><div class=\"row\"><div class=\"col-lg-12 col-md-12 col-12\"><div style=\"background-image:url('https://trinity-insures.com/cdn/shop/files/trinity-40yrs-web-2_1600x.jpg?v=1725340709');padding-top:37.87%\" class=\"bg\"></div></div></div></div>"
+  },
+  {
+   "type": "type_banner3",
+   "html": "<div class=\"type_css_btna container\"><div class=\"row\"><div class=\"col-lg-6 col-md-6 col-12\"><div><div style=\"background-image:url('https://trinity-insures.com/cdn/shop/files/bgf_1600x.jpg?v=1647239240');padding-top:66.67%\" class=\"bg\"></div><div class=\"tl\"><div><h3>Over 3 decades in providing customized risk solutions</h3><p>We are able to provide customized risk solutions for our clients in various industries in the Philippines. We partner with select local and leading global risk carries that are financially stable, reliable, and responsive.</p><a href=\"/pages/contact-us\">Request for a quote</a><a href=\"/pages/about-us\">Know more</a></div></div></div></div><div class=\"col-lg-6 col-md-6 col-12\"><div style=\"background-image:url('https://trinity-insures.com/cdn/shop/files/Over_3_decades-min_1600x.jpg?v=1662602881');padding-top:66.64%\" class=\"bg\"></div></div></div></div>"
+  },
+  {
+   "type": "type_rich_text",
+   "html": "<div class=\"container\"><h3 class=\"tc\">INSURANCE SOLUTIONS</h3></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><h3 class=\"tc\"><h4>GENERAL INSURANCE</h4></h3><div class=\"row\"><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/cybercrime-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/cybercrime_7f5e2585-5f05-4391-902c-f0cdea6e4ed8_1200x.jpg?v=1671616694\" alt=\"\"></a><a href=\"/pages/cybercrime-insurance\">Cybercrime Insurance</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/poultry-and-livestock-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/poultry-livestock_1200x.png?v=1671527989\" alt=\"\"></a><a href=\"/pages/poultry-and-livestock-insurance\">Poultry and Livestock Insurance</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/marine-cargo-hull-and-aviation-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/marine-cargo-hull-aviation-2_1200x.jpg?v=1671614949\" alt=\"\"></a><a href=\"/pages/marine-cargo-hull-and-aviation-insurance\">Marine Cargo, Hull, and Aviation Insurance</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/motorcar-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/motorcar_1200x.png?v=1671613741\" alt=\"\"></a><a href=\"/pages/motorcar-insurance\">Motorcar Insurance</a></div></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"row\"><div class=\"col-lg-12 col-md-12 col-12 tc\"><a href=\"/pages/general-insurance\">View More</a></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><h3 class=\"tc\"><h4>EMPLOYEE BENEFITS</h4></h3><div class=\"row\"><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/hmo\"><img src=\"https://trinity-insures.com/cdn/shop/files/hmo_1200x.png?v=1671690072\" alt=\"\"></a><a href=\"/pages/hmo\">HMO</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/international-medical-insurance-peso-and-dollar-denominated-plan\"><img src=\"https://trinity-insures.com/cdn/shop/files/international-medicine_1200x.png?v=1671689425\" alt=\"\"></a><a href=\"/pages/international-medical-insurance-peso-and-dollar-denominated-plan\">International Medical Insurance (Peso and Dollar-denominated Plan)</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/amended-migrant-workers-act-amwa-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/migrant_1200x.png?v=1671691441\" alt=\"\"></a><a href=\"/pages/amended-migrant-workers-act-amwa-insurance\">Amended Migrant Workers Act (AMWA) Insurance</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/critical-illness\"><img src=\"https://trinity-insures.com/cdn/shop/files/critical-illness_1200x.png?v=1671692234\" alt=\"\"></a><a href=\"/pages/critical-illness\">Critical Illness</a></div></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-12 col-md-12 col-12 tc\"><a href=\"/pages/employee-benefits\">View More</a></div></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><h3 class=\"tc\"><h4>SERVICE SOLUTIONS</h4></h3><div class=\"row\"><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/third-party-administration\"><img src=\"https://trinity-insures.com/cdn/shop/files/third-party-admin_1200x.png?v=1671695423\" alt=\"\"></a><a href=\"/pages/third-party-administration\">Third Party Administration</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/claims-management\"><img src=\"https://trinity-insures.com/cdn/shop/files/claims-mgt_1200x.png?v=1671695580\" alt=\"\"></a><a href=\"/pages/claims-management\">Claims Management</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/industry-benchmarking\"><img src=\"https://trinity-insures.com/cdn/shop/files/industry-benchmarking_1200x.png?v=1671695734\" alt=\"\"></a><a href=\"/pages/industry-benchmarking\">Industry Benchmarking</a></div><div class=\"col-lg-3 col-md-6 col-12 tc\"><a href=\"/pages/wellness-program-development-and-management\"><img src=\"https://trinity-insures.com/cdn/shop/files/wellness_1200x.png?v=1671695945\" alt=\"\"></a><a href=\"/pages/wellness-program-development-and-management\">Wellness Program Development and Management</a></div></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-12 col-md-12 col-12 tc\"><a href=\"/pages/service-solutions\">View More</a></div></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div><h3 class=\"tc\">OUR INTERNATIONAL NETWORK PARTNERS</h3> With access to the expertise, resources and services of our partners combined with our embedded local knowledge and relationships, Trinity is able to get the best of both worlds and offer it to our clients. </div><div class=\"row\"><div class=\"col-lg-6 col-md-6 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/fdfdg_1200x.png?v=1614312896\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/asinta_1200x.png?v=1789450346\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/assfdg_1200x.png?v=1614312896\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Jiang_Tai_no_bg_1200x.png?v=1790933940\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/sequoia_no_bg_1200x.png?v=1790933941\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/unison_1200x.png?v=1789450404\" alt=\"\"></div></div></div>"
+  },
+  {
+   "type": "type_featured_blog",
+   "html": "<div class=\"container\"><h3 class=\"tc\">ARTICLES</h3><div class=\"row\"><article class=\"col-lg-4 col-md-4 col-12\"><h4><a href=\"/blogs/news/keeping-it-natural-8-testosterone-boosters-for-a-healthier-you-health-university-of-utah-harvard-health-publishing-and-urology-specialists-of-oregon\">Keeping It Natural: 8 Testosterone Boosters for a Healthier You – Health University of Utah, Harvard Health Publishing, and Urology Specialists of Oregon</a></h4></article><article class=\"col-lg-4 col-md-4 col-12\"><h4><a href=\"/blogs/news/what-you-need-to-know-about-refractive-errors\">What You Need to Know About Refractive Errors</a></h4></article><article class=\"col-lg-4 col-md-4 col-12\"><h4><a href=\"/blogs/news/protecting-your-business-in-transit-understanding-marine-cargo-hull-and-aviation-insurance\">Protecting Your Business in Transit: Understanding Marine Cargo, Hull, and Aviation Insurance</a></h4></article></div></div>"
+  },
+  {
+   "type": "type_newsletter",
+   "html": "<div class=\"tc\"><div class=\"container\"><div><h3 class=\"tc\">SUBSCRIBE TO OUR NEWSLETTER</h3> Get the latest news, update and articles as soon as they're published. </div></div></div>"
+  }
+ ]
+}

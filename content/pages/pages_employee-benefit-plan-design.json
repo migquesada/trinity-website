@@ -1,0 +1,17 @@
+{
+ "path": "/pages/employee-benefit-plan-design",
+ "title": "Employee Benefit Plan Design",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/employee-benefit_1200x.png?v=1671696100\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Employee Benefit Plan Design</h3><p>Customization of insurance programs acceptable both on a local and international setting. Output is based on the client's preferred extent coverage and budget</p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

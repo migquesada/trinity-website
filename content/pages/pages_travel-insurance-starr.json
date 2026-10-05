@@ -1,0 +1,21 @@
+{
+ "path": "/pages/travel-insurance-starr",
+ "title": "Travel Insurance Starr",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/travel_924349b5-9f8c-4f4a-8252-b9cae6839afe_1200x.png?v=1686211788\" alt=\"\"><h3>Travel Insurance</h3></div></div></div>"
+  },
+  {
+   "type": "type_rich_text",
+   "html": "<div class=\"container\"><div class=\"tl\"><p>Travel opens doors to new experiences, but it can also bring unexpected challenges. From flight delays and lost luggage to medical emergencies abroad, even the best-laid plans can be disrupted. That’s where Travel Insurance comes in, giving you peace of mind so you can focus on what matters most: enjoying the journey, whether for leisure or business.</p><p>At TRINITY, in partnership with STARR Insurance, we provide comprehensive Travel Insurance designed to protect you against international travel inconveniences. From covering losses and damages to ensuring support when you need it most, we’ve got you covered wherever your adventures take you.</p><p>The following are just some of the major coverage and benefits:&#160;</p><ul><li>Accidental Death and Disablement</li><li>Medical Expenses</li><li>Global Emergency Assistance Services</li><li>Loss or Damage to Baggage</li><li>Travel Delay and Reroute</li><li>Trip Cancellation</li></ul><p><em>and more</em></p><p><strong>Ready to secure your trip? <br></strong>Click “<strong>PROCEED</strong>” below to get your Travel Insurance. You’ll be redirected to STARR Insurance’s Travel Insurance portal to complete your purchase.</p><p>For any questions or assistance, feel free to email us at&#160;<a href=\"mailto:trinity@trinity-insures.com\" target=\"_blank\">trinity@trinity-insures.com</a>. We’re here to help!</p></div></div>"
+  },
+  {
+   "type": "section",
+   "html": "<div><a href=\"https://trinity.starrinsurance.com.ph\"> PROCEED </a><a href=\"/\"> STAY ON SITE </a></div>"
+  }
+ ]
+}

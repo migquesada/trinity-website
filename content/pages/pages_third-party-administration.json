@@ -1,0 +1,17 @@
+{
+ "path": "/pages/third-party-administration",
+ "title": "Third Party Administration",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/third-party-admin_1200x.png?v=1671695423\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Third Party Administration</h3><p>A self-funded healthcare program wherein we internally administer using the network of healthcare providers. The service is designed for large companies with a workforce of 500 or more employees and is advisable for companies, regardless of size, with a favorable claims loss ratio.<br></p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

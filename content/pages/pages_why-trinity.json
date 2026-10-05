@@ -1,0 +1,24 @@
+{
+ "path": "/pages/why-trinity",
+ "title": "Why Trinity",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Why Trinity",
+  "image": "https://trinity-insures.com/cdn/shop/files/Why_trinity-min_1600x.jpg?v=1662606018"
+ },
+ "sections": [
+  {
+   "type": "type_rich_text",
+   "html": "<div class=\"container\"><div class=\"tc\"><p>Trinity is a solutions focused company that helps identify risk exposures of its clients various businesses and finds solutions to mitigate them</p></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-6 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/wh1_1200x.jpg?v=1647330126\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/whytrinity-min_1200x.jpg?v=1662605897\" alt=\"\"></div></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/knowledge_1200x.png?v=1647330408\" alt=\"\"><div><h3>Knowledge &amp; Expertise</h3><p>With over 30 years of providing expert insurance advice and guidance, we have gained the authority in the industry as well as the confidence to be able to provide the best possible products and services that caters to each of our clients’ unique needs. You can trust us to give you not only your money’s worth but your peace of mind as well.</p></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/focus_1200x.png?v=1647330536\" alt=\"\"><div><h3>Focus on Business</h3><p>At Trinity, our commitment to serve you doesn’t just stop at the point of sale. We understand that the time you need us most is when you need to file claims. We assure that your insurances are well-managed so you <br>can keep your focus on your business while we handle the rest. Our clients’ business is our business.</p></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/cost_1200x.png?v=1647330595\" alt=\"\"><div><h3>Cost-effectiveness</h3><p>In the past 30 years, we have gauged different providers and have established a trusted network that offers the most cost-effective and comprehensive insurance programs. We take into account our clients’ <br>individual needs and budget. With Trinity, we make sure that we get off on the right foot with our clients so we can travel the road farther together.</p></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/peace_1200x.png?v=1647330700\" alt=\"\"><div><h3>Peace of Mind</h3><p>Our relationship with our clients are tested when we stand with them especially in times of claims. At Trinity, we give our clients peace of mind by being there whenever they need us. We are proud to not only be an insurance broker to our clients, but also a trusted ally that they can count on in their business.</p></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/personalized_1200x.png?v=1647330806\" alt=\"\"><div><h3>Personalized Service</h3><p>Trinity knows that every client is unique. With our extensive network, we are capable of providing personalized insurance programs that cater to our clients’ specific requirements. What makes us stand out is our accumulated and combined expertise and the insurance service providers we have partnered with in over 30 years.</p></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/global_1200x.png?v=1647330875\" alt=\"\"><div><h3>Global Reach</h3><p>Trinity is part of Brokerslink — a global broking company that operates across 100 countries. With this partnership, we are able to have global reach and support to provide the best service to our clients locally and multinational clients globally.</p></div></div></div></div>"
+  }
+ ]
+}

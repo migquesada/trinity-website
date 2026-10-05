@@ -1,0 +1,16 @@
+{
+ "path": "/pages/service-solutions",
+ "title": "Service Solutions",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Service Solutions",
+  "image": null
+ },
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/third-party-administration\"><img src=\"https://trinity-insures.com/cdn/shop/files/third-party-admin_1200x.png?v=1671695423\" alt=\"\"></a><a href=\"/pages/third-party-administration\">Third Party Administration</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/claims-management\"><img src=\"https://trinity-insures.com/cdn/shop/files/claims-mgt_1200x.png?v=1671695580\" alt=\"\"></a><a href=\"/pages/claims-management\">Claims Management</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/industry-benchmarking\"><img src=\"https://trinity-insures.com/cdn/shop/files/industry-benchmarking_1200x.png?v=1671695734\" alt=\"\"></a><a href=\"/pages/industry-benchmarking\">Industry Benchmarking</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/wellness-program-development-and-management\"><img src=\"https://trinity-insures.com/cdn/shop/files/wellness_1200x.png?v=1671695945\" alt=\"\"></a><a href=\"/pages/wellness-program-development-and-management\">Wellness Program Development and Management</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/employee-benefit-plan-design\"><img src=\"https://trinity-insures.com/cdn/shop/files/employee-benefit_1200x.png?v=1671696100\" alt=\"\"></a><a href=\"/pages/employee-benefit-plan-design\">Employee Benefit Plan Design</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/technical-underwriting\"><img src=\"https://trinity-insures.com/cdn/shop/files/technical-underwriting_1200x.png?v=1671696255\" alt=\"\"></a><a href=\"/pages/technical-underwriting\">Technical Underwriting</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/risk-management-and-loss-prevention\"><img src=\"https://trinity-insures.com/cdn/shop/files/risk-management_1200x.png?v=1671696399\" alt=\"\"></a><a href=\"/pages/risk-management-and-loss-prevention\">Risk Management and Loss Prevention</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/insurance-policy-audit\"><img src=\"https://trinity-insures.com/cdn/shop/files/insurance-policy-audit_1200x.png?v=1671696589\" alt=\"\"></a><a href=\"/pages/insurance-policy-audit\">Insurance Policy Audit</a></div></div></div>"
+  }
+ ]
+}

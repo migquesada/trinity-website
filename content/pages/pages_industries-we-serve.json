@@ -1,0 +1,20 @@
+{
+ "path": "/pages/industries-we-serve",
+ "title": "Industries We Serve",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Industries We Serve",
+  "image": "https://trinity-insures.com/cdn/shop/files/industries_1600x.png?v=1647337753"
+ },
+ "sections": [
+  {
+   "type": "type_rich_text",
+   "html": "<div class=\"container\"><h3 class=\"tc\">Supporting the markets</h3><div class=\"tc\"><p>Over the years, we have grown our portfolio to include over 2,000 clients—from retail and small and medium scale establishments to select large Philippine owned conglomerates and regional multinationals in the Asian region.</p></div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><h3 class=\"tc\"><h4>As a full-service brokerage firm, we serve a wide range of industries:</h4></h3><div class=\"row\"><div class=\"col-lg-4 col-md-4 col-12 tl\"><p>• Advertising<br>• Arms &amp; ammunition<br>• Automotive industry<br>• Aviation<br>• Business process outsourcing<br>• Confectionary<br>• Construction<br>• Distillery<br>• Engineering<br>• Entertainment<br>• Finance &amp; lending institutions</p></div><div class=\"col-lg-4 col-md-4 col-12 tl\"><p>• Food &amp; beverage<br>• Garments<br>• Hospitality &amp; tourism<br>• Hospitals<br>• Information technology<br>• Industrial gases<br>• Legal industry<br>• Logistics<br>• Manning agencies<br>• Mining<br>• Petroleum &amp; energy</p></div><div class=\"col-lg-4 col-md-4 col-12 tl\"><p>• Pharmaceuticals<br>• Property Development<br>• Retail &amp; wholesale<br>• Schools<br>• Shipping<br>• Sugar mills<br>• Shopping malls<br>• Textile<br>• Transportation<br>• Travel<br>• Utilities</p></div></div></div>"
+  }
+ ]
+}

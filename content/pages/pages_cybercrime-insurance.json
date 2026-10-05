@@ -1,0 +1,17 @@
+{
+ "path": "/pages/cybercrime-insurance",
+ "title": "Cybercrime Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/cybercrime_1200x.jpg?v=1671609609\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Cybercrime Insurance</h3><div><p>Cyberattacks are on the rise, and <strong>hackers are now targeting businesses of all sizes</strong>—not just large enterprises. From phishing scams to ransomware, cybercrime is costing businesses millions in lost revenue, legal fees, and reputational damage.<br><br>This is why Cyber Insurance is important. <br><br>At TRINITY, we offer a <strong>comprehensive Cyber Insurance</strong> that provides coverage for both first-party and third-party losses. </p><p><strong>• First-Party Coverage</strong><br>o Network repair due to cyber-attack<br>o Data loss and system storage<br>o Business interruption<br>o Crisis management<br>o Public relations expenses and notification expense<br>o Cyber Extortion</p><p><strong>• Third-Party Coverage</strong><br>o Defense cost and legal liability<br>o Claims arising from negligent transmission of virus to third party who used the company's website for business transaction<br><br>What is the information needed for Cyber Insurance?<br>• Assured's Name<br>• Nature of Business<br>• Location<br>• Geographic Exposure<br>• Current Security &amp; Data Protection Measures<br>• Broker of Record (BOR) - form will be provided by Trinity<br>• KYC form – form will be provided by Trinity<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself <strong>PEACE OF MIND!</strong> Let’s discuss how we can protect your company from the unexpected. <strong>INQUIRE NOW!<br></strong><br>At Trinity, we are always eager to serve you!<br></p></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

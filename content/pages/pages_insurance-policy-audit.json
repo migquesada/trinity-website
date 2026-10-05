@@ -1,0 +1,17 @@
+{
+ "path": "/pages/insurance-policy-audit",
+ "title": "Insurance Policy Audit",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/insurance-policy-audit_1200x.png?v=1671696589\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Insurance Policy Audit</h3><div><p>Insurance policy audits are a common occurrence in the insurance industry. They can be used to verify coverage and ensure that all claims will be handled properly. Depending on the type of audit performed, premiums for your company's policies may increase or decrease. </p><h3><strong>What is an Insurance Policy Audit?</strong></h3><p>An insurance policy audit is a process that helps you to identify areas of improvement in your current insurance policy. It involves reviewing all the terms and conditions of your cover, identifying gaps in it, and coming up with recommendations for improvement based on these findings.<br><br>Before purchasing or renewing your policy, it is best to have an audit performed. The main goal is to ensure that you have taken all necessary steps in purchasing an insurance policy, ensuring that you are always covered according to your needs.<br></p><h3><br><strong>Benefits of Insurance Policy Audit</strong></h3><ul><li>It helps you to understand your insurance requirements. It is important to know the exact coverage of your insurance policy and that it covers critical liabilities and risks, which may arise during the contract period.</li><li>It helps you get the best value for your money. A professional audit can help you get a better deal on premium, because it gives an honest opinion about what should be covered by your existing policies so that there is no scope for any confusion or dispute later on.<br></li></ul><h3>How it is performed<br></h3><ul><li>Check to see if the insured's necessary details such as: insurable interest ownership, updated breakdown of property, and/or limit of liability are correct and up to date.<br></li><li>Conduct risk inspection, as needed.<br></li><li>Check the policy's specifics and subjectivities.<br></li><li>Check loss record, if any.</li><li>Check the premium rate.<br><br>Purchasing insurance has become an essential part of modern business. However, when purchasing insurance, it is also critical to ensure that your broker performs an Insurance Policy Audit to ensure that the coverage meets your needs. Trinity, with over 37 years of experience, ensures that its clients receive the protection they require at the most reasonable premium by actively performing an Insurance Policy Audit. With Trinity, you can be confident with your insurance policy.<br><br>To inquire about insurance insurance policy audit, please fill out the form below or contact us through email at trinity@trinity-insures.com.You may also visit our <a href=\"/pages/contact-us\">Contact Us</a> page.<br></li></ul></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

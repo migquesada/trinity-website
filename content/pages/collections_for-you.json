@@ -1,0 +1,16 @@
+{
+ "path": "/collections/for-you",
+ "title": "For you",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "For you",
+  "image": null
+ },
+ "sections": [
+  {
+   "type": "section",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col\"><a style=\"background-image:url('hide_btn')\" class=\"bg\" href=\"#\">Filter</a><a href=\"#\">Filter</a></div></div><div class=\"row\"><div class=\"col-lg-12 col-12\"><div class=\"row\"><div class=\"col-lg-15 col-md-3 col-6\"><div><div><h3><a href=\"/collections/for-you/products/bike-insurance\">Bicycle Insurance</a></h3> ₱0.00 <p>Enjoy the ride without the worries! When you’re on the road, accidents may happen anytime, anywhere. This is why it’s important that you and your bike has maximum protection coverage...</p></div><a class=\"tc\" href=\"/collections/for-you/products/bike-insurance\">Apply nowApply now</a></div></div><div class=\"col-lg-15 col-md-3 col-6\"><div><div><h3><a href=\"/collections/for-you/products/big-bike-insurance-inquiry-only\">Big Bike Insurance</a></h3> ₱0.00 <p>Ride with peace of mind! When you’re on the road, accidents may happen anytime, anywhere. This is why it’s important that you and your big bike has maximum protection coverage...</p></div><a class=\"tc\" href=\"/collections/for-you/products/big-bike-insurance-inquiry-only\">Apply nowApply now</a></div></div></div></div></div></div>"
+  }
+ ]
+}

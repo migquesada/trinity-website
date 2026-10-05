@@ -1,0 +1,16 @@
+{
+ "path": "/pages/30-years-in-providing-customized-risk-solutions",
+ "title": "30 Years in Providing Customized Risk Solutions",
+ "description": "30 Years in Providing Customized Risk Solutions With over 30 years of experience, we are able to providecustomized risk solutions for our clients in various industries in the Philippines.We partner with select local and leading global risk carriers that are financially stable, reliable, and responsive. Below are some o",
+ "template": "page",
+ "hero": {
+  "title": "30 Years in Providing Customized Risk Solutions",
+  "image": "https://trinity-insures.com/cdn/shop/files/Payments_banner-min_60d49da7-2d78-4f97-a54f-efbc95996268_1600x.jpg?v=1662606882"
+ },
+ "sections": [
+  {
+   "type": "section",
+   "html": "<div class=\"container\"><br><br><h3><strong>30 Years in Providing Customized Risk Solutions</strong></h3><h4>With over 30 years of experience, we are able to provide<br>customized risk solutions for our clients in various industries in the Philippines.<br>We partner with select local and leading global risk carriers<br> that are financially stable, reliable, and responsive.</h4><p>Below&#160;are some of our services and offerings:</p></div>"
+  }
+ ]
+}

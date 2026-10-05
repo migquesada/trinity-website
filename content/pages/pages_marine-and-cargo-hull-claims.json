@@ -1,0 +1,16 @@
+{
+ "path": "/pages/marine-and-cargo-hull-claims",
+ "title": "Marine and Cargo Hull Claims",
+ "description": "Marine and Cargo Claim Requirements1. Copy of the insurance policy with warranties and clauses attached2. Formal advice from the insured to insurer regarding the claim3. The following are to be submitted:     1. Marine Risk Note and endorsement, if any     2. Commercial invoice     3. Bill of lading      4. Packing lis",
+ "template": "page",
+ "hero": {
+  "title": "Marine and Cargo Hull Claims",
+  "image": "https://trinity-insures.com/cdn/shop/files/Payments_banner-min_60d49da7-2d78-4f97-a54f-efbc95996268_1600x.jpg?v=1662606882"
+ },
+ "sections": [
+  {
+   "type": "section",
+   "html": "<div class=\"container\"><p><strong>Marine and Cargo Claim Requirements</strong><br>1. Copy of the insurance policy with warranties and clauses attached<br>2. Formal advice from the insured to insurer regarding the claim<br>3. The following are to be submitted:<br>&#160; &#160; &#160;1. Marine Risk Note and endorsement, if any<br>&#160; &#160; &#160;2. Commercial invoice<br>&#160; &#160; &#160;3. Bill of lading<br> &#160; &#160; &#160;4. Packing lists<br> &#160; &#160; &#160;5. Copies of the formal claim against the following:<br> &#160; &#160; &#160; &#160; &#160;&#160;o Arrastre operator/contractor<br> &#160; &#160; &#160; &#160; &#160;&#160;o Vessel's owner/agent<br> &#160; &#160; &#160; &#160; &#160;&#160;o Therbailees, such as the customs broker, etc. and their respective replies<br> &#160; &#160; &#160;6. Copy of delivery receipts<br> &#160; &#160; &#160;7. For claims involving shipments in Bad Order condition:<br> &#160; &#160; &#160;&#160; &#160; &#160;o Bad order issued by the arrastre contractor<br> &#160; &#160; &#160;&#160; &#160; &#160;o Copy of the turn-over survey of the bad order on board cargoes issued by the arrastre contractor as attested by the vessel´s representative<br> &#160; &#160; &#160;&#160; &#160; &#160;o Original laboratory or quality control analysis report<br> &#160; &#160; &#160;&#160; &#160; &#160;o Original invoice for repair/ reconditioning of the bad order or damaged items<br> &#160; &#160; &#160;8. For claims involving short-landed shipment/ spillage/ leakage<br> &#160; &#160; &#160;&#160; &#160; &#160;o Bad order certificate issued by the arrastre contractor<br> &#160; &#160; &#160;&#160; &#160; &#160;o Turn-over survey on bad order cargoes<br> &#160; &#160; &#160;9. For claims involving short delivered shipments:<br> &#160; &#160; &#160;&#160; &#160; &#160;o Short delivery or short landing certificate issued by the arrastre contractor certifying the non-discharge of packages or tally sheet of discharge</p><ol></ol></div>"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "path": "/pages/meet-our-cebu-team",
+ "title": "Meet our Cebu Team",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Meet our Cebu Team",
+  "image": "https://trinity-insures.com/cdn/shop/files/Meet_the_team-min_e55183a0-bef1-4f6b-97a3-a8f874605d5e_1600x.jpg?v=1662603576"
+ },
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Isidro_Garcia_1200x.jpg?v=1662948682\" alt=\"\"><div><h3>ISIDRO G. GARCIA</h3><p>Chairman/President</p></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Regan_King_1200x.jpg?v=1662949001\" alt=\"\"><div><h3>REGAN REX T. KING</h3><p>Director<br>General Manager and COO, RDAK</p></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Immanuel_Garcia_1200x.jpg?v=1662948792\" alt=\"\"><div><h3>IMMANUEL M. GARCIA</h3><div><p>Director</p><p>BS-HRIM, DLSU College of St. Benilde<br>MBA, Asian Institute of Management</p></div></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Inigo_Garcia_1200x.jpg?v=1662948731\" alt=\"\"><div><h3>IÑIGO M. GARCIA</h3><div><p>Treasurer</p><p>BS-EM, University of Asia and the Pacific<br>MBA, Ateneo Graduate School of Business</p></div></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/richard_ray_1200x.jpg?v=1647329545\" alt=\"\"><div><h3>RICHARD RAY T. KING</h3><div><p>Director</p><p>President and CEO, RDAK Land Inc.</p></div></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Emmanuel_Herbosa_1200x.jpg?v=1662948842\" alt=\"\"><div><h3>EMMANUEL HERBOSA</h3><div><p>Director</p><p>President &amp; CEO, Development Bank of the Philippines</p></div></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Andrew_Escaler_1200x.jpg?v=1662948819\" alt=\"\"><div><h3>MICHAEL ANDREW L. ESCALER</h3><div><p>Director</p><p>President, Pasudeco Development Corp.<br>BA Economics and Philosophy, Boston College</p></div></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/wilfredo_bf91a9a1-48c2-4b6e-ac26-35d630390a02_1200x.jpg?v=1662948866\" alt=\"\"><div><h3>WILFREDO A. PLACINO</h3><div><p>Independent Director</p><p>President, Clark Global Gateway City</p></div></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Kevin_Moss_1200x.jpg?v=1662948883\" alt=\"\"><div><h3>KEVIN MOSS</h3><div><p>Independent Director</p><p>Investment Specialist, Asian Development Bank</p></div></div></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><img src=\"https://trinity-insures.com/cdn/shop/files/Atty_Reggie_Nolido_1200x.jpg?v=1662948901\" alt=\"\"><div><h3>REGINALD ALBERTO B. NOLIDO</h3><div><p>Corporate Secretary / Legal Dept. Head</p><p>Managing Partner, Nolido Law Firm<br>JD, Ateneo Law School</p></div></div></div></div></div>"
+  }
+ ]
+}

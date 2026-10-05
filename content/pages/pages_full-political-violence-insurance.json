@@ -1,0 +1,17 @@
+{
+ "path": "/pages/full-political-violence-insurance",
+ "title": "Full Political Violence Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/full-political-violence_1200x.png?v=1671612538\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Political Violence and Terrorism Insurance</h3><div><p>Political unrest and terrorism are unpredictable—but their impact on your business is not. <strong>From property damage to operational shutdowns</strong>, the financial consequences of political violence can be severe. This is why forward-thinking companies invest in Political Violence &amp; Terrorism Insurance.<br><br>At TRINITY, we offer a <strong>comprehensive Political Violence &amp; Terrorism Insurance</strong> that covers the following: <br>• Losses due to terrorism, sabotage, strikes, riots, civil commotion, malicious damage, insurrection, revolution and rebellion, mutiny, counter insurgency, coup d’etat, war and civil war<br>• Terrorism liability for third party property damage and bodily injury<br>• Business interruption<br>• Contingent business interruption, denial of access, and forced abandonment<br><br>What is the information needed for Political Violence and Terrorism Insurance?<br>• Assured's Name<br>• Location of Property<br>• Type of Property - residential, industrial, or commercial<br></p><p>• Properties to be Insured<br> o Building<br> o Contents<br> o Machineries and equipment<br> o Stocks<br> o Valuable items/works of art<br></p><p>• Mortgage, if applicable<br>• Loss history<br>• Broker of Record (BOR) - form will be provided by Trinity<br>• KYC form – form will be provided by Trinity<br><br>Valuation of Property:<br>• Replacement Value - amount if a similar property will be built NOW<br>• Sound Value - replacement value less the accrued depreciation<br>• Fair Market Value - value of a similar property in the market<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself <strong>PEACE OF MIND!</strong> Let’s discuss how we can protect your company from the unexpected. <strong>INQUIRE NOW!</strong><br><br>At Trinity, we are always eager to serve you!<br><br></p></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

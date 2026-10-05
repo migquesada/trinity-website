@@ -1,0 +1,17 @@
+{
+ "path": "/pages/marine-cargo-hull-and-aviation-insurance",
+ "title": "Marine Cargo, Hull, and Aviation Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/marine-cargo-hull-aviation-2_1200x.jpg?v=1671614949\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Marine Cargo, Hull, and Aviation Insurance</h3><p>Whether you're transporting goods across oceans, operating vessels, or managing aircraft, your business faces unique risks—<strong>from weather disruptions to mechanical failures and accidents</strong>.<br><br>Marine Hull, Cargo, and Aviation Insurance provide comprehensive protection for your assets in motion. Marine Hull Insurance is insurance protection against loss of or damage to a ship. Marine Cargo Insurance is coverage against loss of or damage to in-transit cargo over waterways, land, and air. Aviation Insurance is insurance coverage for aircraft and for the damage, injury, or loss of life.<br><br>At TRINITY, we offer a <strong>comprehensive Marine Hull, Cargo, and Aviation Insurance</strong> that provides financial support. The following is the coverage for Marine Hull Insurance: <br>• Losses due to the total loss of the vessel or expenses due to repair or damages to the vessel's hull, machinery, or equipment<br>• Losses due to the vessel being missing<br>• Vessel's share in losses, expenses, and contribution allowed in general average<br>• Necessary and properly incurred expenses for the salvage of the vessel<br><br>What is the information needed for Marine Hull, Cargo, and Aviation Insurance?<br>• Assured's Name<br>• Voyage route<br>• Frequency of voyage<br>• Type of cover to be applied - cargo, hull, or aviation<br>• Details of vessel/aircraft<br>• Conveyance - land (truck), sea (ship), air (plane)<br>• Geographical limit<br>• Sum insured<br>• Mortgage, if applicable<br>• Loss history<br>• Broker of Record (BOR) - form will be provided by Trinity<br>• KYC form – form will be provided by Trinity<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself <strong>PEACE OF MIND</strong>! Let’s discuss how we can protect your company from the unexpected. <strong>INQUIRE NOW</strong>!<br><br>At Trinity, we are always eager to serve you!<br></p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

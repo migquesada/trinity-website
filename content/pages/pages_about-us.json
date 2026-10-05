@@ -1,0 +1,28 @@
+{
+ "path": "/pages/about-us",
+ "title": "Corporate Profile",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Corporate Profile",
+  "image": "https://trinity-insures.com/cdn/shop/files/chai_1600x.jpg?v=1614312912"
+ },
+ "sections": [
+  {
+   "type": "type_image_text",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-12 col-md-6\"><div class=\"tl\"><h3>Chairman's Message</h3><p>For more than three decades, we have been assisting our clients in <br>managing their risks through risk transfer solutions and designing <br>cost-effective insurance programs. Oftentimes, we have gone beyond <br>providing insurance solutions by offering alternative risk financing <br>solutions and loss prevention programs to help mitigate their risks. We <br>are proud of the fact that we are giving peace of mind to our clients as<br> they grow their businesses.</p><p>In these challenging times, industries and companies are facing new emerging risks that expose them to potential losses. We at Trinity are developing risk solutions to address them. At the same time, we are transforming our organization to be digitally-enabled, so that we can serve our clients’ insurance needs in this era of the “new economy”. With our reinsurance capabilities and our partnership with <a href=\"https://www.brokerslink.com/\" target=\"_blank\">Brokerslink</a>, we now have the opportunity to serve our clients in more than 100 countries.</p><p>On behalf of Trinity’s management, I thank you for your trust, and I look forward to many years of close collaboration.</p><p>Very Truly Yours,</p><p><strong>Isidro G. Garcia<br></strong>Chairman and President</p></div></div><div class=\"col-12 col-md-6\"><div style=\"background-image:url('https://trinity-insures.com/cdn/shop/files/Corporate_profile-min_1600x.jpg?v=1662603058');padding-top:147.64%\" class=\"bg\"></div></div></div></div>"
+  },
+  {
+   "type": "type_image_text",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-12 col-md-6\"><div style=\"background-image:url('https://trinity-insures.com/cdn/shop/files/Evolving-min_1600x.jpg?v=1662603160');padding-top:66.64%\" class=\"bg\"></div></div><div class=\"col-12 col-md-6\"><div class=\"tl\"><h3>Evolving with History</h3><p>Trinity is a full-line insurance broker that provides products and services in both General Insurance and Employee Benefits. For more than three decades, Trinity has transformed the lives of its clients and customers, redefining what it means to be in the business of insurance by creating products and services that are customized, personalized, and cost-effective. Through its partnership with Brokerslink, a global broking company that brings together market leading independent brokers from more than 100 countries, Trinity is equipped to serve its clients with risk management services that they might need. <br><br>• Established in 1987 with only 3 employees and made P3 million worth of premiums in that same year.<br>• Expanded our operations to take on Employee Benefits, we established Trinity Healthcare Services (THS) in 1994.<br><strong>•</strong> Opened Trinity Insurance Brokers, Cebu to meet the needs of the country’s shipping capital in 2004.<br>• Surpassed the PHP 1 Billion premiums barrier in 2015.<br>• Inaugurated Trinity Insurance Center in 2017, our new office building in Makati CBD.<br>• Reached PHP 2 Billion in premiums in 2019.</p></div></div></div></div>"
+  },
+  {
+   "type": "type_rich_text",
+   "html": "<div class=\"container\"><div><h3 class=\"tc\">Our Core Values</h3><br> Because we value the work we do, we hold ourselves to the highest principles and standards. We owe it to ourselves and the people we work for the very best of what we can offer, because at the end of the day, it’s good work coupled with principles that makes what we do matter. <br><br> By embracing the following core values, we stay on the straight and narrow— </div></div>"
+  },
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-6 col-md-6 col-12 tc\"><div><h3>Excellence</h3><p>Starts with giving our best and building our competency thru innovation and continuous improvement.</p></div></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><div><h3>Integrity</h3><p>It is imperative that we keep and hold ourselves to ethical codes and <br>moral principles, because without integrity, our work means nothing.</p></div></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><div><h3>Passion</h3><p>It’s what fuels us and gives life meaning: we do everything fully committed to the task at hand, all heart and soul.</p></div></div><div class=\"col-lg-6 col-md-6 col-12 tc\"><div><h3>Courage</h3><p>To innovate takes courage—we constantly challenge ourselves to improve <br>and evolve. To move beyond mediocrity, we cannot be afraid to take that <br>leap into the unknown.</p></div></div></div></div>"
+  }
+ ]
+}

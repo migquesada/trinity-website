@@ -1,0 +1,17 @@
+{
+ "path": "/pages/international-medical-insurance-peso-and-dollar-denominated-plan",
+ "title": "International Medical Insurance (Peso and Dollar-denominated Plan)",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/international-medicine_1200x.png?v=1671689425\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>International Medical Insurance (Peso and Dollar-denominated Plan)</h3><div><p>A letter of guarantee for cashless availment abroad may be arranged for confinement cases.</p><p>What are the information/documents needed for International Medical Insurance?&#160;</p><ul><li>With Existing Plan</li></ul><p>- Copy of the contract/schedule of benefits<br>- 9-month utilization report<br>- List of employees and dependents with date of birth, civil status, and current plan cover<br>- Broker of Record (BOR) – form will be provided by Trinity</p><ul><li>Virgin account</li></ul><p>- Preferred plan benefits, if possible<br>- List of employees and dependents with date of birth and civil status<br>- Broker of Record (BOR) – form will be provided by Trinity</p></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

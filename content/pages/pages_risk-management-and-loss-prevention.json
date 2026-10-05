@@ -1,0 +1,17 @@
+{
+ "path": "/pages/risk-management-and-loss-prevention",
+ "title": "Risk Management and Loss Prevention",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/risk-management_1200x.png?v=1671696399\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Risk Management and Loss Prevention</h3><p>A service that aims to review the existing risks being faced by the client and to provide ways to mitigate/reduce their impact</p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

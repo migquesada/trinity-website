@@ -1,0 +1,16 @@
+{
+ "path": "/pages/whistleblowing-form",
+ "title": "Whistleblowing Form",
+ "description": "INSTRUCTIONS Trinity accepts and investigates allegations of improper activities by its people and third parties or where Trinity is potentially a victim of wrongdoing. Because we do not conduct investigations in the absence of adequate cause, we need as much evidence as possible to corroborate the allegation(s) such a",
+ "template": "page",
+ "hero": {
+  "title": "Whistleblowing Form",
+  "image": "https://trinity-insures.com/cdn/shop/files/Payments_banner-min_60d49da7-2d78-4f97-a54f-efbc95996268_1600x.jpg?v=1662606882"
+ },
+ "sections": [
+  {
+   "type": "section",
+   "html": "<div class=\"container\"><p><strong>INSTRUCTIONS</strong></p><p>Trinity accepts and investigates allegations of improper activities by its people and third parties or where Trinity is potentially a victim of wrongdoing. Because we do not conduct investigations in the absence of adequate cause, we need as much evidence as possible to corroborate the allegation(s) such as documents, witnesses, and other specific and relevant information. Investigating improper activities is more difficult if complaints are filed anonymously because of the difficulty of obtaining evidence to corroborate the alleged improper activity before we begin an investigation. If you choose to file your complaint anonymously, kindly be sure to provide specific and relevant information including the first and last names of any individuals mentioned, their contact information, relationship to Trinity and the location address at which the improper activity occurred.</p><p>When describing the improper activity, please provide as much of the following information for each of your allegations and number each allegation, if there is more than one. </p><p><strong>WHO:</strong> Who is involved? If outside businesses, contractors, or clients are involved, what are the names of the businesses, who owns them, and where are they located? Who else knows about the improper activities? Who can and would confirm that they occurred? How can we reach these witnesses?</p><p><strong>WHAT:</strong> What specifically did the suspect do? What is wrong with it? Are there laws or regulations that govern what the suspect did? What kinds of documents would provide evidence of the improper activities? Where are the documents located? Who controls them?</p><p><strong>WHERE: </strong>Which department, unit, or location did the action happen?</p><p><strong>WHEN: </strong>When did the improper activity occur? Is it ongoing? How frequently has it occurred?</p><p><strong>WHY: </strong>What are the suspect(s) motives? For example, how does the suspect benefit? If others</p><p>benefit from the activities, who are they and how do they benefit?</p><p><strong>HOW:</strong> How did the wrongdoing occur? Was there a lack of controls, circumvention of controls, or collusion with other individuals?</p><p><div data-form=\"inquiry\"></div></p></div>"
+  }
+ ]
+}

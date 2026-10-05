@@ -1,0 +1,17 @@
+{
+ "path": "/pages/shipowner-s-healthcare-program-for-seafarers-and-dependents",
+ "title": "Shipowner’s Healthcare Program for Seafarers and Dependents",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/seafarers_1200x.png?v=1671694762\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Shipowner’s Healthcare Program for Seafarers and Dependents</h3><div><p>The Shipowner's Healthcare Program for Seafarers is a specialized type of healthcare coverage designed to cater to shipowners' requirements in providing HMO coverage for its Filipino seafarers when they are at home in the Philippines within their HMO coverage policy contract, as well as for their dependents</p><p><strong>This insurance secures the following:</strong><br></p><ul><li>Indemnity for 30,000 seafarers</li><li>Indemnity for dependents while the seafarer's onboard</li></ul><p><br>*Indemnity for the Seafarers themselves as soon as they have landed.</p></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

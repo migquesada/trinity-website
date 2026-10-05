@@ -1,0 +1,17 @@
+{
+ "path": "/pages/professional-indemnity-insurance",
+ "title": "Professional Indemnity Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/professionalindemnity_1200x.png?v=1671609966\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Professional Indemnity Insurance</h3><p>In today’s fast-paced business world, even the most experienced companies and professionals can face unexpected <strong>claims of negligence, errors, or omissions</strong>. One misstep—or even a misunderstanding—can lead to costly legal battles and reputational damage.<br><br>This is why Professional Indemnity Insurance matters.<br><br>Professional Indemnity Insurance protects companies and professionals against claims for financial damage resulting from the advice and services they provide to their clients. <br><br>At TRINITY, we offer a <strong>comprehensive Professional Indemnity Insurance</strong> that provides financial support to meet the costs of legal actions and any damages that may become payable due to the following reasons: <br>• Breach of duty<br>• Negligent act<br>• Error and omission<br>• Misstatement or misleading statement<br>• Breach of warranty of authority committed in good faith<br>• Breach of confidentiality which occurs in the performance of or failure to perform professional services<br><br>What is the information needed for Professional Indemnity Insurance?<br>• Assured's Name<br>• Nature of Business/Profession <br>• Location<br>• Broker of Record (BOR) - form will be provided by Trinity<br>• KYC form – form will be provided by Trinity<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself <strong>PEACE OF MIND!</strong> Let’s discuss how we can protect your company from the unexpected. <strong>INQUIRE NOW!</strong><br><br>At Trinity, we are always eager to serve you!<br></p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

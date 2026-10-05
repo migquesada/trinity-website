@@ -1,0 +1,17 @@
+{
+ "path": "/pages/critical-illness",
+ "title": "Critical Illness",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/critical-illness_1200x.png?v=1671692234\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Critical Illness</h3><div><p>Provides additional coverage for employees' medical emergencies such as cancer, stroke, or heart attack.</p><p>What are the information/documents needed for Critical Illness Insurance?&#160;</p><ul><li>With Existing plan</li></ul><p>- Copy of the contract/schedule of benefits<br>- 9-month utilization report<br>- List of employees and dependents with date of birth, civil status, gender, and amount of insurance<br>- Broker of Record (BOR) – form will be provided by Trinity</p><ul><li>Virgin Account</li></ul><p>- Preferred plan benefits, if possible<br>- List of employees and dependents with date of birth, civil status, gender, position/job level<br>- Broker of Record (BOR) – form will be provided by Trinity</p></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

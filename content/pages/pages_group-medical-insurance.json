@@ -1,0 +1,17 @@
+{
+ "path": "/pages/group-medical-insurance",
+ "title": "Group Medical Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/group-medical_1200x.png?v=1671694257\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Group Medical Insurance</h3><div><p>Group Medical Insurance is a traditional medical scheme with an option for either cashless availment or claims reimbursement. Each benefit has inner limits and professional fees because surgical cases are subject to Relative Unit Value</p><p><strong>Basic and Major Medical Benefits include:</strong><br>- Room and board<br>- Physician visit<br>- Surgical fee per schedule of operation<br>- Anesthesiologist fee (35% of eligible surgeon's fee)<br>- Miscellaneous hospital expenses<br>- Specialist's Fee<br>- Nurse's Fee<br><br><strong>Out-Patient Benefits:</strong><br>- Consultation per visit<br>- Laboratories and Diagnostics<br>- Medicines<br><br><strong>Additional options that can be included:</strong><br>- Dental Benefits<br>- Annual Physical Examination (APE)</p><p><strong>What are the information/documents needed for Group Medical Insurance?</strong></p><ul><li>With Existing plan</li></ul><p>- Copy of the contract/schedule of benefits<br>- 9-month utilization report<br>- List of employees and dependents with date of birth, civil status, gender, and amount of insurance<br>- Broker of Record (BOR) – form will be provided by Trinity</p><ul><li>Virgin Account</li></ul><p>- Preferred plan benefits, if possible<br>- List of employees and dependents with date of birth, civil status, gender, position/job level<br>- Broker of Record (BOR) – form will be provided by Trinity</p></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "path": "/pages/wellness-program-development-and-management",
+ "title": "Wellness Program Development and Management",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/wellness_1200x.png?v=1671695945\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Wellness Program Development and Management</h3><p>A health promotion activity designed to increase productivity, boost morale, and reduce stress thereby reducing healthcare costs.</p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

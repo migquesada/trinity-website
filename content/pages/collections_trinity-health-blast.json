@@ -1,0 +1,16 @@
+{
+ "path": "/collections/trinity-health-blast",
+ "title": "Trinity Health Blast",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Trinity Health Blast",
+  "image": null
+ },
+ "sections": [
+  {
+   "type": "section",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col\"><a style=\"background-image:url('hide_btn')\" class=\"bg\" href=\"#\">Filter</a><a href=\"#\">Filter</a></div></div><div class=\"row\"><div class=\"col-lg-12 col-12\"><div>No products were found matching your selection.</div></div></div></div>"
+  }
+ ]
+}

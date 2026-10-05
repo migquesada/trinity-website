@@ -1,0 +1,16 @@
+{
+ "path": "/pages/copyright",
+ "title": "Copyright",
+ "description": "Copyright © 2021, Trinity Insurance and Reinsurance Brokers, Inc.",
+ "template": "page",
+ "hero": {
+  "title": "Copyright",
+  "image": "https://trinity-insures.com/cdn/shop/files/Payments_banner-min_60d49da7-2d78-4f97-a54f-efbc95996268_1600x.jpg?v=1662606882"
+ },
+ "sections": [
+  {
+   "type": "section",
+   "html": "<div class=\"container\">Copyright © 2021,&#160;<a href=\"/\">Trinity Insurance and Reinsurance Brokers, Inc.</a></div>"
+  }
+ ]
+}

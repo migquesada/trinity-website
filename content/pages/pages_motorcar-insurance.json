@@ -1,0 +1,17 @@
+{
+ "path": "/pages/motorcar-insurance",
+ "title": "Motorcar Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/motorcar_1200x.png?v=1671613741\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Motorcar Insurance</h3><p>Managing a fleet of vehicles means managing risk—accidents, breakdowns, theft, and liability can disrupt operations and drive-up costs. Whether you're in logistics, sales, delivery, or field services, your vehicles keep your business, and disruptions on these assets can derail your operations. <br><br>That’s why smart businesses invest in Motorcar Insurance.<br><br>At TRINITY, we offer a <strong>comprehensive Motorcar Insurance</strong> that provides full protection for all damages and losses to the insured vehicle, including liabilities that may be incurred for its use. <br>• Own Damage<br>• Theft<br>• Excess Bodily Injury<br>• Property Damage<br>• Auto-PA<br>• Acts of Nature<br>• Riot &amp; Strike &amp; Malicious Damage<br><br>What is the information needed for Motorcar Insurance?<br>• Assured's Name<br>• Location<br>• Types of cover to be applied - Compulsory Third Party Liability (CTPL) or Comprehensive (Own Damage, Theft, Excess Bodily Injury, Property Damage, Auto-PA, Acts of Nature, Riot &amp; Strike &amp; Malicious Damage)<br>• Description of unit - brand, model, year<br>• Fair market value<br>• Sum insured/limit of liability<br>• Mortgage, if applicable<br>• Loss history<br>• Broker of Record (BOR) - form will be provided by Trinity<br>• KYC form – form will be provided by Trinity<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself <strong>PEACE OF MIND</strong>! Let’s discuss how we can protect your company from the unexpected. <strong>INQUIRE NOW</strong>!<br><br>At Trinity, we are always eager to serve you!</p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

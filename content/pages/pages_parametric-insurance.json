@@ -1,0 +1,17 @@
+{
+ "path": "/pages/parametric-insurance",
+ "title": "Parametric Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/parametric_1200x.png?v=1671617342\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Parametric Insurance</h3><p>When a disaster strikes, traditional insurance can take weeks—or even months—to process claims. But with Parametric Insurance, your business gets paid quickly, based on pre-agreed triggers like rainfall levels, wind speed, or seismic activity.<br><br>At Trinity, we offer <strong>Parametric Insurance</strong> which is an insurance solution to recover the cost of possible damage to properties, loss of income/profit, or loss of business opportunities caused by natural calamities. The insurance coverage is defined by pre-agreed parameters of weather conditions - e.g., a specific typhoon signal, or a particular magnitude reading on the Richter scale, within a defined proximity to your business operations.<br><br>Payment of insurance proceeds will be triggered by publicly declared weather parameters. There will be no claims handling costs, no huge deductible costs, no frustrating loss adjustment.<br><br>What is the information needed for Parametric Insurance?<br>• Assured's Name<br>• Location of Property<br>• Type of Property - residential, industrial, or commercial<br><br>• Properties to be Insured<br>o Building<br>o Contents<br>o Machineries and equipment<br>o Stocks<br>o Valuable items/works of art<br><br>• Valuation of Property<br>o Replacement Value - amount if a similar property will be built NOW<br>o Sound Value - replacement value less the accrued depreciation<br>o Fair Market Value - value of a similar property in the market<br><br>• Mortgage, if applicable<br>• Loss history<br>• Broker of Record (BOR) - form will be provided by Trinity<br>• KYC form – form will be provided by Trinity<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself PEACE OF MIND! Let’s discuss how we can protect your company from the unexpected. INQUIRE NOW!<br><br>At Trinity, we are always eager to serve you!</p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

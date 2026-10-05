@@ -1,0 +1,17 @@
+{
+ "path": "/pages/hospital-income-insurance",
+ "title": "Hospital Income Insurance",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/hospital-income_1200x.png?v=1671693821\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Hospital Income Insurance</h3><div><p>Hospital Income Insurance is a coverage that provides a daily monetary cash benefit to an insured subject to a deductible limit in case of hospital confinement.</p><p>What are the information/documents needed for Hospital Income Insurance?</p><ul><li>Preferred schedule of benefits (with deductible)</li><li>Headcount of enrollees</li><li>Nature of business</li><li>Broker of Record (BOR) – form will be provided by Trinity</li></ul></div></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

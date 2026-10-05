@@ -1,0 +1,16 @@
+{
+ "path": "/pages/file-a-claim",
+ "title": "File a Claim",
+ "description": "{formbuilder:20073}  ",
+ "template": "page",
+ "hero": {
+  "title": "File a Claim",
+  "image": "https://trinity-insures.com/cdn/shop/files/Payments_banner-min_60d49da7-2d78-4f97-a54f-efbc95996268_1600x.jpg?v=1662606882"
+ },
+ "sections": [
+  {
+   "type": "section",
+   "html": "<div class=\"container\"><p><div data-form=\"inquiry\"></div></p></div>"
+  }
+ ]
+}

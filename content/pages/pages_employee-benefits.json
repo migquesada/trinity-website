@@ -1,0 +1,16 @@
+{
+ "path": "/pages/employee-benefits",
+ "title": "Employee Benefits",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Employee Benefits",
+  "image": null
+ },
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/hmo\"><img src=\"https://trinity-insures.com/cdn/shop/files/hmo_1200x.png?v=1671690072\" alt=\"\"></a><a href=\"/pages/hmo\">HMO</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/international-medical-insurance-peso-and-dollar-denominated-plan\"><img src=\"https://trinity-insures.com/cdn/shop/files/international-medicine_1200x.png?v=1671689425\" alt=\"\"></a><a href=\"/pages/international-medical-insurance-peso-and-dollar-denominated-plan\">International Medical Insurance (Peso and Dollar-denominated Plan)</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/amended-migrant-workers-act-amwa-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/migrant_1200x.png?v=1671691441\" alt=\"\"></a><a href=\"/pages/amended-migrant-workers-act-amwa-insurance\">Amended Migrant Workers Act (AMWA) Insurance</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/critical-illness\"><img src=\"https://trinity-insures.com/cdn/shop/files/critical-illness_1200x.png?v=1671692234\" alt=\"\"></a><a href=\"/pages/critical-illness\">Critical Illness</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/hospital-income-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/hospital-income_1200x.png?v=1671693821\" alt=\"\"></a><a href=\"/pages/hospital-income-insurance\">Hospital Income Insurance</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/travel-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/travel_1200x.png?v=1671695115\" alt=\"\"></a><a href=\"/pages/travel-insurance\">Travel Insurance</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/group-medical-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/group-medical_1200x.png?v=1671694257\" alt=\"\"></a><a href=\"/pages/group-medical-insurance\">Group Medical Insurance</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/group-term-life-and-personal-accident-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/group-term_1200x.png?v=1671694579\" alt=\"\"></a><a href=\"/pages/group-term-life-and-personal-accident-insurance\">Group Term Life and Personal Accident Insurance</a></div><div class=\"col-lg-15 col-md-6 col-12 tc\"><a href=\"/pages/shipowner-s-healthcare-program-for-seafarers-and-dependents\"><img src=\"https://trinity-insures.com/cdn/shop/files/seafarers_1200x.png?v=1671694762\" alt=\"\"></a><a href=\"/pages/shipowner-s-healthcare-program-for-seafarers-and-dependents\">Shipowner’s Healthcare Program for Seafarers and Dependents</a></div></div></div>"
+  }
+ ]
+}

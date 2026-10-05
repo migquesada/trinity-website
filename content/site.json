@@ -1,0 +1,220 @@
+{
+  "name": "Trinity Insurance and Reinsurance Brokers, Inc.",
+  "shortName": "Trinity Insurance Brokers",
+  "url": "https://trinity-insures.com",
+  "address": "7504 Bagtikan St., San Antonio Village, Makati City, 1203 Metro Manila",
+  "phone": "+632 8810 1653",
+  "email": "trinity@trinity-insures.com",
+  "logo": "https://trinity-insures.com/cdn/shop/files/cropped-Trinity-Logo-Core-Horizontal2-1_300x.png?v=1614312894",
+  "logoInverse": "https://trinity-insures.com/cdn/shop/files/Trinity_Logo_inverse_edited_1200x.png?v=1630544584",
+  "social": [
+    {
+      "label": "Facebook",
+      "href": "https://www.facebook.com/trinityinsures"
+    },
+    {
+      "label": "Linkedin",
+      "href": "https://www.linkedin.com/company/trinity-insurance-brokers-inc./"
+    }
+  ],
+  "nav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About Us",
+      "children": [
+        {
+          "label": "Corporate Profile",
+          "href": "/pages/about-us"
+        },
+        {
+          "label": "Meet the Team",
+          "href": "/pages/meet-the-team"
+        },
+        {
+          "label": "Meet our Cebu Team",
+          "href": "/pages/meet-our-cebu-team"
+        },
+        {
+          "label": "Why Trinity",
+          "href": "/pages/why-trinity"
+        },
+        {
+          "label": "Industries We Serve",
+          "href": "/pages/industries-we-serve"
+        },
+        {
+          "label": "Corporate Governance",
+          "href": "/pages/corporate-governance"
+        }
+      ]
+    },
+    {
+      "label": "Solutions",
+      "children": [
+        {
+          "label": "General Insurance",
+          "href": "/pages/general-insurance"
+        },
+        {
+          "label": "Employee Benefits",
+          "href": "/pages/employee-benefits"
+        },
+        {
+          "label": "Service Solutions",
+          "href": "/pages/service-solutions"
+        }
+      ]
+    },
+    {
+      "label": "Shop",
+      "children": [
+        {
+          "label": "Bike Insurance",
+          "href": "/products/bike-insurance"
+        },
+        {
+          "label": "Big Bike Insurance",
+          "href": "/products/big-bike-insurance-inquiry-only"
+        },
+        {
+          "label": "Travel Insurance",
+          "href": "/pages/travel-insurance-starr"
+        }
+      ]
+    },
+    {
+      "label": "Blog",
+      "href": "/blogs/news"
+    },
+    {
+      "label": "Claims",
+      "href": "/pages/claims"
+    },
+    {
+      "label": "Careers",
+      "href": "/pages/career"
+    },
+    {
+      "label": "Client Portal",
+      "href": "/pages/client-portal"
+    },
+    {
+      "label": "Contact Us",
+      "href": "/pages/contact-us"
+    }
+  ],
+  "footer": {
+    "about": "Trinity Insurance and Reinsurance Brokers, Inc. is a Brokerslink partner. Brokerslink delivers a powerful alternative to the world’s largest brokers.",
+    "legal": [
+      {
+        "label": "Privacy Policy",
+        "href": "/pages/privacy-policy"
+      },
+      {
+        "label": "Terms & Conditions",
+        "href": "/pages/terms-and-conditions"
+      },
+      {
+        "label": "Disclaimer",
+        "href": "/pages/disclaimer"
+      },
+      {
+        "label": "Cybersecurity",
+        "href": "/pages/cybersecurity"
+      },
+      {
+        "label": "Site Map",
+        "href": "/pages/site-map"
+      },
+      {
+        "label": "Code of Conduct",
+        "href": "https://cdn.shopify.com/s/files/1/0271/0876/9846/files/Trinity_Code_of_Conduct_and_Ethical_Guidelines_-_Series_2025.pdf?v=1777949226"
+      }
+    ],
+    "columns": [
+      {
+        "title": "BROWSE",
+        "links": [
+          {
+            "label": "Home",
+            "href": "/"
+          },
+          {
+            "label": "About Us",
+            "href": "/pages/about-us"
+          },
+          {
+            "label": "Solutions",
+            "href": "/pages/general-insurance"
+          },
+          {
+            "label": "Blogs",
+            "href": "/blogs/news"
+          },
+          {
+            "label": "Claims",
+            "href": "/pages/claims"
+          },
+          {
+            "label": "Careers",
+            "href": "/pages/career"
+          },
+          {
+            "label": "Client Portal",
+            "href": "/pages/client-portal"
+          },
+          {
+            "label": "Payments",
+            "href": "/pages/payments"
+          },
+          {
+            "label": "Contact Us",
+            "href": "/pages/contact-us"
+          }
+        ]
+      },
+      {
+        "title": "SOLUTIONS",
+        "links": [
+          {
+            "label": "General Insurance",
+            "href": "/pages/general-insurance"
+          },
+          {
+            "label": "Employee Benefits",
+            "href": "/pages/employee-benefits"
+          },
+          {
+            "label": "Service Solutions",
+            "href": "/pages/service-solutions"
+          }
+        ]
+      },
+      {
+        "title": "CLIENT PORTAL",
+        "links": [
+          {
+            "label": "Login Your Account",
+            "href": "/pages/client-portal"
+          },
+          {
+            "label": "File a Claim",
+            "href": "/pages/file-a-claim"
+          },
+          {
+            "label": "Payments",
+            "href": "/pages/payments"
+          }
+        ]
+      }
+    ]
+  },
+  "supabase": {
+    "url": "https://sohkxibnvsxzumlqhhqp.supabase.co",
+    "anonKey": "sb_publishable_tuR3cfb4yULHmMvOq7tOiA_o144AyUH"
+  },
+  "basePath": "/trinity-website"
+}

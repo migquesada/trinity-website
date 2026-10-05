@@ -1,0 +1,17 @@
+{
+ "path": "/pages/electronic-equipment-insurance-eei",
+ "title": "Electronic Equipment Insurance (EEI)",
+ "description": "",
+ "template": "page",
+ "hero": null,
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-5 col-md-6 col-12 tl\"><img src=\"https://trinity-insures.com/cdn/shop/files/electronic-equipment_1200x.png?v=1671615675\" alt=\"\"></div><div class=\"col-lg-6 col-md-6 col-12 tl\"><div><h3>Electronic Equipment Insurance (EEI)</h3><p>Your business runs on technology—from servers and laptops to specialized machinery and mobile devices. But what happens <strong>when critical equipment fails</strong> due to accidental damage, electrical surges, or theft?<br><br>This is when Electronic Equipment Insurance (EEI) becomes handy as it ensures that your operations don’t skip a beat.<br><br>At TRINITY, we offer a <strong>comprehensive Electronic Equipment Insurance</strong> that covers the following: <br>• All risk of sudden and unforeseen physical loss<br>• Damage due to fire/lightning, windstorm, typhoon, earthquake, tidal wave, explosion, smoke damage<br>• Robbery, burglary, and theft<br>• Mechanical breakdowns, short circuiting, and other electrical causes<br>• Business interruption<br>• Negligence and accidental dropping<br><br>What is the information needed for Electronic Equipment Insurance?<br>• Assured's Name<br>• Address<br>• Nature of Business<br>• Territorial/Geographical Limits (for mobile equipment)<br>• List of electronic equipment to be insured<br>• Sum insured<br>• Broker of Record (BOR) - form will be provided by Trinity<br>• KYC form – form will be provided by Trinity<br><br>Why choose Trinity? <br>• <strong>KNOWLEDGE &amp; EXPERTISE</strong>. Trinity has more than 38 years of experience in the Insurance Industry. <br>• <strong>SECURITY &amp; PEACE OF MIND</strong>. Trinity has an extensive network of reputable and trustworthy insurance providers both local and abroad. <br>• <strong>EXCELLENT CUSTOMER SERVICE</strong>. We offer Customized and Cost-effective programs coupled with Professional and Personalized touch. <br>• <strong>GLOBAL REACH</strong>. We are a part of various international networks which operate in more than 100 countries, providing you with local expertise and world-class services. <br><br>Don’t wait until it’s too late – secure your business today and give yourself <strong>PEACE OF MIND! </strong>Let’s discuss how we can protect your company from the unexpected. <strong>INQUIRE NOW!</strong><br><br>At Trinity, we are always eager to serve you!<br></p></div></div></div></div>"
+  },
+  {
+   "type": "type_custom_html",
+   "html": "<div class=\"container\"><div><div data-form=\"inquiry\"></div></div></div>"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "path": "/collections/products",
+ "title": "Products",
+ "description": "",
+ "template": "page",
+ "hero": {
+  "title": "Products",
+  "image": null
+ },
+ "sections": [
+  {
+   "type": "type_feature_columns",
+   "html": "<div class=\"container\"><div class=\"row\"><div class=\"col-lg-4 col-md-4 col-12 tc\"><a href=\"/pages/general-insurance\"><img src=\"https://trinity-insures.com/cdn/shop/files/cybercrime_7f5e2585-5f05-4391-902c-f0cdea6e4ed8_1200x.jpg?v=1671616694\" alt=\"\"></a><a href=\"/pages/general-insurance\">General Insurance</a></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><a href=\"/pages/employee-benefits\"><img src=\"https://trinity-insures.com/cdn/shop/files/hmo_1200x.png?v=1671690072\" alt=\"\"></a><a href=\"/pages/employee-benefits\">Employee Benefits</a></div><div class=\"col-lg-4 col-md-4 col-12 tc\"><a href=\"/pages/service-solutions\"><img src=\"https://trinity-insures.com/cdn/shop/files/third-party-admin_1200x.png?v=1671695423\" alt=\"\"></a><a href=\"/pages/service-solutions\">Service Solutions</a></div></div></div>"
+  }
+ ]
+}
