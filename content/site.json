@@ -216,5 +216,10 @@
     "url": "https://sohkxibnvsxzumlqhhqp.supabase.co",
     "anonKey": "sb_publishable_tuR3cfb4yULHmMvOq7tOiA_o144AyUH"
   },
-  "basePath": "/trinity-website"
+  "basePath": "/trinity-website",
+  "gate": {
+    "enabled": true,
+    "sha256": "0b400174c4df47e7f2d9001a858f971618eb8d9f8c98d5d3ba09906df9e7a363",
+    "note": "Temporary preview password gate. Set enabled=false to remove."
+  }
 }

@@ -74,6 +74,9 @@ ${ogImg ? `<meta property="og:image" content="${esc(ogImg)}">` : ''}
 <link rel="stylesheet" href="${url('/assets/site.css')}">
 <link rel="icon" href="${url('/assets/favicon.png')}">
 <script>window.SITE=${JSON.stringify({ base: BASE_PATH, supabase: site.supabase })};</script>
+${site.gate?.enabled ? `<meta name="robots" content="noindex,nofollow">
+<style>html.locked body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#083d51;font-family:Poppins,system-ui,sans-serif}#gate form{background:#fff;padding:36px 32px;border-radius:8px;width:min(360px,90vw);text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.3)}#gate img{height:52px;margin:0 auto 18px}#gate p{margin:0 0 16px;color:#555;font-size:14px}#gate input{width:100%;padding:12px;border:1px solid #ccc;border-radius:4px;font:inherit;margin-bottom:12px;box-sizing:border-box}#gate button{width:100%;padding:12px;border:0;border-radius:40px;background:#004f68;color:#fff;font:500 14px Poppins,sans-serif;cursor:pointer}#gate .err{color:#c0392b;font-size:13px;min-height:18px;margin:8px 0 0}</style>
+<script>(function(){var H="${site.gate.sha256}",K="trinity_gate";try{if(localStorage.getItem(K)===H)return}catch(e){}document.documentElement.classList.add("locked");document.addEventListener("DOMContentLoaded",function(){var d=document.createElement("div");d.id="gate";d.innerHTML='<form><img src="${esc(localImg(site.logo))}" alt="Trinity"><p>This preview site is password protected.</p><input type="password" placeholder="Password" autocomplete="current-password" required autofocus><button type="submit">Enter</button><p class="err" role="alert"></p></form>';document.body.appendChild(d);d.querySelector("form").addEventListener("submit",async function(e){e.preventDefault();var v=d.querySelector("input").value,b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)),h=[].map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");if(h===H){try{localStorage.setItem(K,H)}catch(e){}document.documentElement.classList.remove("locked");d.remove()}else{d.querySelector(".err").textContent="Incorrect password."}})})})();</script>` : ''}
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
@@ -173,7 +176,7 @@ await writeFile(join(OUT, '404.html'), layout({ path: '/404', title: 'Page not f
 // ---------- sitemap / robots ----------
 const all = [...pages.filter(p => !p.path.startsWith('/collections/')).map(p => p.path), ...posts.map(p => p.path), '/blogs/news', '/pages/client-portal', '/pages/payments'];
 await writeFile(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...new Set(all)].map(p => `<url><loc>${site.url}${p}</loc></url>`).join('')}</urlset>`);
-await writeFile(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
+await writeFile(join(OUT, 'robots.txt'), site.gate?.enabled ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
 await writeFile(join(OUT, '.nojekyll'), '');
 if (process.env.CNAME) await writeFile(join(OUT, 'CNAME'), process.env.CNAME);
 
