@@ -149,8 +149,8 @@ function layout({ path, title, description, image, body, bodyClass = '', schema 
 <title>${esc(full)}</title>
 <meta name="description" content="${esc(description || site.footer.about)}">
 <link rel="canonical" href="${esc(canonical)}">
-<meta property="og:site_name" content="Trinity Insurance Brokers"><meta property="og:locale" content="en_PH"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(description || site.footer.about)}"><meta property="og:type" content="${type}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(abs(image || D.home.banner40))}">${published ? `<meta property="article:published_time" content="${esc(published)}">` : ''}
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(full)}"><meta name="twitter:description" content="${esc(description || site.footer.about)}"><meta name="twitter:image" content="${esc(abs(image || D.home.banner40))}">
+<meta property="og:site_name" content="Trinity Insurance Brokers"><meta property="og:locale" content="en_PH"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(description || site.footer.about)}"><meta property="og:type" content="${type}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(image ? abs(image) : site.url + '/assets/img/hero-40-ever-eager.jpg')}">${published ? `<meta property="article:published_time" content="${esc(published)}">` : ''}
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(full)}"><meta name="twitter:description" content="${esc(description || site.footer.about)}"><meta name="twitter:image" content="${esc(image ? abs(image) : site.url + '/assets/img/hero-40-ever-eager.jpg')}">
 <meta name="theme-color" content="#081f30">
 ${IMG_MODE === 'download' ? `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ${site.supabase.url}; form-action 'self'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">` : ''}
@@ -251,11 +251,8 @@ const spotlight = (heading = 'In the spotlight', sub = 'Specialized protection f
 {
   const H = D.home;
   const body = `
-<section class="home-hero"><div class="wrap hero-grid">
-  <div class="hero-copy"><h1>${esc(H.heroTitle[0])} <span>${esc(H.heroTitle[1])}</span></h1><p>${esc(H.heroText)}</p><div class="btns">${btn('Get a Quote', '/contact-us')}${btn('Our Solutions', '/solutions', 'btn-orange')}</div></div>
-  <div class="hero-media">${img(H.heroImage, 'The Trinity team')}</div>
-</div></section>
-<section class="banner40"><div class="wrap"><img src="${esc(media(H.banner40))}" alt="Trinity – 40 years of insurance and beyond" loading="eager"></div></section>
+<section class="home-hero v40"><h1 class="sr-only">Trinity Insurance Brokers – ${esc(H.heroTitle[0])} ${esc(H.heroTitle[1])}</h1><picture><source type="image/webp" srcset="${url('/assets/img/hero-40-ever-eager-1000.webp')} 1000w, ${url('/assets/img/hero-40-ever-eager.webp')} 2240w" sizes="100vw"><img class="hero40" src="${url('/assets/img/hero-40-ever-eager.jpg')}" width="2240" height="960" alt="Trinity Insurance Brokers – 40 years, Ever eager to serve you. Trinity is your trusted partner in providing world-class insurance programs and risk management solutions, with offices in Makati City and Cebu City." fetchpriority="high"></picture></section>
+<section class="hero-strip"><div class="wrap hs-row"><div><p class="hs-title">${esc(H.heroTitle[0])} <span>${esc(H.heroTitle[1])}</span></p><p>${esc(H.heroText)}</p></div><div class="btns">${btn('Get a Quote', '/contact-us', 'btn-orange')}${btn('Our Solutions', '/solutions')}</div></div></section>
 ${quickAccess()}
 <section class="solutions-bento"><div class="wrap"><h2>Trinity Insurance Solutions</h2>
   <div class="bento">
