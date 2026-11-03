@@ -228,6 +228,25 @@ const steps = (list, cls = '') => `<ol class="process${cls ? ' ' + cls : ''}">${
 const tocBox = (toc, title = 'On this page') => toc.length >= 3 ? `<nav class="toc" aria-label="${esc(title)}"><p class="toc-title">${esc(title)}</p><ol>${toc.map(t => `<li><a href="#${t.id}">${esc(t.t)}</a></li>`).join('')}</ol></nav>` : '';
 const pickToc = toc => toc.some(t => t.n) ? toc.filter(t => t.n) : toc;
 
+
+// ---------- product spotlight (featured on the current site: Cybercrime, Poultry & Livestock) ----------
+const SPOT = [
+  { path: '/solutions/general-insurance/cybercrime-insurance', icon: 'cyber', tag: 'Protect your data and operations' },
+  { path: '/solutions/general-insurance/poultry-and-livestock-insurance', icon: 'livestock', tag: 'Protect your farm and herd' }
+];
+const ptitle = p => (categories[p.category]?.list.find(x => x.href === p.path)?.title) || sentenceCase(p.title);
+const POPULAR = { // as listed on the current homepage
+  'general-insurance': ['cybercrime-insurance', 'poultry-and-livestock-insurance', 'marinecargo-hull-aviation-insurance', 'motorcar-insurance'],
+  'employee-benefits': ['hmo', 'international-medical-insurance', 'amwa-insurance', 'critical-illness'],
+  'service-solutions': ['third-party-administration', 'claims-management', 'industry-benchmarking', 'wellness-program-development-management']
+};
+const popularLinks = cat => { const list = (POPULAR[cat] || []).map(sl => Object.values(products).find(p => p.path.endsWith('/' + sl))).filter(Boolean); return list.length ? `<ul class="popular">${list.map(p => `<li><a href="${url(p.path)}">${productIcon(p.path)}<span>${esc(ptitle(p))}</span></a></li>`).join('')}</ul>` : ''; };
+const spotlight = (heading = 'In the spotlight', sub = 'Specialized protection for risks many businesses overlook.') => {
+  const cards = SPOT.map(sp => { const p = Object.values(products).find(x => x.path === sp.path); if (!p) return ''; const intro = p.intro.filter(t => t.trim()).join(' '); const first = (intro.match(/[^.!?]+[.!?]+/g) || [intro]).slice(0, 2).join(' ').trim(); const cov = (p.sections.find(x => /coverage/i.test(x.title || '') && x.items.length) || p.sections[0]); const items = (cov?.items || []).filter(t => !/^note/i.test(t)).slice(0, 4);
+    return `<article class="spot-card"><a class="spot-img" href="${url(p.path)}" style="--img:url('${media(p.heroImage)}')" aria-label="${esc(ptitle(p))}"><span class="spot-ic">${icon(sp.icon, 'ic')}</span></a><div class="spot-body"><p class="kicker">General Insurance</p><h3><a href="${url(p.path)}">${esc(ptitle(p))}</a></h3><p>${esc(first)}</p>${items.length ? `<ul class="ticks">${items.map(t => `<li>${esc(t.replace(/\s+o\s+/g, ', '))}</li>`).join('')}</ul>` : ''}<div class="btns">${btn('Learn More', p.path, 'btn-sm')}${btn('Get a Quote', p.path + '#inquire', 'btn-sm btn-orange')}</div></div></article>`; }).join('');
+  return `<section class="sec spotlight"><div class="wrap"><p class="eyebrow-lg tc">Featured coverage</p><h2>${esc(heading)}</h2><p class="lead tc">${esc(sub)}</p><div class="spot-grid">${cards}</div></div></section>`;
+};
+
 // ---------- HOME ----------
 {
   const H = D.home;
@@ -245,7 +264,8 @@ ${quickAccess()}
   </div>
   <div class="tiles">${H.tiles.map(t => `<a class="tile" href="${url(t.href)}" style="--bg:url('${media(t.image)}')"><span>${esc(t.title)}</span></a>`).join('')}</div>
 </div></section>
-<section class="featured"><div class="wrap"><h2>Featured Solutions</h2><div class="card-grid three">${H.featured.map(f => `<article class="card">${img(f.image, f.title)}<div class="card-body"><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p>${btn('Learn More', f.href, 'btn-sm')}</div></article>`).join('')}</div></div></section>
+<section class="featured"><div class="wrap"><h2>Featured Solutions</h2><div class="card-grid three">${H.featured.map(f => `<article class="card">${img(f.image, f.title)}<div class="card-body"><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p>${popularLinks(f.href.split('/').pop())}${btn('View all', f.href, 'btn-sm')}</div></article>`).join('')}</div></div></section>
+${spotlight()}
 ${statsPartners()}
 <section class="articles"><div class="wrap"><h2>Latest Articles</h2>${articleCards(posts.filter(p => p.blog === 'news').slice(0, 3))}<p class="tc">${btn('Explore Articles', '/blog')}</p></div></section>
 <section class="promise"><div class="wrap"><h2>The Trinity Promise</h2><div class="promise-grid">${img(H.promiseImage, 'Trinity team meeting with a client', 'promise-img')}<div><h3>Our Story</h3><blockquote>“${esc(H.promiseQuote)}”</blockquote><p>${esc(site.footer.about)}</p></div></div></div></section>`;
@@ -376,6 +396,7 @@ const productGrid = cat => `<ul class="prod-grid">${productList(cat).map(p => `<
 {
   const body = pageHero('Our Solutions', 'Tailored insurance solutions designed to meet your unique operational needs.', categories['general-insurance'].heroImage, btn('Claims', '/claims') + btn('Talk to Us', '/contact-us', 'btn-orange')) + `
 <section class="featured"><div class="wrap"><h2>Featured Solutions</h2><div class="card-grid three">${D.home.featured.map(f => `<article class="card">${img(f.image, f.title)}<div class="card-body"><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p>${btn('Learn More', f.href, 'btn-sm')}</div></article>`).join('')}</div></div></section>
+${spotlight()}
 ${Object.keys(CAT_META).map(cat => `<section class="cat-block"><div class="wrap"><h2><a href="${url('/solutions/' + cat)}">${CAT_META[cat].title}</a></h2>${productGrid(cat)}</div></section>`).join('')}
 ${whyChoose()}${ctaBand()}`;
   await page('/solutions', 'Solutions', body, { description: 'All Trinity insurance solutions: general insurance, employee benefits and service solutions.' });
@@ -383,7 +404,7 @@ ${whyChoose()}${ctaBand()}`;
     const c = categories[cat];
     const body = pageHero(CAT_META[cat].title, c.tagline || CAT_META[cat].tagline, c.heroImage, btn('Get a Quote', '/contact-us') + btn('Talk to Us', '/contact-us', 'btn-orange')) + `
 <section class="featured"><div class="wrap"><h2>Featured Solutions</h2><div class="card-grid three">${c.featured.map(f => `<article class="card">${img(f.image, f.title)}<div class="card-body"><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p>${btn('Learn More', f.href, 'btn-sm')}</div></article>`).join('')}</div></div></section>
-<section class="cat-block"><div class="wrap"><h2>Explore Our Solutions</h2>${productGrid(cat)}</div></section>
+${cat === 'general-insurance' ? spotlight() : ''}<section class="cat-block"><div class="wrap"><h2>Explore Our Solutions</h2>${productGrid(cat)}</div></section>
 ${whyChoose()}${ctaBand()}`;
     await page('/solutions/' + cat, CAT_META[cat].title, body, { description: `${CAT_META[cat].title} from Trinity Insurance Brokers: ${productList(cat).map(prodTitle).join(', ')}.`, schema: [{ '@type': 'ItemList', name: CAT_META[cat].title, itemListElement: productList(cat).map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: prodTitle(p), url: site.url + p.path })) }] });
   }
