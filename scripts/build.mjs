@@ -6,6 +6,8 @@ import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { icon, productIcon } from './icons.mjs';
 import { applyProductRevisions } from './revisions.mjs';
+import { polish, readingTime } from './polish.mjs';
+import { parseHTML } from 'linkedom';
 
 const OUT = 'dist';
 const IMG_MODE = process.env.IMG_MODE || 'remote';
@@ -215,7 +217,12 @@ const statsPartners = (heading = 'Our International Network Partners') => `<sect
 const whyChoose = () => `<section class="why"><div class="wrap"><h2>Why Choose Trinity?</h2><div class="why-grid">${D.why.map(w => `<div class="why-item">${img(w.icon, '')}<h3>${esc(w.title)}</h3><p>${esc(w.text)}</p></div>`).join('')}</div></div></section>`;
 const ctaBand = () => `<section class="cta-band" style="--cta:url('${media(D.ctaImage)}')"><div class="wrap"><h2>We protect what matters most to you.</h2><p>Let's build a safer and more secure future together.</p><div class="btns">${btn('Get a Quote', '/contact-us', 'btn-orange')}${btn('Talk to Us', '/contact-us', 'btn-light')}</div></div></section>`;
 const formSection = (kind, title = "Let's Talk", text = "Have questions or need expert guidance? Connect with our team today and let's find the right insurance solutions for your needs. We'll get back to you shortly.", subject = '') => `<section class="form-sec" id="inquire"><div class="wrap narrow"><h2>${esc(title)}</h2><p>${esc(text)}</p><div data-form="${kind}" data-subject="${esc(subject)}"></div></div></section>`;
-const articleCards = list => `<div class="post-grid">${list.map(a => `<article class="post-card"><a href="${url('/blog/' + a.path.split('/').pop())}" class="thumb"${a.image ? ` style="background-image:url('${media(a.image)}')"` : ''} aria-label="${esc(a.title)}"></a><div class="post-info">${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}<h3><a href="${url('/blog/' + a.path.split('/').pop())}">${esc(a.title)}</a></h3></div></article>`).join('')}</div>`;
+const postCard = a => { const u = url('/blog/' + a.path.split('/').pop()); const ex = (a.excerpt || a.description || '').replace(/\s+/g, ' ').trim(); return `<article class="post-card" data-title="${esc((a.title + ' ' + (a.tags || []).join(' ')).toLowerCase())}"><a href="${u}" class="thumb"${a.image ? ` style="background-image:url('${media(a.image)}')"` : ''} aria-label="${esc(a.title)}"></a><div class="post-info"><p class="post-meta">${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}${a.html && readingTime(a.html) ? `<span>${readingTime(a.html)} min read</span>` : ''}</p><h3><a href="${u}">${esc(a.title)}</a></h3>${ex && ex.length > 40 ? `<p class="excerpt">${esc(ex.slice(0, 150))}${ex.length > 150 ? '…' : ''}</p>` : ''}<a class="more-link" href="${u}">Read article ${icon('arrow', 'ic')}</a></div></article>`; };
+const articleCards = list => `<div class="post-grid">${list.map(postCard).join('')}</div>`;
+
+const steps = (list, cls = '') => `<ol class="process${cls ? ' ' + cls : ''}">${list.map(x => `<li>${x.icon ? `<span class="pr-ic">${icon(x.icon, 'ic')}</span>` : ''}<h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></li>`).join('')}</ol>`;
+const tocBox = (toc, title = 'On this page') => toc.length >= 3 ? `<nav class="toc" aria-label="${esc(title)}"><p class="toc-title">${esc(title)}</p><ol>${toc.map(t => `<li><a href="#${t.id}">${esc(t.t)}</a></li>`).join('')}</ol></nav>` : '';
+const pickToc = toc => toc.some(t => t.n) ? toc.filter(t => t.n) : toc;
 
 // ---------- HOME ----------
 {
@@ -301,17 +308,55 @@ ${statsPartners()}`;
   const body = pageHero('Industries We Serve', 'Protection tailored for every sector.', w.find(b => b.t === 'img')?.src, btn('Get a Quote', '/contact-us') + btn('Our Solutions', '/solutions', 'btn-orange')) + quickAccess() + `
 <section class="intro"><div class="wrap narrow tc"><h2>Supporting Every Industry</h2><p class="lead">${esc(w.find(b => /we partner with organizations/i.test(b.text || ''))?.text || '')}</p></div></section>
 <section class="industries"><div class="wrap"><div class="card-grid four">${cards.map(c => `<article class="ind-card">${img(c.img, c.t)}<div><h3>${esc(c.t)}</h3><p>${esc(c.d)}</p></div></article>`).join('')}</div></div></section>
-<section class="ind-list"><div class="wrap"><h2>As a full-service brokerage firm, we serve a wide range of industries</h2><ul class="cols">${list.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></section>
+<section class="ind-list"><div class="wrap"><h2>As a full-service brokerage firm, we serve a wide range of industries</h2><ul class="cols ticks">${list.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></section>
 ${statsPartners()}`;
   await page('/about-us/industries-we-serve', 'Industries We Serve', body, { description: 'Industries served by Trinity Insurance Brokers – automotive, aviation, construction, healthcare, logistics, real estate, retail, IT and more.' });
 }
 
-// ---------- CORPORATE GOVERNANCE (documents from the live site) ----------
+// ---------- CORPORATE GOVERNANCE (documents from the live site, restructured) ----------
 {
   const sh = shop['/pages/corporate-governance'];
-  const html = sh.sections.map(s => `<section class="sec legacy">${rewrite(s.html)}</section>`).join('').replace(/href="[^"]*\/pages\/www\./g, 'href="https://www.');
-  const body = pageHero('Corporate Governance', 'Transparency, accountability and integrity.') + html + formSection('whistleblowing', 'Have concerns or want to report an issue?', 'Help us uphold transparency and integrity. All reports are treated with strict confidentiality. You may submit anonymously.');
-  await page('/about-us/corporate-governance', 'Corporate Governance', body, { description: 'Corporate governance documents, scorecards and whistleblowing channel of Trinity Insurance Brokers Inc.', bodyClass: 'tpl-legacy' });
+  const { document } = parseHTML(`<div id="r">${sh.sections.map(s => s.html).join('')}</div>`);
+  const groups = []; let intro = [];
+  const nice = t => {
+    t = t.replace(/\s+/g, ' ').trim().replace(/ESCALER ESCALER/i, 'ESCALER');
+    if (t === t.toUpperCase() && /[A-Z]{3}/.test(t) && !/\b(GIS|ACGS|ACGR|AMLC|RPT|BOD|IAD|OSH)\b/.test(t)) t = t.toLowerCase().replace(/\b[a-z]/g, c => c.toUpperCase());
+    return t.replace(/\bSec Cert\b/, 'Secretary’s Certificate');
+  };
+  const kind = h => /\.xlsx?(\?|$)/i.test(h) ? ['sheet', 'Excel'] : /\.(jpe?g|png|webp)(\?|$)/i.test(h) ? ['image', 'Image'] : ['doc', 'PDF'];
+  let refs = [];
+  for (const el of document.querySelectorAll('#r p, #r h3')) {
+    const a = el.querySelector('a'), t = el.textContent.replace(/\s+/g, ' ').trim();
+    if (el.tagName === 'P') {
+      if (/^Reference/i.test(t)) { refs = [...el.querySelectorAll('a')].map(x => x.textContent.trim()); continue; }
+      if (t) intro.push(t); continue;
+    }
+    if (!a || /\btc\b/.test(el.className)) {
+      const y = t.match(/^(\d{4})$/), tr = t.match(/training\s+(\d{4})/i);
+      groups.push({ title: tr ? `Corporate Governance Training ${tr[1]}` : y ? `${y[1]} Reports, Policies & Corporate Documents` : t, note: tr ? 'Certificates of completion of the annual corporate governance training of our directors and officers.' : '', intro: intro.splice(0), docs: [], training: !!tr });
+      continue;
+    }
+    if (!groups.length) groups.push({ title: 'Annual Corporate Governance Scorecards (ACGS)', intro: intro.splice(0), docs: [] });
+    if (intro.length && groups.at(-1).docs.length) { groups.push({ title: 'Annual Corporate Governance Reports (ACGR)', intro: intro.splice(0), docs: [] }); }
+    groups.at(-1).docs.push({ t: nice(t), href: a.getAttribute('href') });
+  }
+  // the ACGR circular paragraph introduces the yearly groups that follow it
+  const g = groups.filter(x => x.docs.length);
+  g.forEach(x => { if (x.title.startsWith('Annual Corporate Governance Reports') && !x.docs.length) x.skip = true; });
+  const idOf = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const card = d => { const [ic, lab] = kind(d.href); return `<a class="doc-card" href="${esc(media(d.href))}" target="_blank" rel="noopener"><span class="doc-ic">${icon(ic, 'ic')}</span><span class="doc-t"><strong>${esc(d.t)}</strong><small>${lab} · Opens in a new tab</small></span>${icon('download', 'ic doc-dl')}</a>`; };
+  const pillars = [
+    { icon: 'book', t: 'Transparency', d: 'Our governance reports, policies and disclosures are published here as required by the Insurance Commission.' },
+    { icon: 'usercheck', t: 'Accountability', d: 'Our directors and officers undergo corporate governance training. Their certificates are published below.' },
+    { icon: 'shield', t: 'Integrity', d: 'Concerns can be raised in confidence through our whistleblowing channel, protected by our non-retaliation policy.' }
+  ];
+  const body = pageHero('Corporate Governance', 'Transparency, accountability and integrity.') + `
+<section class="sec gov-intro"><div class="wrap"><div class="card-grid three">${pillars.map(p => `<div class="adv-card">${icon(p.icon, 'adv-icon')}<h3>${esc(p.t)}</h3><p>${esc(p.d)}</p></div>`).join('')}</div>
+${refs.length ? `<p class="refs">${icon('info', 'ic')} Regulatory references: ${refs.map(r => `<a href="https://${esc(r.replace(/^https?:\/\//, ''))}" target="_blank" rel="noopener">${esc(r)}</a>`).join(' · ')}</p>` : ''}
+<nav class="chips" aria-label="Document groups">${g.map(x => `<a href="#${idOf(x.title)}">${esc(x.title)}</a>`).join('')}<a href="#inquire">Whistleblowing</a></nav></div></section>
+${g.map((x, i) => `<section class="sec doc-group${i % 2 ? ' alt' : ''}" id="${idOf(x.title)}"><div class="wrap"><div class="sec-head"><span class="sec-num">${String(i + 1).padStart(2, '0')}</span><div><h2>${esc(x.title)}</h2>${[...x.intro, x.note].filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('')}</div></div><div class="doc-grid">${x.docs.map(card).join('')}</div></div></section>`).join('')}
+${formSection('whistleblowing', 'Have concerns or want to report an issue?', 'Help us uphold transparency and integrity. All reports are treated with strict confidentiality. You may submit anonymously.')}`;
+  await page('/about-us/corporate-governance', 'Corporate Governance', body, { description: 'Corporate governance documents, scorecards, annual reports, training certificates and whistleblowing channel of Trinity Insurance Brokers Inc.' });
 }
 
 // ---------- SOLUTIONS ----------
@@ -385,20 +430,34 @@ ${whyChoose()}${travel ? '' : formSection(isShop ? 'shop' : 'product', "Let's Ta
 // ---------- CLAIMS ----------
 {
   const w = wix['/claims'].blocks;
-  const sh = shop['/pages/claims'];
   const intro = w.find(b => b.t === 'p')?.text || '';
-  const items = w.filter(b => b.t === 'li').map(b => b.text);
-  const names = ['Motor Claims', 'Non-motor Claims', 'Property/Fire Claims', 'Marine and Cargo Hull Claims', 'HMO/Medical Claims', 'Travel Insurance Claims', 'Others'];
-  const acc = items.map((t, i) => {
-    const n = names.find(x => t.startsWith(x)) || t.split(/(?=[A-Z0-9])/)[0];
-    let rest = t.slice(n.length).trim();
-    rest = rest.replace(/\s*(\d+\.)\s/g, '\n$1 ').replace(/\s*[•●]\s*/g, '\n• ').replace(/\s+o\s+/g, '\n   ◦ ').replace(/​/g, '');
-    return `<details${i === 0 ? ' open' : ''}><summary>${esc(n)}</summary><div class="acc-body">${rest.split('\n').filter(x => x.trim()).map(x => `<p>${esc(x.trim())}</p>`).join('')}</div></details>`;
-  }).join('');
-  const body = pageHero('Claims Assistance', intro) + `
-<section class="claims"><div class="wrap"><h2>How Can We Help?</h2><p class="lead tc">Should you find yourself having to undergo any of these claims processes, you'll find that with us, your insurance claims will be handled with care and efficiency.</p><div class="accordion">${acc}</div></div></section>
+  const src = k => (shop['/pages/' + k]?.sections || []).map(s => s.html).join('');
+  const allClaims = src('claims');
+  const othersHtml = (() => { const i = allClaims.indexOf('<div><p><strong>Pre-Approval'); if (i < 0) return ''; const j = allClaims.indexOf('</div>', i); return allClaims.slice(i, j); })();
+  const types = [
+    { id: 'motor', name: 'Motor Claims', icon: 'car', d: 'Own damage, third-party liability, carnap and theft.', html: src('motor-claims') },
+    { id: 'non-motor', name: 'Non-motor Claims', icon: 'claim', d: 'How non-motor losses are reported, inspected and settled.', html: src('non-motor-claims') },
+    { id: 'property-fire', name: 'Property / Fire Claims', icon: 'fire', d: 'Building, contents, stock and machinery losses.', html: src('property-fire-claims') },
+    { id: 'marine', name: 'Marine and Cargo Hull Claims', icon: 'ship', d: 'Cargo damage, short-landed and short-delivered shipments.', html: src('marine-and-cargo-hull-claims') },
+    { id: 'hmo-medical', name: 'HMO / Medical Claims', icon: 'hmo', d: 'Inpatient, outpatient, financial assistance, life and accident.', html: src('hmo-medical-claims') },
+    { id: 'travel', name: 'Travel Insurance Claims', icon: 'plane', d: 'Medical, accident, baggage, delays and cancellations.', html: src('travel-insurance-claims') },
+    { id: 'others', name: 'Pre-approvals, Treatment Plans and Dental', icon: 'heartpulse', d: 'Planned admissions, therapy treatment plans, follow-up care and dental.', html: othersHtml }
+  ].filter(t => t.html);
+  const how = [
+    { icon: 'phone', t: 'Report right away', d: 'Notify Trinity or your account manager as soon as the incident happens, with your policy number and a short description.' },
+    { icon: 'shield', t: 'Protect and document', d: 'Prevent further damage, keep damaged items for inspection and take clear photos.' },
+    { icon: 'claim', t: 'Submit the requirements', d: 'Send complete, clear and readable documents. The checklists below show what each claim needs.' },
+    { icon: 'search', t: 'Assessment', d: 'We report the claim to the insurer, who may assign an accredited adjuster to inspect and evaluate the loss.' },
+    { icon: 'check', t: 'Settlement', d: 'Once the claim is evaluated and approved, we follow it through with the insurer until it is settled.' }
+  ];
+  const body = pageHero('Claims Assistance', intro, null, btn('File a Claim', '#inquire', 'btn-orange')) + `
+<section class="sec claims-how"><div class="wrap"><h2>How the Claims Process Works</h2><p class="lead tc">With us, your insurance claims are handled with care and efficiency, from the first report to the final settlement.</p>${steps(how, 'five')}</div></section>
+<section class="sec claims"><div class="wrap"><h2>Claim Requirements</h2><p class="lead tc">Select a claim type to see the steps and documents you need. Complete documents mean faster settlement.</p>
+<div class="claim-types">${types.map(t => `<a href="#${t.id}" class="claim-type" data-open="${t.id}"><span class="prod-ic">${icon(t.icon, 'ic')}</span><span><strong>${esc(t.name)}</strong><small>${esc(t.d)}</small></span></a>`).join('')}</div>
+<div class="accordion">${types.map((t, i) => `<details id="${t.id}"${i === 0 ? ' open' : ''}><summary><span class="prod-ic">${icon(t.icon, 'ic')}</span><span>${esc(t.name)}</span></summary><div class="acc-body rte">${rewrite(polish(t.html, { level: 3 }).html)}</div></details>`).join('')}</div>
+<p class="note-box">${icon('info', 'ic')}<span>Your insurer or the assigned adjuster may request additional documents while evaluating a claim. Our team will tell you exactly what is needed.</span></p></div></section>
 ${formSection('claim', 'Ready to File a Claim?', 'Our team is ready to guide you through the claims process quickly and efficiently. All information provided will remain private and secured.')}`;
-  await page('/claims', 'Claims', body, { description: 'How to file motor, non-motor, property/fire, marine, HMO/medical and travel insurance claims with Trinity.' });
+  await page('/claims', 'Claims', body, { description: 'How to file motor, non-motor, property/fire, marine, HMO/medical and travel insurance claims with Trinity: process and document checklists.', schema: [{ '@type': 'HowTo', name: 'How to file an insurance claim with Trinity', step: how.map((h, i) => ({ '@type': 'HowToStep', position: i + 1, name: h.t, text: h.d })) }] });
 }
 
 // ---------- CAREERS ----------
@@ -417,6 +476,7 @@ ${formSection('claim', 'Ready to File a Claim?', 'Our team is ready to guide you
 <section class="values"><div class="wrap"><div class="card-grid four">${vals.map(v => `<div class="value-card">${img(v.img, '')}<h3>${esc(v.t)}</h3><p>${esc(v.d)}</p></div>`).join('')}</div></div></section>
 <section class="why-join"><div class="wrap"><h2>Why Join Trinity?</h2><p class="lead tc">${esc(sec('WHY JOIN TRINITY?')[0] || '')}</p>${blocks.map((b, i) => `<div class="split${i % 2 ? ' reverse' : ''}">${img(w.filter(x => x.t === 'img' && /webp/.test(x.src))[i]?.src, '', 'rounded')}<div><h3>${esc(b.h)}</h3>${b.ps.map(t => `<p>${esc(t)}</p>`).join('')}</div></div>`).join('')}</div></section>
 <section class="testimonials"><div class="wrap"><h2>Hear From Our Team</h2><div class="card-grid three">${testi.map(t => `<figure class="testi">${img(t.img, t.n)}<blockquote>${esc(t.q)}</blockquote><figcaption><strong>${esc(t.n)}</strong><br>${esc(t.r)}</figcaption></figure>`).join('')}</div></div></section>
+<section class="sec apply-how"><div class="wrap"><h2>How to Apply</h2>${steps([{ icon: 'doc', t: 'Prepare your CV', d: 'Update your résumé with your work history, skills and contact details.' }, { icon: 'send', t: 'Send your profile', d: 'Submit the form below with your CV attached. It takes about two minutes.' }, { icon: 'usercheck', t: 'HR review', d: 'Our HR team reviews every application and keeps your profile on file for future openings.' }, { icon: 'phone', t: 'We get in touch', d: 'Shortlisted applicants are contacted by our HR personnel about the next steps.' }])}</div></section>
 <section class="vacancies"><div class="wrap narrow"><h2>Job Vacancies</h2>${openings.length ? `<ul class="ticks">${openings.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : `<p class="lead tc">There are no open positions at the moment. You may still send us your updated profile and our HR team will keep it on file for future openings.</p>`}</div></section>
 ${formSection('career', 'Send Your Updated Profile!', 'Upon successful submission, our HR personnel will coordinate with you regarding the status of your application.').replace('id="inquire"', 'id="apply"')}
 ${life.length ? `<section class="life"><div class="wrap"><h2>Life at Trinity</h2><div class="gallery">${life.map(s => img(s, 'Life at Trinity')).join('')}</div></div></section>` : ''}`;
@@ -441,24 +501,32 @@ ${life.length ? `<section class="life"><div class="wrap"><h2>Life at Trinity</h2
 }
 
 // ---------- CLIENT PORTAL / PAYMENTS ----------
-await page('/payments', 'Payments', pageHero('Payments', 'Premium payment channels for Trinity clients.') + `<section class="sec"><div class="wrap narrow"><p class="lead">For payment instructions and official bank details, please contact your Trinity account officer or email <a href="mailto:${site.email}">${site.email}</a>. Always confirm payment details directly with Trinity before sending funds.</p></div></section>${formSection('payment', 'Payment Inquiry', 'Send us your policy details and our team will reply with the payment instructions.')}`, { description: 'Payment channels for Trinity Insurance Brokers clients.' });
+await page('/payments', 'Payments', pageHero('Payments', 'Premium payment channels for Trinity clients.') + `<section class="sec"><div class="wrap"><h2>How to Pay Your Premium</h2>${steps([{ icon: 'send', t: 'Send your policy details', d: 'Use the form below or email us with your policy number and the billing you would like to settle.' }, { icon: 'mail', t: 'Receive official instructions', d: 'Your account officer replies with the official payment channels and the exact amount due.' }, { icon: 'card', t: 'Pay and send proof', d: 'Settle through the channel provided and reply with your proof of payment.' }, { icon: 'check', t: 'Get your confirmation', d: 'Our team confirms once your payment has been received.' }])}
+<p class="note-box warn">${icon('lock', 'ic')}<span><strong>Stay safe:</strong> Only pay through the official channels provided by your Trinity account officer. If you receive payment details from anyone else, confirm them first with your account officer or at <a href="mailto:${site.email}">${site.email}</a> before sending funds.</span></p></div></section>${formSection('payment', 'Payment Inquiry', 'Send us your policy details and our team will reply with the payment instructions.')}`, { description: 'How to pay your insurance premium with Trinity Insurance Brokers.' });
 
 // ---------- LEGAL PAGES (from the live site) ----------
 for (const [old, path, title] of [['/pages/privacy-policy', '/privacy-policy', 'Privacy Policy'], ['/pages/terms-and-conditions', '/terms-and-conditions', 'Terms & Conditions'], ['/pages/disclaimer', '/disclaimer', 'Disclaimer'], ['/pages/cybersecurity', '/cybersecurity', 'Cybersecurity'], ['/pages/data-privacy-consent-form', '/data-privacy-consent-form', 'Data Privacy Consent Form']]) {
   const sh = shop[old]; if (!sh) continue;
-  const body = pageHero(title) + `<section class="sec legacy"><div class="wrap narrow">${sh.sections.map(s => rewrite(s.html)).join('')}</div></section>`;
-  await page(path, title, body, { description: sh.description, bodyClass: 'tpl-legacy' });
+  const r = polish(sh.sections.map(s => s.html).join(''));
+  const toc = pickToc(r.toc);
+  const body = pageHero(title) + `<section class="sec doc-page"><div class="wrap${toc.length >= 3 ? ' doc-layout' : ' narrow'}">${toc.length >= 3 ? `<aside>${tocBox(toc, 'Contents')}</aside>` : ''}<div class="rte doc-body">${rewrite(r.html)}<p class="doc-help">${icon('mail', 'ic')}<span>Questions about this page? Email <a href="mailto:${site.email}">${site.email}</a> or call <a href="tel:+63288101653">+632 8810 1653</a>.</span></p></div></div></section>`;
+  await page(path, title, body, { description: sh.description });
 }
 
 // ---------- BLOG ----------
 const newsPosts = posts.filter(p => p.blog === 'news');
-await page('/blog', 'Blog', pageHero('Trinity Blog', 'Health blasts, insurance insights and Trinity news.') + `<section class="sec blog-list"><div class="wrap"><div class="blog-tools"><input id="blog-q" type="search" class="search-input" placeholder="Search articles…" aria-label="Search articles"></div><div class="post-grid" data-paginate="12">${newsPosts.map(a => `<article class="post-card" data-title="${esc((a.title + ' ' + (a.tags || []).join(' ')).toLowerCase())}"><a href="${url('/blog/' + a.path.split('/').pop())}" class="thumb"${a.image ? ` style="background-image:url('${media(a.image)}')"` : ''} aria-label="${esc(a.title)}"></a><div class="post-info">${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}<h3><a href="${url('/blog/' + a.path.split('/').pop())}">${esc(a.title)}</a></h3></div></article>`).join('')}</div><p class="no-results" hidden>No articles match your search.</p><nav class="pager" aria-label="Pagination"></nav></div></section>`, { description: 'Trinity Insurance Brokers blog: health blasts, insurance explainers and company news.' });
+await page('/blog', 'Blog', pageHero('Trinity Blog', 'Health blasts, insurance insights and Trinity news.') + `<section class="sec blog-list"><div class="wrap"><div class="blog-tools"><input id="blog-q" type="search" class="search-input" placeholder="Search articles…" aria-label="Search articles"></div><div class="post-grid" data-paginate="12">${newsPosts.map(postCard).join('')}</div><p class="no-results" hidden>No articles match your search.</p><nav class="pager" aria-label="Pagination"></nav></div></section>`, { description: 'Trinity Insurance Brokers blog: health blasts, insurance explainers and company news.' });
 for (let i = 0; i < newsPosts.length; i++) {
   const a = newsPosts[i], prev = newsPosts[i + 1], next = newsPosts[i - 1];
   const slug = '/blog/' + a.path.split('/').pop();
   const related = newsPosts.filter(x => x !== a && x.tags?.some(t => a.tags?.includes(t))).slice(0, 3);
-  const body = `<section class="post-hero"><div class="wrap narrow"><p class="crumbs"><a href="${url('/blog')}">Blog</a></p><h1>${esc(a.title)}</h1>${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}</div></section>
-<section class="article"><div class="wrap narrow">${a.image ? img(a.image, a.title, 'feature') : ''}<div class="rte">${rewrite(a.html)}</div>${a.tags?.length ? `<p class="tags">${a.tags.map(t => `<span>${esc(t)}</span>`).join('')}</p>` : ''}
+  const r = polish(a.html), toc = pickToc(r.toc), mins = r.html ? readingTime(r.html) : 0;
+  const share = encodeURIComponent(site.url + slug), stitle = encodeURIComponent(a.title);
+  const health = /health|hmo|wellness|medical/i.test(a.title + ' ' + (a.tags || []).join(' '));
+  const body = `<section class="post-hero"><div class="wrap narrow"><p class="crumbs"><a href="${url('/blog')}">Blog</a>${a.tags?.[0] ? ` / ${esc(a.tags[0])}` : ''}</p><h1>${esc(a.title)}</h1><p class="post-meta">${icon('calendar', 'ic')}${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}${mins ? `<span>${icon('clock', 'ic')}${mins} min read</span>` : ''}<span>${icon('building', 'ic')}Trinity Insurance Brokers</span></p></div></section>
+<section class="article"><div class="wrap narrow">${a.image ? img(a.image, a.title, 'feature') : ''}${tocBox(toc, 'In this article')}<div class="rte">${rewrite(r.html)}</div>${a.tags?.length ? `<p class="tags">${a.tags.map(t => `<span>${esc(t)}</span>`).join('')}</p>` : ''}
+<div class="share"><span>Share this article</span><a href="https://www.linkedin.com/sharing/share-offsite/?url=${share}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">${icon('linkedin', 'ic')}</a><a href="https://www.facebook.com/sharer/sharer.php?u=${share}" target="_blank" rel="noopener" aria-label="Share on Facebook">${icon('facebook', 'ic')}</a><a href="mailto:?subject=${stitle}&body=${share}" aria-label="Share by email">${icon('mail', 'ic')}</a></div>
+<aside class="post-cta"><span class="pr-ic">${icon(health ? 'hmo' : 'shield', 'ic')}</span><div><h2>${health ? 'Looking after your team’s health?' : 'Need help protecting your business?'}</h2><p>${health ? 'Trinity designs HMO, group medical and wellness programs that keep your people healthy and productive.' : 'Talk to our team about insurance and risk management solutions tailored to your business.'}</p>${btn(health ? 'Explore Employee Benefits' : 'Explore Our Solutions', health ? '/solutions/employee-benefits' : '/solutions', 'btn-sm')} ${btn('Talk to Us', '/contact-us', 'btn-sm btn-orange')}</div></aside>
 <div class="post-nav">${prev ? `<a href="${url('/blog/' + prev.path.split('/').pop())}">← ${esc(prev.title)}</a>` : '<span></span>'}<a href="${url('/blog')}">All Articles</a>${next ? `<a href="${url('/blog/' + next.path.split('/').pop())}">${esc(next.title)} →</a>` : '<span></span>'}</div>
 ${related.length ? `<h2 class="tc">Related Articles</h2>${articleCards(related)}` : ''}</div></section>`;
   const iso = (() => { const t = new Date(String(a.date).replace(/ ([+-]\d{2})(\d{2})$/, '$1:$2').replace(' ', 'T')); return isNaN(t) ? null : t.toISOString(); })();

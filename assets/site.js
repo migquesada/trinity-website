@@ -163,3 +163,11 @@
     } catch (err) { msg.className = 'form-msg err'; msg.textContent = err.message; }
   }));
 })();
+
+// Claims: open the matching accordion panel when a claim type (or #hash) is chosen
+(function () {
+  function openHash(id) { var d = id && document.getElementById(id); if (d && d.tagName === 'DETAILS') { d.open = true; setTimeout(function () { d.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 30); } }
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('[data-open]'); if (a) { e.preventDefault(); history.replaceState(null, '', '#' + a.dataset.open); openHash(a.dataset.open); } });
+  window.addEventListener('hashchange', function () { openHash(location.hash.slice(1)); });
+  if (location.hash) openHash(location.hash.slice(1));
+})();
