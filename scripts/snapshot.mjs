@@ -54,7 +54,7 @@ async function worker() {
   while (queue.length) {
     const p = queue.shift();
     const file = 'raw' + (p === '/' ? '/index' : p.replace('?page=', '__page_')) + '.html';
-    if (!process.env.FORCE) { try { await access(file); manifest.push({ path: p, file, ok: true }); continue; } catch {} }
+    if (process.env.SKIP_EXISTING) { try { await access(file); manifest.push({ path: p, file, ok: true }); continue; } catch {} }
     await sleep(700);
     const html = await get(p);
     if (!html) { manifest.push({ path: p, ok: false }); continue; }
@@ -68,3 +68,30 @@ await Promise.all(Array.from({ length: 2 }, worker));
 manifest.sort((a, b) => a.path.localeCompare(b.path));
 await writeFile('raw/manifest.json', JSON.stringify(manifest, null, 1));
 console.log('done', manifest.filter(m => m.ok).length, '/', manifest.length);
+
+// ---------- Wix build (new design reviewed by the client) ----------
+const WIX = 'https://digitalpartnersasia.wixstudio.com/trinity';
+const wixUrls = new Set([WIX, WIX + '/blog']);
+const wixIndex = await get(WIX + '/sitemap.xml');
+for (const sm of locs(wixIndex || '')) {
+  const xml = sm.endsWith('.xml') ? await get(sm) : null;
+  for (const u of xml ? locs(xml) : [sm]) if (u.includes('/trinity')) wixUrls.add(u);
+}
+// pick up any internal links from the homepage/menu too
+const home = await get(WIX);
+for (const m of (home || '').matchAll(/href="(https:\/\/digitalpartnersasia\.wixstudio\.(?:com|io)\/trinity[^"#?]*)"/g)) wixUrls.add(m[1].replace('.wixstudio.io', '.wixstudio.com'));
+const wixManifest = [];
+for (const u of wixUrls) {
+  const path = u.replace(WIX, '') || '/';
+  const file = 'raw-wix' + (path === '/' ? '/index' : path.replace(/\/$/, '')) + '.html';
+  await sleep(400);
+  const html = await get(u);
+  if (!html) { wixManifest.push({ path, url: u, ok: false }); continue; }
+  await mkdir(dirname(file), { recursive: true });
+  await writeFile(file, html.replace(/<script\b(?![^>]*application\/(ld\+)?json)[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, ''));
+  wixManifest.push({ path, url: u, file, ok: true });
+}
+await mkdir('raw-wix', { recursive: true });
+wixManifest.sort((a, b) => a.path.localeCompare(b.path));
+await writeFile('raw-wix/manifest.json', JSON.stringify(wixManifest, null, 1));
+console.log('wix done', wixManifest.filter(m => m.ok).length, '/', wixManifest.length);
