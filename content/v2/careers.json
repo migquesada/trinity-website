@@ -1,0 +1,4 @@
+{
+  "_howto": "Add one object per open role to 'openings'. Leave the list empty when there are no openings. Fields: title, team, location (Makati / Cebu), type (Full-time / Contract), posted (YYYY-MM-DD), summary, responsibilities [..], qualifications [..]. A page is generated for each role at /careers/<slug>.",
+  "openings": []
+}

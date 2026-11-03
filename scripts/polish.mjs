@@ -43,7 +43,7 @@ function buildList(items) {
     const d = depthOf(it);
     while (stack.length > d + 1) out += `</li></${stack.pop()}>`;
     if (stack.length === d + 1) out += '</li>';
-    while (stack.length < d + 1) { const t = it.type || 'ul'; out += `<${t} class="${stack.length ? 'sub' : t === 'ol' ? 'steps' : 'ticks'}">`; stack.push(t); }
+    while (stack.length < d + 1) { const t = it.type || 'ul'; out += `<${t} class="${stack.length ? 'sublist' : t === 'ol' ? 'steps' : 'ticks'}">`; stack.push(t); }
     out += `<li>${it.html}`;
   }
   while (stack.length) out += `</li></${stack.pop()}>`;
@@ -112,7 +112,7 @@ export function polish(html, { level = 2, tips = true } = {}) {
   for (const li of [...root.querySelectorAll('li')]) {
     if (!/<br/i.test(li.innerHTML)) continue;
     const ls = lines(li.innerHTML);
-    if (ls.some(l => l.type)) { const [head, ...rest] = ls; li.innerHTML = (head.type ? '' : head.html) + buildList(head.type ? ls : rest).replace(/class="(ticks|steps)"/, 'class="sub"'); }
+    if (ls.some(l => l.type)) { const [head, ...rest] = ls; li.innerHTML = (head.type ? '' : head.html) + buildList(head.type ? ls : rest).replace(/class="(ticks|steps)"/, 'class="sublist"'); }
   }
   // Text "1. Something" written as separate paragraphs → ordered list.
   {
@@ -129,8 +129,8 @@ export function polish(html, { level = 2, tips = true } = {}) {
     }
   }
   // Classes for real lists.
-  root.querySelectorAll('ul').forEach(u => { if (!u.className) u.className = u.parentElement.closest('li') ? 'sub' : 'ticks'; });
-  root.querySelectorAll('ol').forEach(o => { if (!o.className) o.className = o.parentElement.closest('li') ? 'sub' : 'steps'; });
+  root.querySelectorAll('ul').forEach(u => { if (!u.className) u.className = u.parentElement.closest('li') ? 'sublist' : 'ticks'; });
+  root.querySelectorAll('ol').forEach(o => { if (!o.className) o.className = o.parentElement.closest('li') ? 'sublist' : 'steps'; });
   // Tip pattern: single-item <ul> followed by explanatory paragraph(s) → numbered tip cards.
   if (tips) {
     const kids = [...root.children]; let i = 0;

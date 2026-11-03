@@ -8,7 +8,7 @@ on conflict (id) do nothing;
 
 create policy "website can upload submissions" on storage.objects
   for insert to anon
-  with check (bucket_id = 'submissions' and (storage.foldername(name))[1] in ('claim','career','whistleblowing'));
+  with check (bucket_id = 'submissions' and (storage.foldername(name))[1] in ('claim','career','whistleblowing','kyc','contact'));
 
 -- Email notifications (next step, needs an email-sending key, so not included here):
 -- Supabase Dashboard → Database → Webhooks → on INSERT into public.inquiries → call an Edge Function

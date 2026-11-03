@@ -7,6 +7,7 @@ import { dirname, join } from 'node:path';
 import { icon, productIcon } from './icons.mjs';
 import { applyProductRevisions } from './revisions.mjs';
 import { polish, readingTime } from './polish.mjs';
+import { enhance, category } from './article.mjs';
 import { parseHTML } from 'linkedom';
 
 const OUT = 'dist';
@@ -95,6 +96,7 @@ const NAV = [
   { label: 'Blog', href: '/blog' },
   { label: 'Claims', href: '/claims' },
   { label: 'Careers', href: '/careers' },
+  { label: 'Client Portal', href: '/client-portal' },
   { label: 'Contact Us', href: '/contact-us' }
 ];
 const SOCIAL = [
@@ -135,7 +137,7 @@ const crumbsFor = (path, title) => {
   parts.forEach((seg, i) => { acc += '/' + seg; const last = i === parts.length - 1; items.push({ name: last ? title : (label[seg] || seg), item: site.url + acc }); });
   return { '@type': 'BreadcrumbList', itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, item: x.item })) };
 };
-function layout({ path, title, description, image, body, bodyClass = '', schema = [], type = 'website', published = null }) {
+function layout({ path, title, description, image, body, bodyClass = '', schema = [], type = 'website', published = null, noindex = false }) {
   const full = path === '/' ? 'Trinity Insurance Brokers | General Insurance, Employee Benefits & Risk Management, Philippines' : `${title} | Trinity Insurance Brokers`;
   const canonical = site.url + (path === '/' ? '/' : path);
   return `<!doctype html>
@@ -161,7 +163,7 @@ ${IMG_MODE === 'download' ? `<meta http-equiv="Content-Security-Policy" content=
   ...[crumbsFor(path, title)].filter(Boolean), ...schema
 ] }).replace(/</g, '\\u003c')}</script>
 <script>window.SITE=${JSON.stringify({ base: BASE, supabase: site.supabase, prodHost: site.forms.productionHost })};</script>
-${gate()}
+${gate()}${noindex && !site.gate?.enabled ? '<meta name="robots" content="noindex,nofollow">' : ''}
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
@@ -184,7 +186,7 @@ ${body}
       <li><a href="${esc(media(site.footer.legal.find(l => /conduct/i.test(l.label)).href))}" target="_blank" rel="noopener">Code of Conduct</a></li></ul></div>
     <div><h3>Browse</h3><ul>
       <li><a href="${url('/solutions')}">Solutions</a></li><li><a href="${url('/blog')}">Blogs</a></li><li><a href="${url('/careers')}">Careers</a></li>
-      <li><a href="${url('/contact-us')}">Contact Us</a></li><li><a href="${url('/site-map')}">Site Map</a></li></ul></div>
+      <li><a href="${url('/client-portal')}">Client Portal</a></li><li><a href="${url('/contact-us')}">Contact Us</a></li><li><a href="${url('/site-map')}">Site Map</a></li></ul></div>
     <div class="f-social"><h3>Follow Us</h3><div class="social">${SOCIAL.map(s => `<a href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}">${icon(s.icon)}</a>`).join('')}</div>
       <p class="f-contact">${esc(site.phone)}<br><a href="mailto:${site.email}">${site.email}</a></p></div>
   </div>
@@ -206,6 +208,7 @@ const all = [];
 const searchIndex = [];
 async function page(path, title, body, opts = {}) {
   await emit(path, layout({ path, title, body, ...opts }));
+  if (opts.noindex) return;
   all.push(path);
   searchIndex.push({ t: title, u: path, d: (opts.description || '').slice(0, 160) });
 }
@@ -217,7 +220,7 @@ const statsPartners = (heading = 'Our International Network Partners') => `<sect
 const whyChoose = () => `<section class="why"><div class="wrap"><h2>Why Choose Trinity?</h2><div class="why-grid">${D.why.map(w => `<div class="why-item">${img(w.icon, '')}<h3>${esc(w.title)}</h3><p>${esc(w.text)}</p></div>`).join('')}</div></div></section>`;
 const ctaBand = () => `<section class="cta-band" style="--cta:url('${media(D.ctaImage)}')"><div class="wrap"><h2>We protect what matters most to you.</h2><p>Let's build a safer and more secure future together.</p><div class="btns">${btn('Get a Quote', '/contact-us', 'btn-orange')}${btn('Talk to Us', '/contact-us', 'btn-light')}</div></div></section>`;
 const formSection = (kind, title = "Let's Talk", text = "Have questions or need expert guidance? Connect with our team today and let's find the right insurance solutions for your needs. We'll get back to you shortly.", subject = '') => `<section class="form-sec" id="inquire"><div class="wrap narrow"><h2>${esc(title)}</h2><p>${esc(text)}</p><div data-form="${kind}" data-subject="${esc(subject)}"></div></div></section>`;
-const postCard = a => { const u = url('/blog/' + a.path.split('/').pop()); const ex = (a.excerpt || a.description || '').replace(/\s+/g, ' ').trim(); return `<article class="post-card" data-title="${esc((a.title + ' ' + (a.tags || []).join(' ')).toLowerCase())}"><a href="${u}" class="thumb"${a.image ? ` style="background-image:url('${media(a.image)}')"` : ''} aria-label="${esc(a.title)}"></a><div class="post-info"><p class="post-meta">${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}${a.html && readingTime(a.html) ? `<span>${readingTime(a.html)} min read</span>` : ''}</p><h3><a href="${u}">${esc(a.title)}</a></h3>${ex && ex.length > 40 ? `<p class="excerpt">${esc(ex.slice(0, 150))}${ex.length > 150 ? '…' : ''}</p>` : ''}<a class="more-link" href="${u}">Read article ${icon('arrow', 'ic')}</a></div></article>`; };
+const postCard = a => { const u = url('/blog/' + a.path.split('/').pop()); const ex = (a.excerpt || a.description || '').replace(/\s+/g, ' ').trim(); const cat = category(a); return `<article class="post-card" data-cat="${esc(cat)}" data-title="${esc((a.title + ' ' + (a.tags || []).join(' ') + ' ' + cat).toLowerCase())}"><a href="${u}" class="thumb"${a.image ? ` style="background-image:url('${media(a.image)}')"` : ''} aria-label="${esc(a.title)}"></a><div class="post-info"><p class="kicker">${esc(category(a))}</p><p class="post-meta">${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}${a.html && readingTime(a.html) ? `<span>${readingTime(a.html)} min read</span>` : ''}</p><h3><a href="${u}">${esc(a.title)}</a></h3>${ex && ex.length > 40 ? `<p class="excerpt">${esc(ex.slice(0, 150))}${ex.length > 150 ? '…' : ''}</p>` : ''}<a class="more-link" href="${u}">Read article ${icon('arrow', 'ic')}</a></div></article>`; };
 const articleCards = list => `<div class="post-grid">${list.map(postCard).join('')}</div>`;
 
 const steps = (list, cls = '') => `<ol class="process${cls ? ' ' + cls : ''}">${list.map(x => `<li>${x.icon ? `<span class="pr-ic">${icon(x.icon, 'ic')}</span>` : ''}<h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></li>`).join('')}</ol>`;
@@ -427,80 +430,122 @@ ${whyChoose()}${travel ? '' : formSection(isShop ? 'shop' : 'product', "Let's Ta
   await page(p.path, title, body, { description: (intro[0] || '').slice(0, 158), image: p.heroImage, schema: [{ '@type': 'Service', '@id': site.url + p.path + '#service', name: title, serviceType: title, category: isShop ? 'Personal insurance' : CAT_META[p.category]?.title, description: intro.join(' ').slice(0, 500), provider: { '@id': ORG_ID }, areaServed: { '@type': 'Country', name: 'Philippines' }, url: site.url + p.path }] });
 }
 
-// ---------- CLAIMS ----------
-{
-  const w = wix['/claims'].blocks;
-  const intro = w.find(b => b.t === 'p')?.text || '';
+// ---------- CLAIMS (hub + one guide per claim type) ----------
+const CLAIM_TYPES = (() => {
   const src = k => (shop['/pages/' + k]?.sections || []).map(s => s.html).join('');
   const allClaims = src('claims');
   const othersHtml = (() => { const i = allClaims.indexOf('<div><p><strong>Pre-Approval'); if (i < 0) return ''; const j = allClaims.indexOf('</div>', i); return allClaims.slice(i, j); })();
-  const types = [
-    { id: 'motor', name: 'Motor Claims', icon: 'car', d: 'Own damage, third-party liability, carnap and theft.', html: src('motor-claims') },
-    { id: 'non-motor', name: 'Non-motor Claims', icon: 'claim', d: 'How non-motor losses are reported, inspected and settled.', html: src('non-motor-claims') },
-    { id: 'property-fire', name: 'Property / Fire Claims', icon: 'fire', d: 'Building, contents, stock and machinery losses.', html: src('property-fire-claims') },
-    { id: 'marine', name: 'Marine and Cargo Hull Claims', icon: 'ship', d: 'Cargo damage, short-landed and short-delivered shipments.', html: src('marine-and-cargo-hull-claims') },
-    { id: 'hmo-medical', name: 'HMO / Medical Claims', icon: 'hmo', d: 'Inpatient, outpatient, financial assistance, life and accident.', html: src('hmo-medical-claims') },
-    { id: 'travel', name: 'Travel Insurance Claims', icon: 'plane', d: 'Medical, accident, baggage, delays and cancellations.', html: src('travel-insurance-claims') },
-    { id: 'others', name: 'Pre-approvals, Treatment Plans and Dental', icon: 'heartpulse', d: 'Planned admissions, therapy treatment plans, follow-up care and dental.', html: othersHtml }
+  return [
+    { id: 'motor', name: 'Motor Claims', short: 'Motor', form: 'Motor', icon: 'car', d: 'Own damage, third-party liability, carnap and theft.', html: src('motor-claims') },
+    { id: 'non-motor', name: 'Non-motor Claims', short: 'Non-motor', form: 'Non-motor', icon: 'claim', d: 'How non-motor losses are reported, inspected and settled.', html: src('non-motor-claims') },
+    { id: 'property-fire', name: 'Property / Fire Claims', short: 'Property / Fire', form: 'Property / Fire', icon: 'fire', d: 'Building, contents, stock and machinery losses.', html: src('property-fire-claims') },
+    { id: 'marine-cargo', name: 'Marine and Cargo Hull Claims', short: 'Marine & Cargo', form: 'Marine and Cargo Hull', icon: 'ship', d: 'Cargo damage, short-landed and short-delivered shipments.', html: src('marine-and-cargo-hull-claims') },
+    { id: 'hmo-medical', name: 'HMO / Medical Claims', short: 'HMO / Medical', form: 'HMO / Medical', icon: 'hmo', d: 'Inpatient, outpatient, financial assistance, life and accident.', html: src('hmo-medical-claims') },
+    { id: 'travel', name: 'Travel Insurance Claims', short: 'Travel', form: 'Travel', icon: 'plane', d: 'Medical, accident, baggage, delays and cancellations.', html: src('travel-insurance-claims') },
+    { id: 'pre-approval-dental', name: 'Pre-approvals, Treatment Plans and Dental', short: 'Pre-approval & Dental', form: 'Pre-approval / Treatment plan / Dental', icon: 'heartpulse', d: 'Planned admissions, therapy treatment plans, follow-up care and dental.', html: othersHtml }
   ].filter(t => t.html);
+})();
+{
+  const w = wix['/claims'].blocks;
   const how = [
     { icon: 'phone', t: 'Report right away', d: 'Notify Trinity or your account manager as soon as the incident happens, with your policy number and a short description.' },
     { icon: 'shield', t: 'Protect and document', d: 'Prevent further damage, keep damaged items for inspection and take clear photos.' },
-    { icon: 'claim', t: 'Submit the requirements', d: 'Send complete, clear and readable documents. The checklists below show what each claim needs.' },
+    { icon: 'claim', t: 'Submit the requirements', d: 'Send complete, clear and readable documents. Each claim guide lists exactly what is needed.' },
     { icon: 'search', t: 'Assessment', d: 'We report the claim to the insurer, who may assign an accredited adjuster to inspect and evaluate the loss.' },
     { icon: 'check', t: 'Settlement', d: 'Once the claim is evaluated and approved, we follow it through with the insurer until it is settled.' }
   ];
-  const body = pageHero('Claims Assistance', intro, null, btn('File a Claim', '#inquire', 'btn-orange')) + `
-<section class="sec claims-how"><div class="wrap"><h2>How the Claims Process Works</h2><p class="lead tc">With us, your insurance claims are handled with care and efficiency, from the first report to the final settlement.</p>${steps(how, 'five')}</div></section>
-<section class="sec claims"><div class="wrap"><h2>Claim Requirements</h2><p class="lead tc">Select a claim type to see the steps and documents you need. Complete documents mean faster settlement.</p>
-<div class="claim-types">${types.map(t => `<a href="#${t.id}" class="claim-type" data-open="${t.id}"><span class="prod-ic">${icon(t.icon, 'ic')}</span><span><strong>${esc(t.name)}</strong><small>${esc(t.d)}</small></span></a>`).join('')}</div>
-<div class="accordion">${types.map((t, i) => `<details id="${t.id}"${i === 0 ? ' open' : ''}><summary><span class="prod-ic">${icon(t.icon, 'ic')}</span><span>${esc(t.name)}</span></summary><div class="acc-body rte">${rewrite(polish(t.html, { level: 3 }).html)}</div></details>`).join('')}</div>
-<p class="note-box">${icon('info', 'ic')}<span>Your insurer or the assigned adjuster may request additional documents while evaluating a claim. Our team will tell you exactly what is needed.</span></p></div></section>
-${formSection('claim', 'Ready to File a Claim?', 'Our team is ready to guide you through the claims process quickly and efficiently. All information provided will remain private and secured.')}`;
-  await page('/claims', 'Claims', body, { description: 'How to file motor, non-motor, property/fire, marine, HMO/medical and travel insurance claims with Trinity: process and document checklists.', schema: [{ '@type': 'HowTo', name: 'How to file an insurance claim with Trinity', step: how.map((h, i) => ({ '@type': 'HowToStep', position: i + 1, name: h.t, text: h.d })) }] });
+  const helpStrip = `<section class="help-strip"><div class="wrap"><div><h2>Need help right now?</h2><p>Our claims team will walk you through what to do next.</p></div><div class="help-actions"><a href="tel:+63288101653">${icon('phone', 'ic')}<span><small>Call us</small>+632 8810 1653</span></a><a href="mailto:${site.email}">${icon('mail', 'ic')}<span><small>Email us</small>${site.email}</span></a></div></div></section>`;
+  const body = `<section class="claims-hero"><div class="wrap"><p class="eyebrow-lg">Claims Assistance</p><h1>We'll guide you through every claim.</h1><p>${esc(w.find(b => b.t === 'p')?.text || '')}</p><div class="btns">${btn('Start a claim', '#inquire', 'btn-orange')}${btn('See what you need', '#types', 'btn-light')}</div></div></section>
+<section class="sec" id="types"><div class="wrap"><h2>What type of claim are you filing?</h2><p class="lead tc">Choose a claim type to see the steps and a printable checklist of documents.</p>
+<div class="ctype-grid">${CLAIM_TYPES.map(t => `<a class="ctype" href="${url('/claims/' + t.id)}"><span class="ctype-ic">${icon(t.icon, 'ic')}</span><strong>${esc(t.name)}</strong><small>${esc(t.d)}</small><span class="ctype-go">View guide ${icon('arrow', 'ic')}</span></a>`).join('')}<a class="ctype ghost" href="#inquire"><span class="ctype-ic">${icon('info', 'ic')}</span><strong>Not sure?</strong><small>Tell us what happened and we'll point you to the right process.</small><span class="ctype-go">Ask our team ${icon('arrow', 'ic')}</span></a></div></div></section>
+<section class="sec claims-how"><div class="wrap"><h2>How the claims process works</h2>${steps(how, 'five')}</div></section>
+${helpStrip}
+${formSection('claim', 'Start a claim', 'Send us the basics and a claims officer will contact you within one business day. All information provided remains private and secure.')}`;
+  await page('/claims', 'Claims', body, { description: 'File motor, non-motor, property/fire, marine, HMO/medical and travel insurance claims with Trinity: step-by-step guides and document checklists.', schema: [{ '@type': 'HowTo', name: 'How to file an insurance claim with Trinity', step: how.map((h, i) => ({ '@type': 'HowToStep', position: i + 1, name: h.t, text: h.d })) }] });
+
+  for (const t of CLAIM_TYPES) {
+    let h = rewrite(polish(t.html, { level: 2 }).html);
+    // document lists that sit right under a heading or an "…requirements:" line become interactive checklists
+    h = h.replace(/(<\/h[23]>|<p class="lead-in">[\s\S]*?<\/p>)(\s*)<(ul|ol) class="(ticks|steps)">/g, (m, a, sp, tag, cls) => `${a}${sp}<${tag} class="${cls} checklist">`);
+    h = h.replace(/(denied:?\s*<\/p>)(\s*)<ol class="steps">/g, '$1$2<ol class="warn-list">');
+    const body = `<section class="claim-hero"><div class="wrap"><p class="crumbs"><a href="${url('/claims')}">Claims</a> / ${esc(t.short)}</p><div class="ch-row"><span class="ctype-ic big">${icon(t.icon, 'ic')}</span><div><h1>${esc(t.name)}</h1><p>${esc(t.d)}</p></div></div><div class="btns">${btn('File this claim', '#inquire', 'btn-orange')}<button type="button" class="btn btn-light" data-print>${icon('download', 'ic')} Print checklist</button></div></div></section>
+<section class="sec claim-guide"><div class="wrap cg-layout">
+<aside class="cg-nav" aria-label="Claim types"><p class="toc-title">Claim types</p><ul>${CLAIM_TYPES.map(x => `<li><a href="${url('/claims/' + x.id)}"${x === t ? ' aria-current="page"' : ''}>${icon(x.icon, 'ic')}${esc(x.short)}</a></li>`).join('')}</ul><a class="cg-help" href="tel:+63288101653">${icon('phone', 'ic')}<span><small>Claims hotline</small>+632 8810 1653</span></a></aside>
+<div class="cg-main">
+<div class="cg-facts"><div>${icon('clock', 'ic')}<p><strong>Report early</strong>Late reporting is a common reason claims are delayed or denied.</p></div><div>${icon('doc', 'ic')}<p><strong>Keep originals</strong>Hold on to receipts, reports and damaged items until the claim is settled.</p></div><div>${icon('check', 'ic')}<p><strong>Tick as you go</strong>Use the checklists below to track the documents you have ready.</p></div></div>
+<div class="rte cg-body">${h}</div>
+<p class="note-box">${icon('info', 'ic')}<span>The insurer or the assigned adjuster may request additional documents while evaluating a claim. Our team will tell you exactly what is needed.</span></p>
+</div></div></section>
+${formSection('claim', 'File this claim', 'Send us the basics and a claims officer will contact you within one business day.', t.form)}`;
+    await page('/claims/' + t.id, t.name, body, { description: `${t.name} with Trinity Insurance Brokers: steps to take and a checklist of required documents. ${t.d}`, schema: [{ '@type': 'HowTo', name: `How to file ${t.name.toLowerCase()} with Trinity`, description: t.d, tool: [], step: [{ '@type': 'HowToStep', name: 'Report the incident to Trinity', text: 'Notify Trinity or your account manager as soon as possible.' }, { '@type': 'HowToStep', name: 'Prepare the required documents', text: 'Complete the document checklist for this claim type.' }, { '@type': 'HowToStep', name: 'Submit your claim', text: 'Send the documents to Trinity; we coordinate with the insurer until settlement.' }] }] });
+  }
 }
 
 // ---------- CAREERS ----------
+const CAREERS = JSON.parse(await readFile('content/v2/careers.json', 'utf8'));
+const roleSlug = r => r.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 {
   const w = wix['/careers'].blocks;
   const sec = (h) => { const i = w.findIndex(b => b.t.startsWith('h') && b.text.toUpperCase() === h.toUpperCase()); const ps = []; for (let j = i + 1; j < w.length && (w[j].t === 'p' || w[j].t === 'img'); j++) if (w[j].t === 'p') ps.push(w[j].text); return ps; };
   const vals = ['EXCELLENCE', 'INTEGRITY', 'COLLABORATION', 'GROWTH'].map(v => ({ t: sentenceCase(v), d: sec(v)[0], img: w[w.findIndex(b => b.text === v) - 1]?.src }));
-  const blocks = ['Challenging Career', 'Supportive Management', 'Meaningful Work'].map(h => ({ h, ps: sec(h) }));
+  const blocks = ['Challenging Career', 'Supportive Management', 'Meaningful Work'].map((h, i) => ({ h, ps: sec(h), img: w.filter(x => x.t === 'img' && /webp/.test(x.src))[i]?.src }));
   const testi = []; for (let i = 0; i < w.length; i++) if (w[i].t === 'h5') testi.push({ img: w[i - 1]?.t === 'img' ? w[i - 1].src : null, n: w[i].text, r: w[i + 1]?.text, q: w[i + 2]?.text });
-  const life = w.slice(w.findIndex(b => /life at trinity/i.test(b.text || ''))).filter(b => b.t === 'img').slice(0, 4).map(b => b.src);
-  // Current openings come from the live Shopify careers page (Trinity updates it monthly). October 2026: none.
-  const shHtml = (shop['/pages/career']?.sections || []).map(s => s.html).join('');
-  const openings = [...shHtml.matchAll(/<h4[^>]*>([^<]*(?:Specialist|Officer|Manager|Supervisor|Assistant|Head|Analyst)[^<]*)<\/h4>/g)].map(m => m[1]);
-  const body = pageHero('Build Your Career. Make an Impact.', 'Be part of one of the leading independent insurance brokers in the country.', null, btn('Send Your Résumé', '#apply', 'btn-orange')) + `
-<section class="intro"><div class="wrap split"><div><h2>Who We Are</h2><p>${esc(sec('WHO WE ARE')[0] || '')}</p></div>${img(w.find(b => b.t === 'img')?.src, '', 'rounded')}</div></section>
-<section class="values"><div class="wrap"><div class="card-grid four">${vals.map(v => `<div class="value-card">${img(v.img, '')}<h3>${esc(v.t)}</h3><p>${esc(v.d)}</p></div>`).join('')}</div></div></section>
-<section class="why-join"><div class="wrap"><h2>Why Join Trinity?</h2><p class="lead tc">${esc(sec('WHY JOIN TRINITY?')[0] || '')}</p>${blocks.map((b, i) => `<div class="split${i % 2 ? ' reverse' : ''}">${img(w.filter(x => x.t === 'img' && /webp/.test(x.src))[i]?.src, '', 'rounded')}<div><h3>${esc(b.h)}</h3>${b.ps.map(t => `<p>${esc(t)}</p>`).join('')}</div></div>`).join('')}</div></section>
-<section class="testimonials"><div class="wrap"><h2>Hear From Our Team</h2><div class="card-grid three">${testi.map(t => `<figure class="testi">${img(t.img, t.n)}<blockquote>${esc(t.q)}</blockquote><figcaption><strong>${esc(t.n)}</strong><br>${esc(t.r)}</figcaption></figure>`).join('')}</div></div></section>
-<section class="sec apply-how"><div class="wrap"><h2>How to Apply</h2>${steps([{ icon: 'doc', t: 'Prepare your CV', d: 'Update your résumé with your work history, skills and contact details.' }, { icon: 'send', t: 'Send your profile', d: 'Submit the form below with your CV attached. It takes about two minutes.' }, { icon: 'usercheck', t: 'HR review', d: 'Our HR team reviews every application and keeps your profile on file for future openings.' }, { icon: 'phone', t: 'We get in touch', d: 'Shortlisted applicants are contacted by our HR personnel about the next steps.' }])}</div></section>
-<section class="vacancies"><div class="wrap narrow"><h2>Job Vacancies</h2>${openings.length ? `<ul class="ticks">${openings.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : `<p class="lead tc">There are no open positions at the moment. You may still send us your updated profile and our HR team will keep it on file for future openings.</p>`}</div></section>
-${formSection('career', 'Send Your Updated Profile!', 'Upon successful submission, our HR personnel will coordinate with you regarding the status of your application.').replace('id="inquire"', 'id="apply"')}
-${life.length ? `<section class="life"><div class="wrap"><h2>Life at Trinity</h2><div class="gallery">${life.map(s => img(s, 'Life at Trinity')).join('')}</div></div></section>` : ''}`;
-  await page('/careers', 'Careers', body, { description: 'Careers at Trinity Insurance Brokers Inc. – why join us, life at Trinity, and how to apply.' });
+  const life = w.slice(w.findIndex(b => /life at trinity/i.test(b.text || ''))).filter(b => b.t === 'img').slice(0, 5).map(b => b.src);
+  const open = CAREERS.openings || [];
+  const rolesAttr = esc(JSON.stringify(open.map(r => ({ title: r.title }))));
+  const roleCard = r => `<a class="role-card" href="${url('/careers/' + roleSlug(r))}"><div><p class="kicker">${esc(r.team || 'Trinity')}</p><h3>${esc(r.title)}</h3><p class="role-meta"><span>${icon('building', 'ic')}${esc(r.location || 'Makati')}</span><span>${icon('clock', 'ic')}${esc(r.type || 'Full-time')}</span></p></div><span class="role-go">View role ${icon('arrow', 'ic')}</span></a>`;
+  const applyForm = (subject = '') => `<section class="sec apply" id="apply"><div class="wrap apply-grid"><div class="apply-intro"><p class="eyebrow-lg">Apply</p><h2>Apply in about three minutes.</h2><p>${open.length ? 'Choose a role below, or send a general application and we will keep your profile on file.' : 'There are no open roles right now, but we are always glad to meet good people. Send your profile and our HR team will keep it on file for future openings.'}</p><ul class="ticks"><li>Your CV in PDF or Word (up to 10 MB)</li><li>Your LinkedIn profile, if you have one</li><li>A few lines on why Trinity (optional)</li></ul><p class="muted">Your details are used only for recruitment, in line with our <a href="${url('/privacy-policy')}">Privacy Policy</a>.</p></div><div class="apply-card"><div data-form="career" data-roles="${rolesAttr}" data-subject="${esc(subject)}"></div></div></div></section>`;
+  const body = `<section class="careers-hero"><div class="wrap ch-grid"><div><p class="eyebrow-lg">Careers at Trinity</p><h1>Build your career. Make an impact.</h1><p>Be part of one of the leading independent insurance brokers in the Philippines, helping businesses and families protect what matters since 1987.</p><div class="btns">${btn(open.length ? `See ${open.length} open role${open.length > 1 ? 's' : ''}` : 'See open roles', '#openings', 'btn-orange')}${btn('Send your CV', '#apply', 'btn-ghost')}</div></div><div class="ch-media">${img(w.find(b => b.t === 'img')?.src, 'The Trinity team', 'rounded')}</div></div></section>
+<section class="facts-strip"><div class="wrap"><div><strong>Since 1987</strong><span>Nearly 40 years in insurance broking</span></div><div><strong>Makati &amp; Cebu</strong><span>Two offices serving clients nationwide</span></div><div><strong>Global network</strong><span>Brokerslink and international partners</span></div></div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow-lg">Who we are</p><h2 class="tl">A team that takes care of people</h2><p>${esc(sec('WHO WE ARE')[0] || '')}</p></div><div class="card-grid two mini-values">${vals.map(v => `<div class="value-card sm">${img(v.img, '')}<h3>${esc(v.t)}</h3><p>${esc(v.d)}</p></div>`).join('')}</div></div></section>
+<section class="sec alt"><div class="wrap"><h2>Why join Trinity?</h2><p class="lead tc">${esc(sec('WHY JOIN TRINITY?')[0] || '')}</p><div class="card-grid three">${blocks.map(b => `<article class="feature-card">${img(b.img, b.h)}<div><h3>${esc(b.h)}</h3>${b.ps.slice(0, 2).map(t => `<p>${esc(t)}</p>`).join('')}</div></article>`).join('')}</div></div></section>
+<section class="sec" id="openings"><div class="wrap"><h2>Open roles</h2>${open.length ? `<div class="roles">${open.map(roleCard).join('')}</div>` : `<div class="empty-roles">${icon('usercheck', 'ic')}<div><h3>No open roles right now</h3><p>We post new roles here as soon as they open. In the meantime, join our talent pool and we'll reach out when there's a match.</p></div>${btn('Join the talent pool', '#apply', 'btn-orange')}</div>`}</div></section>
+<section class="sec alt apply-how"><div class="wrap"><h2>Our hiring process</h2>${steps([{ icon: 'send', t: 'Apply', d: 'Send your profile and CV online. It takes about three minutes.' }, { icon: 'usercheck', t: 'HR review', d: 'Our HR team reviews every application against our open roles.' }, { icon: 'phone', t: 'Interviews', d: 'Shortlisted applicants are contacted by HR for interviews.' }, { icon: 'check', t: 'Welcome to Trinity', d: 'Successful candidates receive an offer and an onboarding plan.' }])}</div></section>
+${testi.length ? `<section class="sec testimonials"><div class="wrap"><h2>Hear from our team</h2><div class="card-grid three">${testi.map(t => `<figure class="testi">${img(t.img, t.n)}<blockquote>“${esc((t.q || '').replace(/^[\s"“”]+|[\s"“”]+$/g, ''))}”</blockquote><figcaption><strong>${esc(t.n)}</strong><br>${esc(t.r)}</figcaption></figure>`).join('')}</div></div></section>` : ''}
+${life.length ? `<section class="life"><div class="wrap"><div class="life-head"><div><p class="eyebrow-lg">Life at Trinity</p><h2 class="tl">Work hard, celebrate together.</h2><p>Team building, milestones and everyday moments with the Trinity family.</p></div><div class="life-follow"><span>Follow along</span>${SOCIAL.map(x => `<a href="${x.href}" target="_blank" rel="noopener" aria-label="${x.label}">${icon(x.icon)}</a>`).join('')}</div></div><div class="mosaic">${life.map((s2, i) => `<figure class="m${i}">${img(s2, 'Life at Trinity')}</figure>`).join('')}<a class="mosaic-cta" href="#apply"><span>Want to be in the next photo?</span><strong>Join the team ${icon('arrow', 'ic')}</strong></a></div></div></section>` : ''}
+${applyForm()}`;
+  await page('/careers', 'Careers', body, { description: 'Careers at Trinity Insurance Brokers Inc. – open roles, why join us, our hiring process and life at Trinity.' });
+  for (const r of open) {
+    const slug = '/careers/' + roleSlug(r);
+    const body2 = `<section class="careers-hero role"><div class="wrap"><p class="crumbs"><a href="${url('/careers')}">Careers</a> / Open roles</p><p class="kicker">${esc(r.team || '')}</p><h1>${esc(r.title)}</h1><p class="role-meta"><span>${icon('building', 'ic')}${esc(r.location || 'Makati')}</span><span>${icon('clock', 'ic')}${esc(r.type || 'Full-time')}</span>${r.posted ? `<span>${icon('calendar', 'ic')}Posted ${esc(fmtDate(r.posted))}</span>` : ''}</p><div class="btns">${btn('Apply for this role', '#apply', 'btn-orange')}</div></div></section>
+<section class="sec"><div class="wrap narrow rte">${r.summary ? `<p class="dek">${esc(r.summary)}</p>` : ''}${r.responsibilities?.length ? `<h2>What you'll do</h2><ul class="ticks">${r.responsibilities.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}${r.qualifications?.length ? `<h2>What we're looking for</h2><ul class="ticks">${r.qualifications.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}</div></section>
+${applyForm(r.title)}`;
+    await page(slug, r.title, body2, { description: `${r.title} – ${r.location || 'Makati'} – careers at Trinity Insurance Brokers.`, schema: [{ '@type': 'JobPosting', title: r.title, description: [r.summary, ...(r.responsibilities || []), ...(r.qualifications || [])].filter(Boolean).join(' '), datePosted: r.posted, employmentType: (r.type || 'Full-time').toUpperCase().replace('-', '_'), hiringOrganization: { '@id': ORG_ID }, jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: /cebu/i.test(r.location || '') ? 'Cebu City' : 'Makati City', addressCountry: 'PH' } } }] });
+  }
 }
 
 // ---------- CONTACT ----------
 {
-  const body = pageHero('Contact Us', "We're here to help. Send us a message and our team will get back to you shortly.") + `
+  const body = pageHero('Contact Us', "We're here to help. Tell us what you need and the right team will get back to you.") + `
 <section class="contact"><div class="wrap contact-grid">
-  <div><h2>Send Us a Message</h2><p>Have a question or need assistance? Fill out the form and we'll respond as soon as possible.</p><div data-form="contact"></div></div>
-  <div class="contact-info"><h2>Get in Touch</h2>
-    <div class="ci">${icon('phone')}<div><strong>Call Us</strong><p><a href="tel:+63288101653">+632 8810 1653</a></p></div></div>
-    <div class="ci">${icon('mail')}<div><strong>Email Us</strong><p><a href="mailto:${site.email}">${site.email}</a></p></div></div>
-    <div class="ci">${icon('clock')}<div><strong>Office Hours</strong><p>Mon – Fri: 8:30 AM – 5:30 PM</p></div></div>
+  <div class="contact-form-card"><h2>Send us a message</h2><p>Choose a topic so we can route your message to the right team.</p><div data-form="contact"></div></div>
+  <div class="contact-info"><h2>Get in touch</h2>
+    <div class="ci">${icon('phone')}<div><strong>Call us</strong><p><a href="tel:+63288101653">+632 8810 1653</a></p></div></div>
+    <div class="ci">${icon('mail')}<div><strong>Email us</strong><p><a href="mailto:${site.email}">${site.email}</a></p></div></div>
+    <div class="ci">${icon('clock')}<div><strong>Office hours</strong><p>Mon – Fri: 8:30 AM – 5:30 PM</p></div></div>
+    <div class="quick-links"><a href="${url('/claims')}">${icon('claim', 'ic')}<span><strong>File a claim</strong><small>Guides and checklists</small></span></a><a href="${url('/client-portal')}">${icon('usercheck', 'ic')}<span><strong>Client Portal</strong><small>Apply for cover online</small></span></a><a href="${url('/careers')}">${icon('briefcase', 'ic')}<span><strong>Careers</strong><small>Open roles and applications</small></span></a></div>
     <h3>Makati Head Office</h3><p>7504 Bagtikan St., San Antonio Village, Makati City, 1203 Metro Manila<br>Telephone: +632 8810 1653</p>
     <h3>Cebu Office</h3><p>Unit 610 The Meridian by Avenir, Golam Drive, Brgy. Kasambagan, 6000 Cebu City<br>Telephone: +632 887 4002</p>
+    <p>${btn('Open in Google Maps', 'https://www.google.com/maps/search/?api=1&query=7504+Bagtikan+St+San+Antonio+Village+Makati', 'btn-sm')}</p>
   </div>
-</div></section>
-<section class="map-link"><div class="wrap tc">${btn('Open Makati Head Office in Google Maps', 'https://www.google.com/maps/search/?api=1&query=7504+Bagtikan+St+San+Antonio+Village+Makati')}</div></section>`;
-  await page('/contact-us', 'Contact Us', body, { description: 'Contact Trinity Insurance Brokers – Makati head office and Cebu office, phone, email and inquiry form.', schema: [{ '@type': 'ContactPage', url: site.url + '/contact-us', about: { '@id': ORG_ID } }] });
+</div></section>`;
+  await page('/contact-us', 'Contact Us', body, { description: 'Contact Trinity Insurance Brokers – quotes, policy questions, claims and careers. Makati head office and Cebu office.', schema: [{ '@type': 'ContactPage', url: site.url + '/contact-us', about: { '@id': ORG_ID } }] });
 }
 
-// ---------- CLIENT PORTAL / PAYMENTS ----------
+// ---------- CLIENT PORTAL (online application / KYC) ----------
+{
+  const body = `<section class="portal-hero"><div class="wrap"><p class="eyebrow-lg">Client Portal</p><h1>Apply for cover online.</h1><p>Insure your bike, big bike or pet in a few minutes. No printing, no paperwork to mail.</p></div></section>
+<section class="portal-links"><div class="wrap"><a href="#apply" class="on">${icon('doc', 'ic')}<span><strong>Apply online</strong><small>Bike, Big Bike, Pet</small></span></a><a href="${url('/claims')}">${icon('claim', 'ic')}<span><strong>File a claim</strong><small>Guides and checklists</small></span></a><a href="${url('/payments')}">${icon('card', 'ic')}<span><strong>Pay a premium</strong><small>Official payment channels</small></span></a><a href="${url('/contact-us')}">${icon('mail', 'ic')}<span><strong>Policy help</strong><small>Renewals, changes, documents</small></span></a></div></section>
+<section class="sec portal" id="apply"><div class="wrap portal-grid">
+<aside class="portal-aside"><h2>How it works</h2><ol class="mini-steps"><li><strong>Fill in your application</strong><span>It takes about 5 minutes on your phone or computer.</span></li><li><strong>We review it</strong><span>Our team checks your details and sends your quotation and payment instructions.</span></li><li><strong>Get covered</strong><span>Your policy is issued once the insurer approves it and the premium is paid.</span></li></ol>
+<div class="need"><h3>Have these ready</h3><ul class="ticks"><li>A valid ID with your address and 3 specimen signatures</li><li>Your TIN</li><li>Proof of value (official receipt or OR/CR) or your pet's health records</li><li>Photos of the bike or pet</li></ul></div>
+<p class="muted">${icon('lock', 'ic')} Your information is protected under the Data Privacy Act of 2012 and used only to process your application.</p></aside>
+<div class="portal-card"><div data-form="kyc"></div></div>
+</div></section>`;
+  await page('/client-portal', 'Client Portal', body, { description: 'Trinity Client Portal: apply online for bike, big bike and pet insurance, file a claim, pay a premium or get help with your policy.' });
+}
+
+// ---------- PAYMENTS ----------
 await page('/payments', 'Payments', pageHero('Payments', 'Premium payment channels for Trinity clients.') + `<section class="sec"><div class="wrap"><h2>How to Pay Your Premium</h2>${steps([{ icon: 'send', t: 'Send your policy details', d: 'Use the form below or email us with your policy number and the billing you would like to settle.' }, { icon: 'mail', t: 'Receive official instructions', d: 'Your account officer replies with the official payment channels and the exact amount due.' }, { icon: 'card', t: 'Pay and send proof', d: 'Settle through the channel provided and reply with your proof of payment.' }, { icon: 'check', t: 'Get your confirmation', d: 'Our team confirms once your payment has been received.' }])}
 <p class="note-box warn">${icon('lock', 'ic')}<span><strong>Stay safe:</strong> Only pay through the official channels provided by your Trinity account officer. If you receive payment details from anyone else, confirm them first with your account officer or at <a href="mailto:${site.email}">${site.email}</a> before sending funds.</span></p></div></section>${formSection('payment', 'Payment Inquiry', 'Send us your policy details and our team will reply with the payment instructions.')}`, { description: 'How to pay your insurance premium with Trinity Insurance Brokers.' });
 
@@ -515,22 +560,54 @@ for (const [old, path, title] of [['/pages/privacy-policy', '/privacy-policy', '
 
 // ---------- BLOG ----------
 const newsPosts = posts.filter(p => p.blog === 'news');
-await page('/blog', 'Blog', pageHero('Trinity Blog', 'Health blasts, insurance insights and Trinity news.') + `<section class="sec blog-list"><div class="wrap"><div class="blog-tools"><input id="blog-q" type="search" class="search-input" placeholder="Search articles…" aria-label="Search articles"></div><div class="post-grid" data-paginate="12">${newsPosts.map(postCard).join('')}</div><p class="no-results" hidden>No articles match your search.</p><nav class="pager" aria-label="Pagination"></nav></div></section>`, { description: 'Trinity Insurance Brokers blog: health blasts, insurance explainers and company news.' });
+const postUrl = a => url('/blog/' + a.path.split('/').pop());
+const CATS = ['Health & Wellness', 'Insurance Insights', 'Trinity News'];
+{
+  const withBody = newsPosts.filter(a => a.image && a.html && a.html.length > 400);
+  const lead = withBody[0], side = withBody.slice(1, 4);
+  const count = c => newsPosts.filter(a => category(a) === c).length;
+  const body = `<section class="blog-head"><div class="wrap"><p class="eyebrow-lg">Trinity Insights</p><h1>The Trinity Blog</h1><p>Health, insurance and risk management insights from the people who have protected Filipino businesses since 1987.</p></div></section>
+<section class="blog-lead"><div class="wrap lead-grid">
+  <article class="lead-story"><a href="${postUrl(lead)}" class="thumb" style="background-image:url('${media(lead.image)}')" aria-label="${esc(lead.title)}"></a><div><p class="kicker">${esc(category(lead))} · Latest</p><h2><a href="${postUrl(lead)}">${esc(lead.title)}</a></h2><p class="excerpt">${esc((lead.excerpt || '').slice(0, 220))}…</p><p class="post-meta"><time>${esc(fmtDate(lead.date))}</time><span>${readingTime(lead.html)} min read</span></p><a class="more-link" href="${postUrl(lead)}">Read the story ${icon('arrow', 'ic')}</a></div></article>
+  <div class="lead-side"><p class="side-title">More recent stories</p>${side.map(a => `<article><a href="${postUrl(a)}" class="mini-thumb" style="background-image:url('${media(a.image)}')" aria-hidden="true" tabindex="-1"></a><div><p class="kicker">${esc(category(a))}</p><h3><a href="${postUrl(a)}">${esc(a.title)}</a></h3><p class="post-meta"><time>${esc(fmtDate(a.date))}</time></p></div></article>`).join('')}</div>
+</div></section>
+<section class="sec blog-list"><div class="wrap"><div class="blog-tools"><div class="chips" role="tablist" aria-label="Filter by topic"><button class="on" data-cat="">All <span>${newsPosts.length}</span></button>${CATS.map(c => `<button data-cat="${esc(c)}">${esc(c)} <span>${count(c)}</span></button>`).join('')}</div><input id="blog-q" type="search" class="search-input" placeholder="Search articles…" aria-label="Search articles"></div><div class="post-grid" data-paginate="12">${newsPosts.map(postCard).join('')}</div><p class="no-results" hidden>No articles match your search.</p><nav class="pager" aria-label="Pagination"></nav></div></section>
+<section class="newsletter-band"><div class="wrap"><div><h2>Have a question about your cover?</h2><p>Our brokers can explain what your policy covers and what it doesn't, in plain language.</p></div><div class="btns">${btn('Talk to Us', '/contact-us', 'btn-orange')}${btn('Explore Solutions', '/solutions', 'btn-light')}</div></div></section>`;
+  await page('/blog', 'Blog', body, { description: 'Trinity Insurance Brokers blog: health and wellness, insurance insights and Trinity news.', schema: [{ '@type': 'Blog', '@id': site.url + '/blog#blog', name: 'The Trinity Blog', publisher: { '@id': ORG_ID }, inLanguage: 'en-PH', blogPost: newsPosts.slice(0, 20).map(a => ({ '@type': 'BlogPosting', headline: a.title.slice(0, 110), url: site.url + '/blog/' + a.path.split('/').pop() })) }] });
+}
 for (let i = 0; i < newsPosts.length; i++) {
   const a = newsPosts[i], prev = newsPosts[i + 1], next = newsPosts[i - 1];
   const slug = '/blog/' + a.path.split('/').pop();
-  const related = newsPosts.filter(x => x !== a && x.tags?.some(t => a.tags?.includes(t))).slice(0, 3);
-  const r = polish(a.html), toc = pickToc(r.toc), mins = r.html ? readingTime(r.html) : 0;
+  const cat = category(a);
+  const r = polish(a.html), toc = pickToc(r.toc);
+  const e = enhance(r.html, a.title), mins = Math.max(1, Math.round(e.words / 220));
+  const infographic = e.words < 60;
+  const related = [...newsPosts.filter(x => x !== a && x.tags?.some(t => a.tags?.includes(t) && !/trinity (health blast|news)/i.test(t))), ...newsPosts.filter(x => x !== a && category(x) === cat)].filter((x, j, arr) => arr.indexOf(x) === j).slice(0, 3);
   const share = encodeURIComponent(site.url + slug), stitle = encodeURIComponent(a.title);
-  const health = /health|hmo|wellness|medical/i.test(a.title + ' ' + (a.tags || []).join(' '));
-  const body = `<section class="post-hero"><div class="wrap narrow"><p class="crumbs"><a href="${url('/blog')}">Blog</a>${a.tags?.[0] ? ` / ${esc(a.tags[0])}` : ''}</p><h1>${esc(a.title)}</h1><p class="post-meta">${icon('calendar', 'ic')}${a.date ? `<time>${esc(fmtDate(a.date))}</time>` : ''}${mins ? `<span>${icon('clock', 'ic')}${mins} min read</span>` : ''}<span>${icon('building', 'ic')}Trinity Insurance Brokers</span></p></div></section>
-<section class="article"><div class="wrap narrow">${a.image ? img(a.image, a.title, 'feature') : ''}${tocBox(toc, 'In this article')}<div class="rte">${rewrite(r.html)}</div>${a.tags?.length ? `<p class="tags">${a.tags.map(t => `<span>${esc(t)}</span>`).join('')}</p>` : ''}
-<div class="share"><span>Share this article</span><a href="https://www.linkedin.com/sharing/share-offsite/?url=${share}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">${icon('linkedin', 'ic')}</a><a href="https://www.facebook.com/sharer/sharer.php?u=${share}" target="_blank" rel="noopener" aria-label="Share on Facebook">${icon('facebook', 'ic')}</a><a href="mailto:?subject=${stitle}&body=${share}" aria-label="Share by email">${icon('mail', 'ic')}</a></div>
-<aside class="post-cta"><span class="pr-ic">${icon(health ? 'hmo' : 'shield', 'ic')}</span><div><h2>${health ? 'Looking after your team’s health?' : 'Need help protecting your business?'}</h2><p>${health ? 'Trinity designs HMO, group medical and wellness programs that keep your people healthy and productive.' : 'Talk to our team about insurance and risk management solutions tailored to your business.'}</p>${btn(health ? 'Explore Employee Benefits' : 'Explore Our Solutions', health ? '/solutions/employee-benefits' : '/solutions', 'btn-sm')} ${btn('Talk to Us', '/contact-us', 'btn-sm btn-orange')}</div></aside>
-<div class="post-nav">${prev ? `<a href="${url('/blog/' + prev.path.split('/').pop())}">← ${esc(prev.title)}</a>` : '<span></span>'}<a href="${url('/blog')}">All Articles</a>${next ? `<a href="${url('/blog/' + next.path.split('/').pop())}">${esc(next.title)} →</a>` : '<span></span>'}</div>
-${related.length ? `<h2 class="tc">Related Articles</h2>${articleCards(related)}` : ''}</div></section>`;
+  const health = cat === 'Health & Wellness';
   const iso = (() => { const t = new Date(String(a.date).replace(/ ([+-]\d{2})(\d{2})$/, '$1:$2').replace(' ', 'T')); return isNaN(t) ? null : t.toISOString(); })();
-  await emit(slug, layout({ path: slug, title: a.title, description: a.description, image: a.image, body, bodyClass: 'tpl-article', type: 'article', published: iso, schema: [{ '@type': 'BlogPosting', '@id': site.url + slug + '#article', headline: a.title.slice(0, 110), description: a.description, image: a.image ? abs(a.image) : undefined, datePublished: iso || undefined, dateModified: iso || undefined, author: { '@id': ORG_ID }, publisher: { '@id': ORG_ID }, mainEntityOfPage: site.url + slug, keywords: (a.tags || []).join(', ') || undefined, inLanguage: 'en-PH' }] }));
+  const shareBox = `<div class="share"><span>Share</span><a href="https://www.linkedin.com/sharing/share-offsite/?url=${share}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">${icon('linkedin', 'ic')}</a><a href="https://www.facebook.com/sharer/sharer.php?u=${share}" target="_blank" rel="noopener" aria-label="Share on Facebook">${icon('facebook', 'ic')}</a><a href="mailto:?subject=${stitle}&body=${share}" aria-label="Share by email">${icon('mail', 'ic')}</a><button type="button" class="copy-link" data-url="${esc(site.url + slug)}" aria-label="Copy link">${icon('link', 'ic')}</button></div>`;
+  const cta = `<aside class="post-cta"><span class="pr-ic">${icon(health ? 'hmo' : 'shield', 'ic')}</span><div><h2>${health ? 'Looking after your team’s health?' : 'Need help protecting your business?'}</h2><p>${health ? 'Trinity designs HMO, group medical and wellness programs that keep your people healthy and productive.' : 'Talk to our team about insurance and risk management solutions tailored to your business.'}</p>${btn(health ? 'Explore Employee Benefits' : 'Explore Our Solutions', health ? '/solutions/employee-benefits' : '/solutions', 'btn-sm btn-light')} ${btn('Talk to Us', '/contact-us', 'btn-sm btn-orange')}</div></aside>`;
+  const standfirstHtml = e.standfirst ? `<p class="dek">${esc(e.standfirst)}</p>` : '';
+  const bodyHtml = e.html.replace(/<p class="standfirst">[\s\S]*?<\/p>/, '');
+  const body = `<div class="read-progress" aria-hidden="true"><span></span></div>
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+<header class="post-hero"><div class="wrap post-head"><p class="crumbs"><a href="${url('/blog')}">Blog</a> / <span>${esc(cat)}</span></p><p class="kicker">${esc(cat)}</p><h1 itemprop="headline">${esc(a.title)}</h1>${standfirstHtml}<div class="byline-row"><span class="avatar" aria-hidden="true">T</span><div><strong>Trinity Editorial Team</strong><p class="post-meta">${a.date ? `<time datetime="${esc(iso || '')}" itemprop="datePublished">${esc(fmtDate(a.date))}</time>` : ''}${infographic ? '<span>Infographic</span>' : `<span>${mins} min read</span>`}</p></div></div></div></header>
+${a.image ? `<div class="wrap post-feature">${img(a.image, a.title, 'feature' + (infographic ? ' infographic' : ''))}</div>` : ''}
+<div class="wrap post-layout${infographic ? ' solo' : ''}"><div class="post-main">
+${e.takeaways.length ? `<section class="takeaways" aria-label="Key takeaways"><p class="tk-title">${icon('check', 'ic')} Key takeaways</p><ul>${e.takeaways.map(t => `<li>${esc(t)}</li>`).join('')}</ul></section>` : ''}
+${toc.length >= 3 ? `<div class="toc-inline">${tocBox(toc, 'In this article')}</div>` : ''}
+<div class="rte" itemprop="articleBody">${rewrite(bodyHtml)}</div>
+${a.tags?.length ? `<p class="tags">${a.tags.map(t => `<span>${esc(t)}</span>`).join('')}</p>` : ''}
+${shareBox}
+${cta}
+<nav class="post-nav" aria-label="More articles">${prev ? `<a href="${postUrl(prev)}"><small>Previous</small>${esc(prev.title)}</a>` : '<span></span>'}${next ? `<a class="next" href="${postUrl(next)}"><small>Next</small>${esc(next.title)}</a>` : '<span></span>'}</nav>
+</div>${infographic ? '' : `<aside class="post-aside">${tocBox(toc, 'In this article')}${shareBox}<div class="aside-cta"><p>Questions about your cover?</p>${btn('Talk to a broker', '/contact-us', 'btn-sm')}</div></aside>`}</div>
+</article>
+${related.length ? `<section class="sec related"><div class="wrap"><h2>More from ${esc(cat)}</h2>${articleCards(related)}</div></section>` : ''}`;
+  const schema = [{ '@type': 'BlogPosting', '@id': site.url + slug + '#article', headline: a.title.slice(0, 110), description: a.description, abstract: e.standfirst || undefined, image: a.image ? abs(a.image) : undefined, datePublished: iso || undefined, dateModified: iso || undefined, author: { '@type': 'Organization', name: 'Trinity Editorial Team', parentOrganization: { '@id': ORG_ID } }, publisher: { '@id': ORG_ID }, mainEntityOfPage: site.url + slug, articleSection: cat, wordCount: e.words || undefined, keywords: (a.tags || []).join(', ') || undefined, inLanguage: 'en-PH', isPartOf: { '@id': site.url + '/blog#blog' } }];
+  if (e.faq.length >= 2) schema.push({ '@type': 'FAQPage', '@id': site.url + slug + '#faq', mainEntity: e.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
+  await emit(slug, layout({ path: slug, title: a.title, description: a.description || e.standfirst.slice(0, 158), image: a.image, body, bodyClass: 'tpl-article', type: 'article', published: iso, schema }));
   all.push(slug); searchIndex.push({ t: a.title, u: slug, d: (a.excerpt || '').slice(0, 160) });
 }
 
@@ -542,7 +619,7 @@ await page('/search', 'Search', pageHero('Search') + `<section class="sec"><div 
     ['General Insurance', productList('general-insurance').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Employee Benefits', productList('employee-benefits').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Service Solutions', productList('service-solutions').map(p => ({ label: prodTitle(p), href: p.path }))],
-    ['Shop', NAV[3].children], ['Help', [{ label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
+    ['Shop', NAV[3].children], ['Help', [{ label: 'Client Portal', href: '/client-portal' }, { label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
     ['Legal', [{ label: 'Privacy Policy', href: '/privacy-policy' }, { label: 'Terms & Conditions', href: '/terms-and-conditions' }, { label: 'Disclaimer', href: '/disclaimer' }, { label: 'Cybersecurity', href: '/cybersecurity' }]]
   ];
   await page('/site-map', 'Site Map', pageHero('Site Map') + `<section class="sec"><div class="wrap sitemap">${groups.map(([g, l]) => `<div><h2>${esc(g)}</h2><ul>${l.map(x => `<li><a href="${url(x.href)}">${esc(x.label)}</a></li>`).join('')}</ul></div>`).join('')}</div></section>`, { description: 'Site map of the Trinity Insurance Brokers website.' });
@@ -551,7 +628,7 @@ await writeFile(join(OUT, '404.html'), layout({ path: '/404', title: 'Page not f
 
 // ---------- redirects from old Shopify URLs ----------
 const redirect = to => `<!doctype html><meta charset="utf-8"><title>Redirecting…</title><link rel="canonical" href="${site.url}${to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${url(to)}"><script>location.replace(${JSON.stringify(url(to))}+location.hash)</script><a href="${url(to)}">Continue</a>`;
-const redirects = { ...OLD2NEW, '/pages/meet-our-cebu-team': '/about-us/meet-the-team', '/about-us/meet-our-cebu-team': '/about-us/meet-the-team', '/account': '/contact-us', '/account/login': '/contact-us', '/client-portal': '/contact-us', '/pages/client-portal': '/contact-us', '/about-us': '/about-us/corporate-profile', '/shop': '/shop/travel-insurance', '/pages/whistleblowing-form': '/about-us/corporate-governance#inquire', '/cybersercurity': '/cybersecurity' };
+const redirects = { ...OLD2NEW, '/pages/meet-our-cebu-team': '/about-us/meet-the-team', '/about-us/meet-our-cebu-team': '/about-us/meet-the-team', '/account': '/client-portal', '/account/login': '/client-portal', '/pages/client-portal': '/client-portal', '/kyc': '/client-portal', '/pages/motor-claims': '/claims/motor', '/pages/non-motor-claims': '/claims/non-motor', '/pages/property-fire-claims': '/claims/property-fire', '/pages/marine-and-cargo-hull-claims': '/claims/marine-cargo', '/pages/hmo-medical-claims': '/claims/hmo-medical', '/pages/travel-insurance-claims': '/claims/travel', '/about-us': '/about-us/corporate-profile', '/shop': '/shop/travel-insurance', '/pages/whistleblowing-form': '/about-us/corporate-governance#inquire', '/cybersercurity': '/cybersecurity' };
 const WIX2OLD = {}; // old Shopify product pages -> new product pages (match by title)
 for (const sp of Object.values(shop)) {
   if (!/^\/pages\//.test(sp.path) || redirects[sp.path]) continue;
