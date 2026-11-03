@@ -350,3 +350,6 @@ details[open] summary::after{content:"–"}
   .cols{columns:1}
   .logo img{height:44px}
 }
+/* product body aligned with the product header */
+.prod-body .wrap.narrow{max-width:var(--wrap)}
+.prod-body .p-sec,.prod-body .p-cta,.prod-body .starr-cta{max-width:960px}
