@@ -161,7 +161,7 @@ export function polish(html, { level = 2, tips = true } = {}) {
   const first = root.querySelector('p');
   if (first && /^<em>\s*by\s/i.test(first.innerHTML.trim())) first.className = 'byline';
   // Headings get ids for the table of contents.
-  const toc = [];
+  let toc = [];
   root.querySelectorAll('h2,h3').forEach(h => { const t = plain(h.innerHTML).replace(/^\d{1,2}\s*/, ''); if (!h.id) h.id = slug(t); if (h.tagName === "H2" || level === 3) toc.push({ id: h.id, n: !!h.querySelector(".h-num"), t: plain(h.innerHTML.replace(/<span class="h-num">.*?<\/span>/, '')) }); });
   { // numbered documents: unnumbered h2s after the first numbered one are sub-sections
     const hs = [...root.querySelectorAll('h2')]; const fi = hs.findIndex(h => h.querySelector('.h-num'));
@@ -184,6 +184,7 @@ export function polish(html, { level = 2, tips = true } = {}) {
   }
   // Reference / source lists
   root.querySelectorAll('p').forEach(p => { if (/^(references?|sources?)\s*:?\s*$/i.test(plain(p.innerHTML))) { p.className = 'ref-head'; const n = p.nextElementSibling; if (n && /^(UL|OL)$/.test(n.tagName)) n.className = 'sources'; } });
+  toc = toc.filter(t => { const h = root.querySelector(`[id="${t.id}"]`); return h && !h.closest('.sub-cards') && (h.tagName === 'H2' || level === 3); });
   // consecutive figures → a row
   root.querySelectorAll('figure').forEach(f => { if (f.parentElement.classList?.contains('fig-row')) return; const run = [f]; let n = f.nextElementSibling; while (n && n.tagName === 'FIGURE') { run.push(n); n = n.nextElementSibling; } if (run.length > 1) { const d = document.createElement('div'); d.className = 'fig-row'; f.before(d); run.forEach(x => d.appendChild(x)); } });
   let out = root.innerHTML.replace(NB, ' ').replace(/(<br>\s*){2,}/g, '<br>').replace(/<p>\s*<br>/g, '<p>').replace(/<br>\s*<\/p>/g, '</p>').replace(/<strong>\s*<\/strong>/g, '');
