@@ -38,7 +38,7 @@ function media(u) {
   if (!mediaMap.has(u)) {
     let name = u.split('?')[0].split('/').filter(Boolean);
     name = (u.includes('video.wixstatic.com') ? name.slice(-4, -3)[0] + '.mp4' : name.pop()).replace(/[^a-zA-Z0-9._~-]/g, '_');
-    if (!/\.(jpe?g|png|gif|webp|svg|mp4|pdf)$/i.test(name)) name += '.jpg';
+    if (!/\.(jpe?g|png|gif|webp|svg|mp4|pdf|xlsx?|docx?)$/i.test(name)) name += '.jpg';
     mediaMap.set(u, `/media/${createHash('md5').update(u).digest('hex').slice(0, 6)}-${name}`);
   }
   return url(mediaMap.get(u));
@@ -107,26 +107,58 @@ const navHtml = cur => NAV.map(it => it.children
   : `<li${isCur(it.href, cur) && it.href !== '/' || (it.href === '/' && cur === '/') ? ' class="active"' : ''}><a href="${url(it.href)}">${esc(it.label)}</a></li>`).join('');
 
 const gate = () => site.gate?.enabled ? `<meta name="robots" content="noindex,nofollow">
-<style>html.locked body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#081f30;font-family:Inter,system-ui,sans-serif}#gate form{background:#fff;padding:36px 32px;border-radius:14px;width:min(360px,90vw);text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.3)}#gate img{height:52px;margin:0 auto 18px}#gate p{margin:0 0 16px;color:#555;font-size:14px}#gate input{width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;font:inherit;margin-bottom:12px;box-sizing:border-box}#gate button{width:100%;padding:12px;border:0;border-radius:6px;background:#006a7b;color:#fff;font:600 14px Inter,sans-serif;cursor:pointer}#gate .err{color:#c0392b;font-size:13px;min-height:18px;margin:8px 0 0}</style>
+<style>html.locked body>*:not(#gate){display:none!important}#gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#081f30;font-family:Poppins,system-ui,sans-serif}#gate form{background:#fff;padding:36px 32px;border-radius:14px;width:min(360px,90vw);text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.3)}#gate img{height:52px;margin:0 auto 18px}#gate p{margin:0 0 16px;color:#555;font-size:14px}#gate input{width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;font:inherit;margin-bottom:12px;box-sizing:border-box}#gate button{width:100%;padding:12px;border:0;border-radius:6px;background:#006a7b;color:#fff;font:600 14px Poppins,sans-serif;cursor:pointer}#gate .err{color:#c0392b;font-size:13px;min-height:18px;margin:8px 0 0}</style>
 <script>(function(){var H="${site.gate.sha256}",K="trinity_gate";try{if(localStorage.getItem(K)===H)return}catch(e){}document.documentElement.classList.add("locked");document.addEventListener("DOMContentLoaded",function(){var d=document.createElement("div");d.id="gate";d.innerHTML='<form><img src="${esc(media(site.logo))}" alt="Trinity"><p>This preview site is password protected.</p><input type="password" placeholder="Password" autocomplete="current-password" required autofocus><button type="submit">Enter</button><p class="err" role="alert"></p></form>';document.body.appendChild(d);d.querySelector("form").addEventListener("submit",async function(e){e.preventDefault();var v=d.querySelector("input").value,b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)),h=[].map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,"0")}).join("");if(h===H){try{localStorage.setItem(K,H)}catch(e){}document.documentElement.classList.remove("locked");d.remove()}else{d.querySelector(".err").textContent="Incorrect password."}})})})();</script>` : '';
 
-function layout({ path, title, description, image, body, bodyClass = '' }) {
-  const full = path === '/' ? site.name : `${title} | Trinity Insurance Brokers`;
+const ORG_ID = site.url + '/#organization';
+const abs = u => !u ? null : /^https?:/.test(u) ? (isRemote(u) && IMG_MODE === 'download' ? site.url + media(u).replace(BASE, '') : u) : site.url + u.replace(BASE, '');
+const ORG = {
+  '@type': ['InsuranceAgency', 'Organization'], '@id': ORG_ID,
+  name: 'Trinity Insurance Brokers', legalName: site.name, alternateName: ['TIRBI', 'Trinity Insurance and Reinsurance Brokers'],
+  url: site.url + '/', logo: abs(site.logo), image: abs(site.logo), foundingDate: '1987',
+  description: 'Full-line independent insurance broker in the Philippines providing general insurance, employee benefits and risk management solutions since 1987. Brokerslink partner with offices in Makati and Cebu.',
+  email: site.email, telephone: site.phone, areaServed: { '@type': 'Country', name: 'Philippines' },
+  address: { '@type': 'PostalAddress', streetAddress: '7504 Bagtikan St., San Antonio Village', addressLocality: 'Makati City', addressRegion: 'Metro Manila', postalCode: '1203', addressCountry: 'PH' },
+  location: [
+    { '@type': 'Place', name: 'Makati Head Office', address: { '@type': 'PostalAddress', streetAddress: '7504 Bagtikan St., San Antonio Village', addressLocality: 'Makati City', postalCode: '1203', addressCountry: 'PH' }, telephone: '+632 8810 1653' },
+    { '@type': 'Place', name: 'Trinity Insurance Brokers Cebu', address: { '@type': 'PostalAddress', streetAddress: 'Unit 610 The Meridian by Avenir, Golam Drive, Brgy. Kasambagan', addressLocality: 'Cebu City', postalCode: '6000', addressCountry: 'PH' }, telephone: '+632 887 4002' }],
+  openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:30', closes: '17:30' },
+  memberOf: [{ '@type': 'Organization', name: 'Brokerslink', url: 'https://www.brokerslink.com/' }],
+  sameAs: ['https://www.facebook.com/trinityinsures', 'https://www.instagram.com/trinityinsures/', 'https://www.linkedin.com/company/trinity-insurance-brokers-inc./']
+};
+const crumbsFor = (path, title) => {
+  if (path === '/' || path === '/404') return null;
+  const parts = path.split('/').filter(Boolean); const items = [{ name: 'Home', item: site.url + '/' }];
+  const label = { 'about-us': 'About Us', solutions: 'Solutions', shop: 'Shop', blog: 'Blog', 'general-insurance': 'General Insurance', 'employee-benefits': 'Employee Benefits', 'service-solutions': 'Service Solutions' };
+  let acc = '';
+  parts.forEach((seg, i) => { acc += '/' + seg; const last = i === parts.length - 1; items.push({ name: last ? title : (label[seg] || seg), item: site.url + acc }); });
+  return { '@type': 'BreadcrumbList', itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, item: x.item })) };
+};
+function layout({ path, title, description, image, body, bodyClass = '', schema = [], type = 'website', published = null }) {
+  const full = path === '/' ? 'Trinity Insurance Brokers | General Insurance, Employee Benefits & Risk Management, Philippines' : `${title} | Trinity Insurance Brokers`;
   const canonical = site.url + (path === '/' ? '/' : path);
   return `<!doctype html>
-<html lang="en">
+<html lang="en-PH">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(full)}</title>
 <meta name="description" content="${esc(description || site.footer.about)}">
 <link rel="canonical" href="${esc(canonical)}">
-<meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(description || site.footer.about)}"><meta property="og:type" content="website"><meta property="og:url" content="${esc(canonical)}">${image ? `<meta property="og:image" content="${esc(image)}">` : ''}
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+<meta property="og:site_name" content="Trinity Insurance Brokers"><meta property="og:locale" content="en_PH"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(description || site.footer.about)}"><meta property="og:type" content="${type}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(abs(image || D.home.banner40))}">${published ? `<meta property="article:published_time" content="${esc(published)}">` : ''}
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(full)}"><meta name="twitter:description" content="${esc(description || site.footer.about)}"><meta name="twitter:image" content="${esc(abs(image || D.home.banner40))}">
+<meta name="theme-color" content="#081f30">
+${IMG_MODE === 'download' ? `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ${site.supabase.url}; form-action 'self'; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">` : ''}
+<link rel="preload" href="${url('/assets/fonts/poppins-latin-400-normal.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${url('/assets/site.css')}">
 <link rel="icon" href="${url('/assets/favicon.png')}">
-<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'InsuranceAgency', name: site.name, url: site.url, telephone: site.phone, email: site.email, address: { '@type': 'PostalAddress', streetAddress: '7504 Bagtikan St., San Antonio Village', addressLocality: 'Makati City', postalCode: '1203', addressCountry: 'PH' }, sameAs: SOCIAL.map(s => s.href) })}</script>
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': [
+  ORG,
+  { '@type': 'WebSite', '@id': site.url + '/#website', url: site.url + '/', name: 'Trinity Insurance Brokers', publisher: { '@id': ORG_ID }, inLanguage: 'en-PH', potentialAction: { '@type': 'SearchAction', target: site.url + '/search?q={q}', 'query-input': 'required name=q' } },
+  { '@type': type === 'article' ? 'WebPage' : 'WebPage', '@id': canonical + '#webpage', url: canonical, name: full, description: description || site.footer.about, isPartOf: { '@id': site.url + '/#website' }, about: { '@id': ORG_ID }, inLanguage: 'en-PH' },
+  ...[crumbsFor(path, title)].filter(Boolean), ...schema
+] }).replace(/</g, '\\u003c')}</script>
 <script>window.SITE=${JSON.stringify({ base: BASE, supabase: site.supabase })};</script>
 ${gate()}
 </head>
@@ -148,13 +180,14 @@ ${body}
     <div><h3>Useful Links</h3><ul>
       <li><a href="${url('/privacy-policy')}">Privacy Policy</a></li><li><a href="${url('/terms-and-conditions')}">Terms &amp; Conditions</a></li>
       <li><a href="${url('/disclaimer')}">Disclaimer</a></li><li><a href="${url('/cybersecurity')}">Cybersecurity</a></li>
-      <li><a href="${esc(site.footer.legal.find(l => /conduct/i.test(l.label)).href)}" target="_blank" rel="noopener">Code of Conduct</a></li></ul></div>
+      <li><a href="${esc(media(site.footer.legal.find(l => /conduct/i.test(l.label)).href))}" target="_blank" rel="noopener">Code of Conduct</a></li></ul></div>
     <div><h3>Browse</h3><ul>
       <li><a href="${url('/solutions')}">Solutions</a></li><li><a href="${url('/blog')}">Blogs</a></li><li><a href="${url('/careers')}">Careers</a></li>
       <li><a href="${url('/contact-us')}">Contact Us</a></li><li><a href="${url('/site-map')}">Site Map</a></li></ul></div>
     <div class="f-social"><h3>Follow Us</h3><div class="social">${SOCIAL.map(s => `<a href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}">${icon(s.icon)}</a>`).join('')}</div>
       <p class="f-contact">${esc(site.phone)}<br><a href="mailto:${site.email}">${site.email}</a></p></div>
   </div>
+  <div class="credentials">In business since 1987 · Licensed by the Insurance Commission · Brokerslink partner · Offices in Makati and Cebu</div>
   <div class="copyright">© ${new Date().getFullYear()} by ${esc(site.name)}</div>
 </footer>
 <a href="#" class="to-top" aria-label="Back to top">${icon('up')}</a>
@@ -233,7 +266,7 @@ ${statsPartners()}
 <section class="team"><div class="wrap"><h2>Board of Directors</h2><div class="people">${D.board.map(person).join('')}</div></div></section>
 <section class="leader-intro"><div class="wrap split">${img(D.home.promiseImage, 'Trinity leadership', 'rounded')}<div><h2>Our Leadership</h2><blockquote>“Guiding Trinity with decades of experience, innovation, and integrity.”</blockquote><p>Our leadership team drives our mission to deliver personalized, world-class risk management solutions.</p></div></div></section>
 <section class="team"><div class="wrap"><h2>Leadership Team</h2><div class="people">${D.leadership.map(person).join('')}</div></div></section>`;
-  await page('/about-us/meet-the-team', 'Meet the Team', body, { description: 'Board of Directors and Leadership Team of Trinity Insurance and Reinsurance Brokers, Inc.' });
+  await page('/about-us/meet-the-team', 'Meet the Team', body, { description: 'Board of Directors and Leadership Team of Trinity Insurance and Reinsurance Brokers, Inc.', schema: [...D.board, ...D.leadership].map(x => ({ '@type': 'Person', name: x.name.replace(/^Atty\. /, ''), honorificPrefix: /^Atty\./.test(x.name) ? 'Atty.' : undefined, jobTitle: x.role, worksFor: { '@id': ORG_ID }, image: x.photo ? abs(x.photo) : undefined, description: (x.creds || []).join('; ') || undefined })) });
 }
 
 // ---------- WHY TRINITY ----------
@@ -304,7 +337,7 @@ ${whyChoose()}${ctaBand()}`;
 <section class="featured"><div class="wrap"><h2>Featured Solutions</h2><div class="card-grid three">${c.featured.map(f => `<article class="card">${img(f.image, f.title)}<div class="card-body"><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p>${btn('Learn More', f.href, 'btn-sm')}</div></article>`).join('')}</div></div></section>
 <section class="cat-block"><div class="wrap"><h2>Explore Our Solutions</h2>${productGrid(cat)}</div></section>
 ${whyChoose()}${ctaBand()}`;
-    await page('/solutions/' + cat, CAT_META[cat].title, body, { description: `${CAT_META[cat].title} from Trinity Insurance Brokers: ${productList(cat).map(prodTitle).join(', ')}.` });
+    await page('/solutions/' + cat, CAT_META[cat].title, body, { description: `${CAT_META[cat].title} from Trinity Insurance Brokers: ${productList(cat).map(prodTitle).join(', ')}.`, schema: [{ '@type': 'ItemList', name: CAT_META[cat].title, itemListElement: productList(cat).map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: prodTitle(p), url: site.url + p.path })) }] });
   }
 }
 
@@ -347,7 +380,7 @@ for (const p of Object.values(products)) {
   const body = `<section class="prod-hero"><div class="wrap">${p.heroImage && !isShop ? img(p.heroImage, title, 'prod-banner') : ''}<div class="prod-head"><p class="crumbs"><a href="${url('/solutions')}">Solutions</a> / ${isShop ? 'Shop' : `<a href="${url('/solutions/' + p.category)}">${CAT_META[p.category]?.title}</a>`}</p><h1>${esc(title)}</h1>${intro.map(t => t.includes('•') ? (() => { const [h, ...li] = t.split(/\s*•\s*/); return (h.trim() ? `<p>${esc(h.trim())}</p>` : '') + `<ul class="ticks">${li.filter(Boolean).map(x => `<li>${esc(x)}</li>`).join('')}</ul>`; })() : `<p>${esc(t)}</p>`).join('')}<div class="btns">${heroBtns}</div></div></div></section>
 <section class="prod-body"><div class="wrap narrow">${bodySecs}${p.cta ? `<div class="p-cta">${p.cta.icon ? img(p.cta.icon, '') : ''}<p>${esc(p.cta.text)}</p>${btn('Inquire Now', '#inquire', 'btn-orange')}</div>` : ''}</div></section>
 ${whyChoose()}${travel ? '' : formSection(isShop ? 'shop' : 'product', "Let's Talk", undefined, title)}`;
-  await page(p.path, title, body, { description: (intro[0] || '').slice(0, 158), image: p.heroImage });
+  await page(p.path, title, body, { description: (intro[0] || '').slice(0, 158), image: p.heroImage, schema: [{ '@type': 'Service', '@id': site.url + p.path + '#service', name: title, serviceType: title, category: isShop ? 'Personal insurance' : CAT_META[p.category]?.title, description: intro.join(' ').slice(0, 500), provider: { '@id': ORG_ID }, areaServed: { '@type': 'Country', name: 'Philippines' }, url: site.url + p.path }] });
 }
 
 // ---------- CLAIMS ----------
@@ -404,8 +437,8 @@ ${life.length ? `<section class="life"><div class="wrap"><h2>Life at Trinity</h2
     <h3>Cebu Office</h3><p>Unit 610 The Meridian by Avenir, Golam Drive, Brgy. Kasambagan, 6000 Cebu City<br>Telephone: +632 887 4002</p>
   </div>
 </div></section>
-<section class="map"><iframe title="Trinity Makati Head Office map" loading="lazy" src="https://maps.google.com/maps?q=7504%20Bagtikan%20Street%20Makati&t=&z=15&ie=UTF8&iwloc=B&output=embed"></iframe></section>`;
-  await page('/contact-us', 'Contact Us', body, { description: 'Contact Trinity Insurance Brokers – Makati head office and Cebu office, phone, email and inquiry form.' });
+<section class="map-link"><div class="wrap tc">${btn('Open Makati Head Office in Google Maps', 'https://www.google.com/maps/search/?api=1&query=7504+Bagtikan+St+San+Antonio+Village+Makati')}</div></section>`;
+  await page('/contact-us', 'Contact Us', body, { description: 'Contact Trinity Insurance Brokers – Makati head office and Cebu office, phone, email and inquiry form.', schema: [{ '@type': 'ContactPage', url: site.url + '/contact-us', about: { '@id': ORG_ID } }] });
 }
 
 // ---------- CLIENT PORTAL / PAYMENTS ----------
@@ -434,7 +467,8 @@ for (let i = 0; i < newsPosts.length; i++) {
 <section class="article"><div class="wrap narrow">${a.image ? img(a.image, a.title, 'feature') : ''}<div class="rte">${rewrite(a.html)}</div>${a.tags?.length ? `<p class="tags">${a.tags.map(t => `<span>${esc(t)}</span>`).join('')}</p>` : ''}
 <div class="post-nav">${prev ? `<a href="${url('/blog/' + prev.path.split('/').pop())}">← ${esc(prev.title)}</a>` : '<span></span>'}<a href="${url('/blog')}">All Articles</a>${next ? `<a href="${url('/blog/' + next.path.split('/').pop())}">${esc(next.title)} →</a>` : '<span></span>'}</div>
 ${related.length ? `<h2 class="tc">Related Articles</h2>${articleCards(related)}` : ''}</div></section>`;
-  await emit(slug, layout({ path: slug, title: a.title, description: a.description, image: a.image, body, bodyClass: 'tpl-article' }));
+  const iso = (() => { const t = new Date(String(a.date).replace(/ ([+-]\d{2})(\d{2})$/, '$1:$2').replace(' ', 'T')); return isNaN(t) ? null : t.toISOString(); })();
+  await emit(slug, layout({ path: slug, title: a.title, description: a.description, image: a.image, body, bodyClass: 'tpl-article', type: 'article', published: iso, schema: [{ '@type': 'BlogPosting', '@id': site.url + slug + '#article', headline: a.title.slice(0, 110), description: a.description, image: a.image ? abs(a.image) : undefined, datePublished: iso || undefined, dateModified: iso || undefined, author: { '@id': ORG_ID }, publisher: { '@id': ORG_ID }, mainEntityOfPage: site.url + slug, keywords: (a.tags || []).join(', ') || undefined, inLanguage: 'en-PH' }] }));
   all.push(slug); searchIndex.push({ t: a.title, u: slug, d: (a.excerpt || '').slice(0, 160) });
 }
 
@@ -470,7 +504,9 @@ for (const [from, to] of Object.entries(redirects)) {
 for (const p of posts) { const f = join(OUT, p.path.replace(/^\//, ''), 'index.html'); await mkdir(dirname(f), { recursive: true }); await writeFile(f, redirect('/blog/' + p.path.split('/').pop())); }
 
 await writeFile(join(OUT, 'search.json'), JSON.stringify(searchIndex));
-await writeFile(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...new Set(all)].filter(p => p !== '/search').map(p => `<url><loc>${site.url}${p}</loc></url>`).join('')}</urlset>`);
+const today = new Date().toISOString().slice(0, 10);
+const postDate = Object.fromEntries(posts.map(p => { const t = new Date(String(p.date).replace(/ ([+-]\d{2})(\d{2})$/, '$1:$2').replace(' ', 'T')); return ['/blog/' + p.path.split('/').pop(), isNaN(t) ? today : t.toISOString().slice(0, 10)]; }));
+await writeFile(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...new Set(all)].filter(p => p !== '/search').map(p => `<url><loc>${site.url}${p === '/' ? '/' : p}</loc><lastmod>${postDate[p] || today}</lastmod></url>`).join('\n')}\n</urlset>`);
 await writeFile(join(OUT, 'robots.txt'), site.gate?.enabled ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
 await writeFile(join(OUT, '.nojekyll'), '');
 if (process.env.CNAME) await writeFile(join(OUT, 'CNAME'), process.env.CNAME);
