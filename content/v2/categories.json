@@ -1,0 +1,210 @@
+{
+ "general-insurance": {
+  "path": "/solutions/general-insurance",
+  "title": "General Insurance",
+  "tagline": "Comprehensive protection for your business, assets, and the people who matter most.",
+  "heroImage": "https://static.wixstatic.com/media/3d89d4_c263ce97cbba45c1a07988fa23da723c~mv2.png",
+  "featured": [
+   {
+    "title": "Cybercrime Insurance",
+    "text": "Protect your business from digital threats, data breaches, and cyber attacks.",
+    "href": "/solutions/general-insurance/cybercrime-insurance",
+    "image": "https://static.wixstatic.com/media/3d89d4_509d9eb338ed462a95a16f6f71c2788a~mv2.png"
+   },
+   {
+    "title": "Motorcar Insurance",
+    "text": "Comprehensive protection for your vehicles with flexible coverage options.",
+    "href": "/solutions/general-insurance/motorcar-insurance",
+    "image": "https://static.wixstatic.com/media/3d89d4_243d023c32ca49bfbf995b72747fe389~mv2.png"
+   },
+   {
+    "title": "Property Fire Insurance",
+    "text": "Safeguard your property and assets against fire and other unexpected events.",
+    "href": "/solutions/general-insurance/property-fire-insurance",
+    "image": "https://static.wixstatic.com/media/3d89d4_fb4713dc6e7f44468d7d439db51670a6~mv2.png"
+   }
+  ],
+  "list": [
+   {
+    "title": "Cybercrime Insurance",
+    "href": "/solutions/general-insurance/cybercrime-insurance"
+   },
+   {
+    "title": "Poultry and Livestock Insurance",
+    "href": "/solutions/general-insurance/poultry-and-livestock-insurance"
+   },
+   {
+    "title": "Marine Cargo, Hull, and Aviation Insurance",
+    "href": "/solutions/general-insurance/marinecargo-hull-aviation-insurance"
+   },
+   {
+    "title": "Motorcar Insurance",
+    "href": "/solutions/general-insurance/motorcar-insurance"
+   },
+   {
+    "title": "Professional Indemnity Insurance",
+    "href": "/solutions/general-insurance/professional-indemnity-insurance"
+   },
+   {
+    "title": "Directors and Officers Liability Insurance",
+    "href": "/solutions/general-insurance/directors-officers-liability-insurance"
+   },
+   {
+    "title": "Bonds",
+    "href": "/solutions/general-insurance/bonds"
+   },
+   {
+    "title": "Casualty and Liability Insurance",
+    "href": "/solutions/general-insurance/casualty-liability-insurance"
+   },
+   {
+    "title": "Product Recall and Contamination",
+    "href": "/solutions/general-insurance/product-recall-contamination"
+   },
+   {
+    "title": "Full Political Violence Insurance",
+    "href": "/solutions/general-insurance/political-violence-terrorism-insurance"
+   },
+   {
+    "title": "Property Fire Insurance",
+    "href": "/solutions/general-insurance/property-fire-insurance"
+   },
+   {
+    "title": "Parametric Insurance",
+    "href": "/solutions/general-insurance/parametric-insurance"
+   },
+   {
+    "title": "Electronic Equipment Insurance (EEI)",
+    "href": "/solutions/general-insurance/electronic-equipment-insurance"
+   },
+   {
+    "title": "Contractor's All Risk (CAR) / Erection All Risk (EAR) Insurance",
+    "href": "/solutions/general-insurance/car-ear-insurance"
+   }
+  ]
+ },
+ "employee-benefits": {
+  "path": "/solutions/employee-benefits",
+  "title": "EMPLOYEE BENEFITS",
+  "tagline": "Protect your people with comprehensive healthcare, travel, life, and wellness solutions designed to support every stage of their journey.",
+  "heroImage": "https://static.wixstatic.com/media/3d89d4_51f99d1b48a34d8fb5b9d987f710adbc~mv2.png",
+  "featured": [
+   {
+    "title": "HMO",
+    "text": "Comprehensive healthcare coverage that gives employees access to trusted medical providers and quality care.",
+    "href": "/solutions/employee-benefits/hmo",
+    "image": "https://static.wixstatic.com/media/3d89d4_743b3d81b346419590435f058d19296f~mv2.png"
+   },
+   {
+    "title": "INTERNATIONAL MEDICAL INSURANCE",
+    "text": "Global healthcare protection with flexible peso and dollar-denominated coverage options.",
+    "href": "/solutions/employee-benefits/international-medical-insurance",
+    "image": "https://static.wixstatic.com/media/3d89d4_b4ce27f09bd84224853023d9d64ba6fd~mv2.png"
+   },
+   {
+    "title": "TRAVEL INSURANCE",
+    "text": "Reliable protection for business and personal travel, wherever work takes your team.",
+    "href": "/solutions/employee-benefits/travel-insurance-product",
+    "image": "https://static.wixstatic.com/media/3d89d4_990846fdff404df6ad283eab9c774ea2~mv2.png"
+   }
+  ],
+  "list": [
+   {
+    "title": "HMO",
+    "href": "/solutions/employee-benefits/hmo"
+   },
+   {
+    "title": "International Medical Insurance (Peso and Dollar-denominated Plan)",
+    "href": "/solutions/employee-benefits/international-medical-insurance"
+   },
+   {
+    "title": "Amended Migrant Workers Act (AMWA) Insurance",
+    "href": "/solutions/employee-benefits/amwa-insurance"
+   },
+   {
+    "title": "Critical Illness",
+    "href": "/solutions/employee-benefits/critical-illness"
+   },
+   {
+    "title": "Hospital Income Insurance",
+    "href": "/solutions/employee-benefits/hospital-income-insurance"
+   },
+   {
+    "title": "Travel Insurance",
+    "href": "/solutions/employee-benefits/travel-insurance-product"
+   },
+   {
+    "title": "Group Medical Insurance",
+    "href": "/solutions/employee-benefits/group-medical-insurance"
+   },
+   {
+    "title": "Group Term Life and Personal Accident Insurance",
+    "href": "/solutions/employee-benefits/group-term-life-personal-accident-insurance"
+   },
+   {
+    "title": "Shipowner’s Healthcare Program for Seafarers and Dependents",
+    "href": "/solutions/employee-benefits/shipowners-healthcare-program-for-seafarers-dependents"
+   }
+  ]
+ },
+ "service-solutions": {
+  "path": "/solutions/service-solutions",
+  "title": "SERVICE SOLUTIONS",
+  "tagline": "Strategic insurance support and risk management solutions designed to strengten operatons improve employee wellbeing, and protect your business",
+  "heroImage": "https://static.wixstatic.com/media/3d89d4_f593d1ffe8d249c38da59f99966c387f~mv2.png",
+  "featured": [
+   {
+    "title": "Insurance policy audit",
+    "text": "Expert policy reviews to help ensure your coverage stays aligned with your business needs and risk exposure.",
+    "href": "/solutions/service-solutions/insurance-policy-audit",
+    "image": "https://static.wixstatic.com/media/3d89d4_96fee7f018e340e4860b522b4ede4c0e~mv2.png"
+   },
+   {
+    "title": "CLAIMS MANAGEMENT",
+    "text": "Efficient claims handling and support services focused on faster resolutions and better client experience.",
+    "href": "/solutions/service-solutions/claims-management",
+    "image": "https://static.wixstatic.com/media/3d89d4_bab89cd3e56641128cb80d8492feced7~mv2.png"
+   },
+   {
+    "title": "INDUSTRY BENCHMARKING",
+    "text": "Data-driven insights and market comparisons that help organizations make informed employee benefit decisions.",
+    "href": "/solutions/service-solutions/industry-benchmarking",
+    "image": "https://static.wixstatic.com/media/3d89d4_9c49c252421540dc82ce7b632e50a151~mv2.png"
+   }
+  ],
+  "list": [
+   {
+    "title": "Third Party Administration",
+    "href": "/solutions/service-solutions/third-party-administration"
+   },
+   {
+    "title": "Claims Management",
+    "href": "/solutions/service-solutions/claims-management"
+   },
+   {
+    "title": "Industry Benchmarking",
+    "href": "/solutions/service-solutions/industry-benchmarking"
+   },
+   {
+    "title": "Wellness Program Development and Management",
+    "href": "/solutions/service-solutions/wellness-program-development-management"
+   },
+   {
+    "title": "Employee Benefit Plan Design",
+    "href": "/solutions/service-solutions/employee-benefit-plan-design"
+   },
+   {
+    "title": "Technical Underwriting",
+    "href": "/solutions/service-solutions/technical-underwriting"
+   },
+   {
+    "title": "Risk Management and Loss Prevention",
+    "href": "/solutions/service-solutions/risk-management-loss-prevention"
+   },
+   {
+    "title": "Insurance Policy Audit",
+    "href": "/solutions/service-solutions/insurance-policy-audit"
+   }
+  ]
+ }
+}

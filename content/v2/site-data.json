@@ -1,0 +1,99 @@
+{
+  "home": {
+    "heroTitle": ["Your Partner in", "Growing Your Business."],
+    "heroText": "For 40 years, we've provided world-class general insurance, employee benefits, and risk management solutions.",
+    "heroImage": "https://static.wixstatic.com/media/3d89d4_439665aa2560403c8ed7fcdc65c29746~mv2.webp",
+    "heroImageNote": "Interim: real Trinity team photo replaces the AI hero (client asked for business-related, incl. employee benefits). Swap when Trinity supplies a final image.",
+    "banner40": "https://trinity-insures.com/cdn/shop/files/trinity-40yrs-web-2-updated_1920x.jpg?v=1792474549",
+    "quickAccess": [
+      { "label": "Solutions", "href": "/solutions", "icon": "https://static.wixstatic.com/media/3d89d4_a7901b6141d74315a2fcfa4e21ce04c8~mv2.png" },
+      { "label": "Claims Support", "href": "/claims", "icon": "https://static.wixstatic.com/media/3d89d4_1e45f10dc18e4ec9a912f2d89b29bdbe~mv2.png" },
+      { "label": "Careers", "href": "/careers", "icon": "https://static.wixstatic.com/media/3d89d4_033de27c832743e3b93e1154fe89a2a5~mv2.png" }
+    ],
+    "bento": [
+      { "title": "Corporate Risk", "text": "Protect your business with strategic risk solutions tailored to your operations.", "image": "https://static.wixstatic.com/media/3d89d4_4c29cb1f37824a6ebecff3ac63b76e38~mv2.png", "images": ["https://static.wixstatic.com/media/3d89d4_c7c60e8000114a028e18ff10bc6da3be~mv2.png", "https://static.wixstatic.com/media/3d89d4_ca8d0aac3747401b8bd0773cc7632aa5~mv2.png"], "href": "/solutions/general-insurance" },
+      { "title": "Employee Benefits", "text": "Support your team with flexible, high-value coverage designed for today's workforce.", "image": "https://static.wixstatic.com/media/3d89d4_439665aa2560403c8ed7fcdc65c29746~mv2.webp", "href": "/solutions/employee-benefits" },
+      { "title": "Specialized Policies", "text": "Cyber, SME underwriting specialized optimizations.", "image": "https://static.wixstatic.com/media/3d89d4_a2b3e2a11e354b46a952c8f0744c5aee~mv2.png", "href": "/solutions/service-solutions" }
+    ],
+    "tiles": [
+      { "title": "Marine", "image": "https://static.wixstatic.com/media/3d89d4_306036f8c8b74951a13afc2a38117217~mv2.png", "href": "/solutions/general-insurance/marinecargo-hull-aviation-insurance" },
+      { "title": "Aviation", "image": "https://static.wixstatic.com/media/3d89d4_f6fb94c2dd86479e8772aa7531a3d292~mv2.png", "href": "/solutions/general-insurance/marinecargo-hull-aviation-insurance" },
+      { "title": "Retail", "image": "https://static.wixstatic.com/media/3d89d4_34a29c4674f24f0582b76e8edb1ac460~mv2.png", "href": "/solutions/general-insurance/product-recall-contamination" },
+      { "title": "Underwriting", "image": "https://static.wixstatic.com/media/3d89d4_1ad2304f66264cc48224d32cc9164b68~mv2.png", "href": "/solutions/service-solutions/technical-underwriting" }
+    ],
+    "featured": [
+      { "title": "General Insurance", "text": "Reliable protection for your business, assets, and operations against unexpected events and losses.", "image": "https://static.wixstatic.com/media/3d89d4_fb4713dc6e7f44468d7d439db51670a6~mv2.png", "href": "/solutions/general-insurance" },
+      { "title": "Employee Benefits", "text": "Comprehensive benefit solutions that support your employees' well-being and help you attract and retain top talent.", "image": "https://static.wixstatic.com/media/3d89d4_8994711125cf448caa2760ef70cc51a5~mv2.png", "href": "/solutions/employee-benefits" },
+      { "title": "Service Solutions", "text": "Expert advice and strategies to identify, assess, and manage risks so you can make confident business decisions.", "image": "https://static.wixstatic.com/media/3d89d4_3e0c7ddc9d07463d8445c47b0fd1e3fb~mv2.png", "href": "/solutions/service-solutions" }
+    ],
+    "promiseImage": "https://static.wixstatic.com/media/3d89d4_a604e95198d347adb1a7646d8d1bb722~mv2.jpg",
+    "promiseQuote": "Personalized insurance isn't just our job; it's our heritage."
+  },
+  "stats": [ { "value": "40+", "label": "Years of Excellence" }, { "value": "10K+", "label": "Global Clients" } ],
+  "partners": [
+    { "name": "Asia Australasia Alliance", "logo": "https://trinity-insures.com/cdn/shop/files/fdfdg_600x.png?v=1614312896" },
+    { "name": "Asinta", "logo": "https://trinity-insures.com/cdn/shop/files/asinta_600x.png?v=1789450346" },
+    { "name": "Brokerslink", "logo": "https://trinity-insures.com/cdn/shop/files/assfdg_600x.png?v=1614312896" },
+    { "name": "Jiang Tai", "logo": "https://trinity-insures.com/cdn/shop/files/Jiang_Tai_no_bg_600x.png?v=1790933940" },
+    { "name": "Sequoia", "logo": "https://trinity-insures.com/cdn/shop/files/sequoia_no_bg_600x.png?v=1790933941" },
+    { "name": "Unison Steadfast", "logo": "https://trinity-insures.com/cdn/shop/files/unison_600x.png?v=1789450404" }
+  ],
+  "chairman": {
+    "image": "https://static.wixstatic.com/media/3d89d4_b4e231624e7d476288c4bc67d1a0fb19~mv2.webp",
+    "videos": [
+      { "poster": "https://static.wixstatic.com/media/3d89d4_285225dfde1d44a9a36dc7102fec7f47f000.jpg", "src": "https://video.wixstatic.com/video/3d89d4_285225dfde1d44a9a36dc7102fec7f47/720p/mp4/file.mp4" },
+      { "poster": "https://static.wixstatic.com/media/3d89d4_0bf2dd1ef8524c1ab46e8e8e9b3988f3f000.jpg", "src": "https://video.wixstatic.com/video/3d89d4_0bf2dd1ef8524c1ab46e8e8e9b3988f3/720p/mp4/file.mp4" },
+      { "poster": "https://static.wixstatic.com/media/3d89d4_5389bf81f66a4a028ef1a35e35ccc505f000.jpg", "src": "https://video.wixstatic.com/video/3d89d4_5389bf81f66a4a028ef1a35e35ccc505/720p/mp4/file.mp4" }
+    ],
+    "historyImage": "https://static.wixstatic.com/media/3d89d4_c2be02c6067442baae9092863a0941a6~mv2.webp"
+  },
+  "milestones": [
+    { "year": "1987", "title": "Founded Trinity", "text": "Started with 3 employees and made Php3 million worth of premiums in the same year." },
+    { "year": "1994", "title": "Expanded into Employee Benefits", "text": "Established Trinity Healthcare Services (THS)." },
+    { "year": "2004", "title": "Opened Trinity Insurance Brokers Cebu", "text": "Established operations in Cebu to meet the needs of the country's shipping capital." },
+    { "year": "2008", "title": "Brokerslink Charter Member", "text": "Became a charter member of Brokerslink." },
+    { "year": "2015", "title": "Surpassed PHP 1 Billion", "text": "Surpassed the PHP 1 Billion premiums barrier." },
+    { "year": "2017", "title": "Trinity Insurance Center", "text": "Inaugurated Trinity Insurance Center in the Makati Central Business District." },
+    { "year": "2019", "title": "Reached PHP 2 Billion", "text": "Reached PHP 2 Billion in premiums, doubling the size of the business in 4 years." },
+    { "year": "2020", "title": "Top 10 Brokerage Firms", "text": "Made it into the Top 10 Insurance Brokerage Firms." },
+    { "year": "2024", "title": "Global Networks", "text": "Became a member of various global networks." },
+    { "year": "2027", "title": "40th Anniversary", "text": "Celebrating our 40th Anniversary." }
+  ],
+  "values": [
+    { "title": "Excellence", "text": "Giving our best to build on our achievements and continuously improve.", "icon": "star" },
+    { "title": "Integrity", "text": "Upholding ethical principles and honesty in every action we take.", "icon": "shield" },
+    { "title": "Passion", "text": "Driven by a wholehearted dedication to our work and serving others.", "icon": "flame" },
+    { "title": "Courage", "text": "Facing challenges head-on, driving innovation and positive change.", "icon": "mountain" }
+  ],
+  "board": [
+    { "name": "Isidro G. Garcia", "role": "Chairman / President", "photo": "https://trinity-insures.com/cdn/shop/files/Isidro_Garcia_800x.jpg?v=1662948682" },
+    { "name": "Emmanuel Herbosa", "role": "Director, Vice Chairman", "creds": ["President & CEO, Development Bank of the Philippines"], "photo": "https://trinity-insures.com/cdn/shop/files/Emmanuel_Herbosa_800x.jpg?v=1662948842" },
+    { "name": "Atty. Reginald A. B. Nolido", "role": "Corporate Secretary / Legal Dept. Head", "creds": ["Managing Partner, Nolido Law Firm", "JD, Ateneo Law School"], "photo": "https://trinity-insures.com/cdn/shop/files/Atty_Reggie_Nolido_800x.jpg?v=1662948902" },
+    { "name": "Iñigo M. Garcia", "role": "Treasurer", "creds": ["BS-EM, University of Asia and the Pacific", "MBA, Ateneo Graduate School of Business"], "photo": "https://trinity-insures.com/cdn/shop/files/Inigo_Garcia_800x.jpg?v=1662948731" },
+    { "name": "Teresita M. Garcia", "role": "Director", "photo": "https://trinity-insures.com/cdn/shop/files/Tesha_Garcia_800x.jpg?v=1662948767" },
+    { "name": "Immanuel M. Garcia", "role": "Director", "creds": ["BS-HRIM, DLSU College of St. Benilde", "MBA, Asian Institute of Management"], "photo": "https://trinity-insures.com/cdn/shop/files/Immanuel_Garcia_800x.jpg?v=1662948792" },
+    { "name": "Michael Andrew L. Escaler", "role": "Director", "creds": ["President, Pasudeco Development Corp.", "BA Economics and Philosophy, Boston College"], "photo": "https://trinity-insures.com/cdn/shop/files/Andrew_Escaler_800x.jpg?v=1662948819" },
+    { "name": "Richard Ray T. King", "role": "Director", "creds": ["President and CEO, RDAK Land Inc."], "photo": null },
+    { "name": "Wilfredo A. Placino", "role": "Independent Director", "creds": ["President, Clark Global Gateway City"], "photo": "https://static.wixstatic.com/media/3d89d4_c5256d2bde4f42c0a2b95b5c3f676695~mv2.png" },
+    { "name": "Kevin Moss", "role": "Independent Director", "creds": ["Investment Specialist, Asian Development Bank"], "photo": "https://trinity-insures.com/cdn/shop/files/Kevin_Moss_800x.jpg?v=1662948883" }
+  ],
+  "leadership": [
+    { "name": "Immanuel M. Garcia", "role": "Chief Operating Officer", "photo": "https://trinity-insures.com/cdn/shop/files/Immanuel_Garcia_800x.jpg?v=1662948792" },
+    { "name": "Kiko C. Navarro", "role": "Senior Vice President, Group Head – General Insurance", "photo": "https://trinity-insures.com/cdn/shop/files/Kiko_Navarro_800x.jpg?v=1662952072" },
+    { "name": "Rene E. Penaredonda", "role": "Senior Vice President, Group Head – Employee Benefits", "photo": "https://trinity-insures.com/cdn/shop/files/Rene_Penaredonda_800x.jpg?v=1662952089" },
+    { "name": "Maria G. Catiis", "role": "First Vice President – General Insurance", "photo": "https://trinity-insures.com/cdn/shop/files/Maria_Catiis_800x.jpg?v=1662952104" },
+    { "name": "Tita B. Pingan", "role": "Vice President, Group Head – Employee Benefits", "photo": "https://trinity-insures.com/cdn/shop/files/Tita_Pingan_800x.jpg?v=1662952138" },
+    { "name": "Benjie E. Friera", "role": "Vice President – Technical Services, Reinsurance, and Claims", "photo": "https://trinity-insures.com/cdn/shop/files/Benjie_Friera_800x.jpg?v=1662952210" },
+    { "name": "Ghina M. Clavejo", "role": "Assistant Vice President – General Insurance", "photo": "https://trinity-insures.com/cdn/shop/files/Ghina_Clavejo_800x.jpg?v=1662952119" },
+    { "name": "Aida G. Mendoza", "role": "Assistant Vice President – GI Claims and Policy Administration Group", "photo": "https://trinity-insures.com/cdn/shop/files/Aida_Mendoza_800x.jpg?v=1662952161" },
+    { "name": "Ethelyn Arbiol-Alquino", "role": "Branch Manager, Trinity Insurance Brokers Cebu", "photo": "https://trinity-insures.com/cdn/shop/files/ethel_new_800x.jpg?v=1731917611" }
+  ],
+  "why": [
+    { "title": "Tailored Risk Solutions", "text": "Customized coverage that fits your unique needs.", "icon": "https://static.wixstatic.com/media/3d89d4_977041def1ac4dada1da9b79c0693dae~mv2.png" },
+    { "title": "Access to Global Insurance Markets", "text": "Strong partnerships with leading insurers worldwide.", "icon": "https://static.wixstatic.com/media/3d89d4_62afed519f8d43469d8cbeaf34465aab~mv2.png" },
+    { "title": "Expert Advisory Team", "text": "Experienced professionals committed to your success.", "icon": "https://static.wixstatic.com/media/3d89d4_b697d6d3bcb247eb85739aea678e3e4d~mv2.png" },
+    { "title": "End-to-End Claims Support", "text": "We're with you every step of the way.", "icon": "https://static.wixstatic.com/media/3d89d4_6466760889584d2d9e7cc70b1b607464~mv2.png" }
+  ],
+  "ctaImage": "https://static.wixstatic.com/media/3d89d4_8c43553969ec4066a2cbf44014bc2b58~mv2.png",
+  "starrPortal": "https://trinity.starrinsurance.com.ph/"
+}
