@@ -1,5 +1,5 @@
 {
-  "name": "Trinity Insurance and Reinsurance Brokers, Inc.",
+  "name": "Trinity Insurance Brokers Inc.",
   "shortName": "Trinity Insurance Brokers",
   "url": "https://trinity-insures.com",
   "address": "7504 Bagtikan St., San Antonio Village, Makati City, 1203 Metro Manila",
@@ -107,7 +107,7 @@
     }
   ],
   "footer": {
-    "about": "Trinity Insurance and Reinsurance Brokers, Inc. is a Brokerslink partner. Brokerslink delivers a powerful alternative to the world’s largest brokers.",
+    "about": "Trinity Insurance Brokers Inc. is a Brokerslink partner. Brokerslink delivers a powerful alternative to the world’s largest brokers.",
     "legal": [
       {
         "label": "Privacy Policy",
@@ -221,5 +221,8 @@
     "enabled": true,
     "sha256": "0b400174c4df47e7f2d9001a858f971618eb8d9f8c98d5d3ba09906df9e7a363",
     "note": "Temporary preview password gate. Set enabled=false to remove."
+  },
+  "forms": {
+    "productionHost": "trinity-insures.com"
   }
 }

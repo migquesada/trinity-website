@@ -359,3 +359,35 @@ details[open] summary::after{content:"–"}
 .prod-body .wrap.narrow{max-width:var(--wrap)}
 .prod-body .p-sec,.prod-body .p-cta,.prod-body .starr-cta{max-width:960px}
 .credentials{text-align:center;font-size:13px;color:#b9c9d1;padding:0 24px 14px}
+/* ---- forms v2 ---- */
+.tform{gap:18px 20px}
+.tform .fld{display:flex;flex-direction:column;gap:6px;font-weight:500;font-size:14px;color:var(--ink)}
+.tform .fld em{font-style:normal;font-weight:400;color:var(--muted)}
+.tform .fld small{font-weight:400;color:var(--muted);font-size:12.5px}
+.tform input,.tform textarea,.tform select{min-height:48px;font-size:16px;border-radius:10px;border:1.5px solid #cfd8de;transition:border-color .15s,box-shadow .15s}
+.tform input:focus,.tform textarea:focus,.tform select:focus{outline:0;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,106,123,.15)}
+.tform .bad input,.tform .bad textarea,.tform .bad select{border-color:#c0392b}
+.tform .err-msg{font-weight:500;color:#c0392b;font-size:12.5px;min-height:0}
+.tform .err-msg:empty{display:none}
+.tform .file input{padding:10px;background:var(--soft);border-style:dashed}
+.tform .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:400;color:var(--text)}
+.tform .check input{width:20px;height:20px;min-height:0;margin-top:2px;accent-color:var(--teal);flex:0 0 20px}
+.tform .check.bad span{color:#c0392b}
+.tform .anon{background:var(--soft);padding:14px;border-radius:10px}
+.tform .who{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.tform .who[hidden]{display:none}
+.pills{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:10px}
+.pills legend{font-weight:500;font-size:14px;color:var(--ink);margin-bottom:8px;padding:0}
+.pills label{cursor:pointer}
+.pills input{position:absolute;opacity:0}
+.pills span{display:inline-block;padding:10px 18px;border:1.5px solid #cfd8de;border-radius:40px;font-size:14px;transition:.15s}
+.pills input:checked+span{background:var(--teal);border-color:var(--teal);color:#fff}
+.pills input:focus-visible+span{box-shadow:0 0 0 3px rgba(0,106,123,.25)}
+.tform .actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tform .actions .btn{min-width:160px;min-height:50px}
+.tform .actions .btn:disabled{opacity:.7;cursor:wait}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.test-flag{background:#fff4e5;color:#8a4b00;border-radius:8px;padding:8px 12px;font-size:13px;margin:0}
+.form-done{background:#fff;border-radius:var(--r);padding:40px 28px;text-align:center;box-shadow:0 8px 24px rgba(8,31,48,.06);margin-top:22px}
+.form-done .tick{width:64px;height:64px;border-radius:50%;background:#e6f4ea;color:#2e7d32;font-size:34px;line-height:64px;margin:0 auto 14px}
+@media(max-width:640px){.tform .who{grid-template-columns:1fr}.tform .actions .btn{width:100%}}

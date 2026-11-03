@@ -51,7 +51,7 @@ const OLD2NEW = {
   '/pages/contact-us': '/contact-us', '/pages/claims': '/claims', '/pages/career': '/careers', '/pages/privacy-policy': '/privacy-policy',
   '/pages/terms-and-conditions': '/terms-and-conditions', '/pages/disclaimer': '/disclaimer', '/pages/cybersecurity': '/cybersecurity', '/pages/site-map': '/site-map',
   '/blogs/news': '/blog', '/products/bike-insurance': '/shop/bicycle-insurance', '/products/big-bike-insurance-inquiry-only': '/shop/big-bike-insurance',
-  '/pages/travel-insurance-starr': '/shop/travel-insurance', '/pages/file-a-claim': '/claims', '/pages/client-portal': '/client-portal', '/pages/payments': '/payments'
+  '/pages/travel-insurance-starr': '/shop/travel-insurance', '/pages/file-a-claim': '/claims', '/pages/payments': '/payments'
 };
 const mapPath = h => {
   if (!h) return h;
@@ -93,7 +93,6 @@ const NAV = [
   { label: 'Blog', href: '/blog' },
   { label: 'Claims', href: '/claims' },
   { label: 'Careers', href: '/careers' },
-  { label: 'Client Portal', href: '/client-portal' },
   { label: 'Contact Us', href: '/contact-us' }
 ];
 const SOCIAL = [
@@ -114,7 +113,7 @@ const ORG_ID = site.url + '/#organization';
 const abs = u => !u ? null : /^https?:/.test(u) ? (isRemote(u) && IMG_MODE === 'download' ? site.url + media(u).replace(BASE, '') : u) : site.url + u.replace(BASE, '');
 const ORG = {
   '@type': ['InsuranceAgency', 'Organization'], '@id': ORG_ID,
-  name: 'Trinity Insurance Brokers', legalName: site.name, alternateName: ['TIRBI', 'Trinity Insurance and Reinsurance Brokers'],
+  name: 'Trinity Insurance Brokers', legalName: 'Trinity Insurance Brokers Inc.', alternateName: ['Trinity Insurance Brokers, Inc.', 'Trinity Insurance and Reinsurance Brokers, Inc.', 'TIRBI'],
   url: site.url + '/', logo: abs(site.logo), image: abs(site.logo), foundingDate: '1987',
   description: 'Full-line independent insurance broker in the Philippines providing general insurance, employee benefits and risk management solutions since 1987. Brokerslink partner with offices in Makati and Cebu.',
   email: site.email, telephone: site.phone, areaServed: { '@type': 'Country', name: 'Philippines' },
@@ -159,7 +158,7 @@ ${IMG_MODE === 'download' ? `<meta http-equiv="Content-Security-Policy" content=
   { '@type': type === 'article' ? 'WebPage' : 'WebPage', '@id': canonical + '#webpage', url: canonical, name: full, description: description || site.footer.about, isPartOf: { '@id': site.url + '/#website' }, about: { '@id': ORG_ID }, inLanguage: 'en-PH' },
   ...[crumbsFor(path, title)].filter(Boolean), ...schema
 ] }).replace(/</g, '\\u003c')}</script>
-<script>window.SITE=${JSON.stringify({ base: BASE, supabase: site.supabase })};</script>
+<script>window.SITE=${JSON.stringify({ base: BASE, supabase: site.supabase, prodHost: site.forms.productionHost })};</script>
 ${gate()}
 </head>
 <body class="${bodyClass}">
@@ -239,7 +238,7 @@ ${quickAccess()}
 ${statsPartners()}
 <section class="articles"><div class="wrap"><h2>Latest Articles</h2>${articleCards(posts.filter(p => p.blog === 'news').slice(0, 3))}<p class="tc">${btn('Explore Articles', '/blog')}</p></div></section>
 <section class="promise"><div class="wrap"><h2>The Trinity Promise</h2><div class="promise-grid">${img(H.promiseImage, 'Trinity team meeting with a client', 'promise-img')}<div><h3>Our Story</h3><blockquote>“${esc(H.promiseQuote)}”</blockquote><p>${esc(site.footer.about)}</p></div></div></div></section>`;
-  await page('/', 'Home', body, { description: 'Trinity Insurance and Reinsurance Brokers, Inc. – your partner in growing your business for 40 years: general insurance, employee benefits, and risk management solutions.', bodyClass: 'tpl-home' });
+  await page('/', 'Home', body, { description: 'Trinity Insurance Brokers Inc. – your partner in growing your business for 40 years: general insurance, employee benefits, and risk management solutions.', bodyClass: 'tpl-home' });
 }
 
 // ---------- CORPORATE PROFILE ----------
@@ -256,7 +255,7 @@ ${statsPartners()}
 <section class="history"><div class="wrap split reverse">${img(D.chairman.historyImage, 'The Trinity team', 'rounded')}<div><h2>Evolving with History</h2>${hist.map(t => `<p>${esc(t.replace('buisinestes', 'businesses').replace('clerity', 'clarity'))}</p>`).join('')}</div></div></section>
 <section class="milestones"><div class="wrap"><h2>Milestones</h2><ol class="timeline">${D.milestones.map(m => `<li><span class="yr">${esc(m.year)}</span><h3>${esc(m.title)}</h3><p>${esc(m.text)}</p></li>`).join('')}</ol></div></section>
 <section class="values"><div class="wrap"><h2>Our Core Values</h2><p class="lead tc">Guided by principles of Excellence, Integrity, Passion, and Courage, Trinity is committed to delivering not just solutions but lasting value.</p><div class="card-grid four">${D.values.map(v => `<div class="value-card">${icon(v.icon, 'value-icon')}<h3>${esc(v.title)}</h3><p>${esc(v.text)}</p></div>`).join('')}</div></div></section>`;
-  await page('/about-us/corporate-profile', 'Corporate Profile', body, { description: 'Trinity Insurance and Reinsurance Brokers – chairman\'s message, history, milestones and core values.' });
+  await page('/about-us/corporate-profile', 'Corporate Profile', body, { description: 'Trinity Insurance Brokers Inc. – chairman\'s message, history, milestones and core values.' });
 }
 
 // ---------- MEET THE TEAM ----------
@@ -266,7 +265,7 @@ ${statsPartners()}
 <section class="team"><div class="wrap"><h2>Board of Directors</h2><div class="people">${D.board.map(person).join('')}</div></div></section>
 <section class="leader-intro"><div class="wrap split">${img(D.home.promiseImage, 'Trinity leadership', 'rounded')}<div><h2>Our Leadership</h2><blockquote>“Guiding Trinity with decades of experience, innovation, and integrity.”</blockquote><p>Our leadership team drives our mission to deliver personalized, world-class risk management solutions.</p></div></div></section>
 <section class="team"><div class="wrap"><h2>Leadership Team</h2><div class="people">${D.leadership.map(person).join('')}</div></div></section>`;
-  await page('/about-us/meet-the-team', 'Meet the Team', body, { description: 'Board of Directors and Leadership Team of Trinity Insurance and Reinsurance Brokers, Inc.', schema: [...D.board, ...D.leadership].map(x => ({ '@type': 'Person', name: x.name.replace(/^Atty\. /, ''), honorificPrefix: /^Atty\./.test(x.name) ? 'Atty.' : undefined, jobTitle: x.role, worksFor: { '@id': ORG_ID }, image: x.photo ? abs(x.photo) : undefined, description: (x.creds || []).join('; ') || undefined })) });
+  await page('/about-us/meet-the-team', 'Meet the Team', body, { description: 'Board of Directors and Leadership Team of Trinity Insurance Brokers Inc.', schema: [...D.board, ...D.leadership].map(x => ({ '@type': 'Person', name: x.name.replace(/^Atty\. /, ''), honorificPrefix: /^Atty\./.test(x.name) ? 'Atty.' : undefined, jobTitle: x.role, worksFor: { '@id': ORG_ID }, image: x.photo ? abs(x.photo) : undefined, description: (x.creds || []).join('; ') || undefined })) });
 }
 
 // ---------- WHY TRINITY ----------
@@ -312,7 +311,7 @@ ${statsPartners()}`;
   const sh = shop['/pages/corporate-governance'];
   const html = sh.sections.map(s => `<section class="sec legacy">${rewrite(s.html)}</section>`).join('').replace(/href="[^"]*\/pages\/www\./g, 'href="https://www.');
   const body = pageHero('Corporate Governance', 'Transparency, accountability and integrity.') + html + formSection('whistleblowing', 'Have concerns or want to report an issue?', 'Help us uphold transparency and integrity. All reports are treated with strict confidentiality. You may submit anonymously.');
-  await page('/about-us/corporate-governance', 'Corporate Governance', body, { description: 'Corporate governance documents, scorecards and whistleblowing channel of Trinity Insurance and Reinsurance Brokers, Inc.', bodyClass: 'tpl-legacy' });
+  await page('/about-us/corporate-governance', 'Corporate Governance', body, { description: 'Corporate governance documents, scorecards and whistleblowing channel of Trinity Insurance Brokers Inc.', bodyClass: 'tpl-legacy' });
 }
 
 // ---------- SOLUTIONS ----------
@@ -421,7 +420,7 @@ ${formSection('claim', 'Ready to File a Claim?', 'Our team is ready to guide you
 <section class="vacancies"><div class="wrap narrow"><h2>Job Vacancies</h2>${openings.length ? `<ul class="ticks">${openings.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : `<p class="lead tc">There are no open positions at the moment. You may still send us your updated profile and our HR team will keep it on file for future openings.</p>`}</div></section>
 ${formSection('career', 'Send Your Updated Profile!', 'Upon successful submission, our HR personnel will coordinate with you regarding the status of your application.').replace('id="inquire"', 'id="apply"')}
 ${life.length ? `<section class="life"><div class="wrap"><h2>Life at Trinity</h2><div class="gallery">${life.map(s => img(s, 'Life at Trinity')).join('')}</div></div></section>` : ''}`;
-  await page('/careers', 'Careers', body, { description: 'Careers at Trinity Insurance and Reinsurance Brokers – why join us, life at Trinity, and how to apply.' });
+  await page('/careers', 'Careers', body, { description: 'Careers at Trinity Insurance Brokers Inc. – why join us, life at Trinity, and how to apply.' });
 }
 
 // ---------- CONTACT ----------
@@ -442,11 +441,6 @@ ${life.length ? `<section class="life"><div class="wrap"><h2>Life at Trinity</h2
 }
 
 // ---------- CLIENT PORTAL / PAYMENTS ----------
-await page('/client-portal', 'Client Portal', pageHero('Client Portal', 'Secure access to your policies, claims and payments.') + `
-<section class="portal"><div class="wrap portal-grid">
-  <form class="portal-login card" data-auth="login"><h2>Log In to Your Account</h2><p>Enter the email address registered with Trinity and we'll send you a secure login link.</p><input type="email" name="email" placeholder="Email address" required><button class="btn" type="submit">Send Login Link</button><p class="form-msg" role="status"></p></form>
-  <div class="portal-links"><a class="quick-card" href="${url('/claims')}">${icon('claim')}<span>File a Claim</span></a><a class="quick-card" href="${url('/payments')}">${icon('card')}<span>Payments</span></a><a class="quick-card" href="${url('/contact-us')}">${icon('mail')}<span>Contact Your Account Officer</span></a></div>
-</div></section>`, { description: 'Trinity client portal – log in to view policies, file claims and make payments.' });
 await page('/payments', 'Payments', pageHero('Payments', 'Premium payment channels for Trinity clients.') + `<section class="sec"><div class="wrap narrow"><p class="lead">For payment instructions and official bank details, please contact your Trinity account officer or email <a href="mailto:${site.email}">${site.email}</a>. Always confirm payment details directly with Trinity before sending funds.</p></div></section>${formSection('payment', 'Payment Inquiry', 'Send us your policy details and our team will reply with the payment instructions.')}`, { description: 'Payment channels for Trinity Insurance Brokers clients.' });
 
 // ---------- LEGAL PAGES (from the live site) ----------
@@ -480,7 +474,7 @@ await page('/search', 'Search', pageHero('Search') + `<section class="sec"><div 
     ['General Insurance', productList('general-insurance').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Employee Benefits', productList('employee-benefits').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Service Solutions', productList('service-solutions').map(p => ({ label: prodTitle(p), href: p.path }))],
-    ['Shop', NAV[3].children], ['Help', [{ label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Client Portal', href: '/client-portal' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
+    ['Shop', NAV[3].children], ['Help', [{ label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
     ['Legal', [{ label: 'Privacy Policy', href: '/privacy-policy' }, { label: 'Terms & Conditions', href: '/terms-and-conditions' }, { label: 'Disclaimer', href: '/disclaimer' }, { label: 'Cybersecurity', href: '/cybersecurity' }]]
   ];
   await page('/site-map', 'Site Map', pageHero('Site Map') + `<section class="sec"><div class="wrap sitemap">${groups.map(([g, l]) => `<div><h2>${esc(g)}</h2><ul>${l.map(x => `<li><a href="${url(x.href)}">${esc(x.label)}</a></li>`).join('')}</ul></div>`).join('')}</div></section>`, { description: 'Site map of the Trinity Insurance Brokers website.' });
@@ -489,7 +483,7 @@ await writeFile(join(OUT, '404.html'), layout({ path: '/404', title: 'Page not f
 
 // ---------- redirects from old Shopify URLs ----------
 const redirect = to => `<!doctype html><meta charset="utf-8"><title>Redirecting…</title><link rel="canonical" href="${site.url}${to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${url(to)}"><script>location.replace(${JSON.stringify(url(to))}+location.hash)</script><a href="${url(to)}">Continue</a>`;
-const redirects = { ...OLD2NEW, '/pages/meet-our-cebu-team': '/about-us/meet-the-team', '/about-us/meet-our-cebu-team': '/about-us/meet-the-team', '/account': '/client-portal', '/account/login': '/client-portal', '/about-us': '/about-us/corporate-profile', '/shop': '/shop/travel-insurance', '/pages/whistleblowing-form': '/about-us/corporate-governance#inquire', '/cybersercurity': '/cybersecurity' };
+const redirects = { ...OLD2NEW, '/pages/meet-our-cebu-team': '/about-us/meet-the-team', '/about-us/meet-our-cebu-team': '/about-us/meet-the-team', '/account': '/contact-us', '/account/login': '/contact-us', '/client-portal': '/contact-us', '/pages/client-portal': '/contact-us', '/about-us': '/about-us/corporate-profile', '/shop': '/shop/travel-insurance', '/pages/whistleblowing-form': '/about-us/corporate-governance#inquire', '/cybersercurity': '/cybersecurity' };
 const WIX2OLD = {}; // old Shopify product pages -> new product pages (match by title)
 for (const sp of Object.values(shop)) {
   if (!/^\/pages\//.test(sp.path) || redirects[sp.path]) continue;
