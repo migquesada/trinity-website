@@ -1,0 +1,452 @@
+[
+ {
+  "path": "/",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity",
+  "file": "raw-wix/index.html",
+  "ok": true
+ },
+ {
+  "path": "/about-us",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/about-us",
+  "file": "raw-wix/about-us.html",
+  "ok": true
+ },
+ {
+  "path": "/about-us/corporate-governance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/about-us/corporate-governance",
+  "file": "raw-wix/about-us/corporate-governance.html",
+  "ok": true
+ },
+ {
+  "path": "/about-us/corporate-profile",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/about-us/corporate-profile",
+  "file": "raw-wix/about-us/corporate-profile.html",
+  "ok": true
+ },
+ {
+  "path": "/about-us/industries-we-serve",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/about-us/industries-we-serve",
+  "file": "raw-wix/about-us/industries-we-serve.html",
+  "ok": true
+ },
+ {
+  "path": "/about-us/meet-our-cebu-team",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/about-us/meet-our-cebu-team",
+  "file": "raw-wix/about-us/meet-our-cebu-team.html",
+  "ok": true
+ },
+ {
+  "path": "/about-us/meet-the-team",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/about-us/meet-the-team",
+  "file": "raw-wix/about-us/meet-the-team.html",
+  "ok": true
+ },
+ {
+  "path": "/about-us/why-trinity",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/about-us/why-trinity",
+  "file": "raw-wix/about-us/why-trinity.html",
+  "ok": true
+ },
+ {
+  "path": "/blank-3",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blank-3",
+  "file": "raw-wix/blank-3.html",
+  "ok": true
+ },
+ {
+  "path": "/blog",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog",
+  "file": "raw-wix/blog.html",
+  "ok": true
+ },
+ {
+  "path": "/blog-feed.xml",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog-feed.xml",
+  "file": "raw-wix/blog-feed.xml.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/child-development",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/child-development",
+  "file": "raw-wix/blog/categories/child-development.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/developmental-milestones",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/developmental-milestones",
+  "file": "raw-wix/blog/categories/developmental-milestones.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/hmo",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/hmo",
+  "file": "raw-wix/blog/categories/hmo.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/parenting-tips",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/parenting-tips",
+  "file": "raw-wix/blog/categories/parenting-tips.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/pneumonia",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/pneumonia",
+  "file": "raw-wix/blog/categories/pneumonia.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/trinity-anniversary",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/trinity-anniversary",
+  "file": "raw-wix/blog/categories/trinity-anniversary.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/trinity-health-blast",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/trinity-health-blast",
+  "file": "raw-wix/blog/categories/trinity-health-blast.html",
+  "ok": true
+ },
+ {
+  "path": "/blog/categories/trinity-news-and-information",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/blog/categories/trinity-news-and-information",
+  "file": "raw-wix/blog/categories/trinity-news-and-information.html",
+  "ok": true
+ },
+ {
+  "path": "/careers",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/careers",
+  "file": "raw-wix/careers.html",
+  "ok": true
+ },
+ {
+  "path": "/claims",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/claims",
+  "file": "raw-wix/claims.html",
+  "ok": true
+ },
+ {
+  "path": "/client-portal",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/client-portal",
+  "file": "raw-wix/client-portal.html",
+  "ok": true
+ },
+ {
+  "path": "/contact-us",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/contact-us",
+  "file": "raw-wix/contact-us.html",
+  "ok": true
+ },
+ {
+  "path": "/cybersercurity",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/cybersercurity",
+  "file": "raw-wix/cybersercurity.html",
+  "ok": true
+ },
+ {
+  "path": "/disclaimer",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/disclaimer",
+  "file": "raw-wix/disclaimer.html",
+  "ok": true
+ },
+ {
+  "path": "/payments",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/payments",
+  "file": "raw-wix/payments.html",
+  "ok": true
+ },
+ {
+  "path": "/pet-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/pet-insurance",
+  "file": "raw-wix/pet-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/post/how-do-we-know-if-our-child-s-development-is-on-track",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/post/how-do-we-know-if-our-child-s-development-is-on-track",
+  "file": "raw-wix/post/how-do-we-know-if-our-child-s-development-is-on-track.html",
+  "ok": true
+ },
+ {
+  "path": "/post/pancreatic-mass-often-evades-early-detection-here-s-how-to-catch-it-now",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/post/pancreatic-mass-often-evades-early-detection-here-s-how-to-catch-it-now",
+  "file": "raw-wix/post/pancreatic-mass-often-evades-early-detection-here-s-how-to-catch-it-now.html",
+  "ok": true
+ },
+ {
+  "path": "/post/trinity-health-blast-pneumonia-facts",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/post/trinity-health-blast-pneumonia-facts",
+  "file": "raw-wix/post/trinity-health-blast-pneumonia-facts.html",
+  "ok": true
+ },
+ {
+  "path": "/post/trinity-insurance-brokers-celebrates-30-years-of-quality-service",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/post/trinity-insurance-brokers-celebrates-30-years-of-quality-service",
+  "file": "raw-wix/post/trinity-insurance-brokers-celebrates-30-years-of-quality-service.html",
+  "ok": true
+ },
+ {
+  "path": "/post/trinity-insurance-brokers-inc-30-years-of-innovation",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/post/trinity-insurance-brokers-inc-30-years-of-innovation",
+  "file": "raw-wix/post/trinity-insurance-brokers-inc-30-years-of-innovation.html",
+  "ok": true
+ },
+ {
+  "path": "/post/trinity-your-health-guardians",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/post/trinity-your-health-guardians",
+  "file": "raw-wix/post/trinity-your-health-guardians.html",
+  "ok": true
+ },
+ {
+  "path": "/post/uterine-fibroids-symptoms-causes-and-diagnosis",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/post/uterine-fibroids-symptoms-causes-and-diagnosis",
+  "file": "raw-wix/post/uterine-fibroids-symptoms-causes-and-diagnosis.html",
+  "ok": true
+ },
+ {
+  "path": "/privacy-policy",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/privacy-policy",
+  "file": "raw-wix/privacy-policy.html",
+  "ok": true
+ },
+ {
+  "path": "/shop",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/shop",
+  "file": "raw-wix/shop.html",
+  "ok": true
+ },
+ {
+  "path": "/shop/bicycle-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/shop/bicycle-insurance",
+  "file": "raw-wix/shop/bicycle-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/shop/big-bike-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/shop/big-bike-insurance",
+  "file": "raw-wix/shop/big-bike-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/shop/travel-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/shop/travel-insurance",
+  "file": "raw-wix/shop/travel-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions",
+  "file": "raw-wix/solutions.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits",
+  "file": "raw-wix/solutions/employee-benefits.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/amwa-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/amwa-insurance",
+  "file": "raw-wix/solutions/employee-benefits/amwa-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/critical-illness",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/critical-illness",
+  "file": "raw-wix/solutions/employee-benefits/critical-illness.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/group-medical-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/group-medical-insurance",
+  "file": "raw-wix/solutions/employee-benefits/group-medical-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/group-term-life-personal-accident-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/group-term-life-personal-accident-insurance",
+  "file": "raw-wix/solutions/employee-benefits/group-term-life-personal-accident-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/hmo",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/hmo",
+  "file": "raw-wix/solutions/employee-benefits/hmo.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/hospital-income-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/hospital-income-insurance",
+  "file": "raw-wix/solutions/employee-benefits/hospital-income-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/international-medical-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/international-medical-insurance",
+  "file": "raw-wix/solutions/employee-benefits/international-medical-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/shipowners-healthcare-program-for-seafarers-dependents",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/shipowners-healthcare-program-for-seafarers-dependents",
+  "file": "raw-wix/solutions/employee-benefits/shipowners-healthcare-program-for-seafarers-dependents.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/employee-benefits/travel-insurance-product",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/employee-benefits/travel-insurance-product",
+  "file": "raw-wix/solutions/employee-benefits/travel-insurance-product.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance",
+  "file": "raw-wix/solutions/general-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/bonds",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/bonds",
+  "file": "raw-wix/solutions/general-insurance/bonds.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/car-ear-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/car-ear-insurance",
+  "file": "raw-wix/solutions/general-insurance/car-ear-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/casualty-liability-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/casualty-liability-insurance",
+  "file": "raw-wix/solutions/general-insurance/casualty-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/cybercrime-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/cybercrime-insurance",
+  "file": "raw-wix/solutions/general-insurance/cybercrime-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/directors-officers-liability-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/directors-officers-liability-insurance",
+  "file": "raw-wix/solutions/general-insurance/directors-officers-liability-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/electronic-equipment-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/electronic-equipment-insurance",
+  "file": "raw-wix/solutions/general-insurance/electronic-equipment-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/marinecargo-hull-aviation-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/marinecargo-hull-aviation-insurance",
+  "file": "raw-wix/solutions/general-insurance/marinecargo-hull-aviation-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/motorcar-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/motorcar-insurance",
+  "file": "raw-wix/solutions/general-insurance/motorcar-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/parametric-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/parametric-insurance",
+  "file": "raw-wix/solutions/general-insurance/parametric-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/political-violence-terrorism-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/political-violence-terrorism-insurance",
+  "file": "raw-wix/solutions/general-insurance/political-violence-terrorism-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/poultry-and-livestock-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/poultry-and-livestock-insurance",
+  "file": "raw-wix/solutions/general-insurance/poultry-and-livestock-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/product-recall-contamination",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/product-recall-contamination",
+  "file": "raw-wix/solutions/general-insurance/product-recall-contamination.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/professional-indemnity-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/professional-indemnity-insurance",
+  "file": "raw-wix/solutions/general-insurance/professional-indemnity-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/general-insurance/property-fire-insurance",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/general-insurance/property-fire-insurance",
+  "file": "raw-wix/solutions/general-insurance/property-fire-insurance.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions",
+  "file": "raw-wix/solutions/service-solutions.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/claims-management",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/claims-management",
+  "file": "raw-wix/solutions/service-solutions/claims-management.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/employee-benefit-plan-design",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/employee-benefit-plan-design",
+  "file": "raw-wix/solutions/service-solutions/employee-benefit-plan-design.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/industry-benchmarking",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/industry-benchmarking",
+  "file": "raw-wix/solutions/service-solutions/industry-benchmarking.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/insurance-policy-audit",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/insurance-policy-audit",
+  "file": "raw-wix/solutions/service-solutions/insurance-policy-audit.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/risk-management-loss-prevention",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/risk-management-loss-prevention",
+  "file": "raw-wix/solutions/service-solutions/risk-management-loss-prevention.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/technical-underwriting",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/technical-underwriting",
+  "file": "raw-wix/solutions/service-solutions/technical-underwriting.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/third-party-administration",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/third-party-administration",
+  "file": "raw-wix/solutions/service-solutions/third-party-administration.html",
+  "ok": true
+ },
+ {
+  "path": "/solutions/service-solutions/wellness-program-development-management",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/solutions/service-solutions/wellness-program-development-management",
+  "file": "raw-wix/solutions/service-solutions/wellness-program-development-management.html",
+  "ok": true
+ },
+ {
+  "path": "/terms-and-conditions",
+  "url": "https://digitalpartnersasia.wixstudio.com/trinity/terms-and-conditions",
+  "file": "raw-wix/terms-and-conditions.html",
+  "ok": true
+ }
+]

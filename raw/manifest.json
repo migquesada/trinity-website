@@ -251,8 +251,7 @@
  },
  {
   "path": "/blogs/news/full-political-violence-insurance-what-it-covers-and-why-businesses-need-it",
-  "file": "raw/blogs/news/full-political-violence-insurance-what-it-covers-and-why-businesses-need-it.html",
-  "ok": true
+  "ok": false
  },
  {
   "path": "/blogs/news/gout-basics-understanding-the-reason-behind-your-joint-pain",
@@ -367,6 +366,11 @@
  {
   "path": "/blogs/news/mitigating-underinsurance-risks-the-importance-of-regular-independent-valuations",
   "file": "raw/blogs/news/mitigating-underinsurance-risks-the-importance-of-regular-independent-valuations.html",
+  "ok": true
+ },
+ {
+  "path": "/blogs/news/more-than-just-the-holiday-blues-understanding-seasonal-affective-disorder",
+  "file": "raw/blogs/news/more-than-just-the-holiday-blues-understanding-seasonal-affective-disorder.html",
   "ok": true
  },
  {
@@ -501,8 +505,7 @@
  },
  {
   "path": "/blogs/news/tips-to-improving-social-wellness",
-  "file": "raw/blogs/news/tips-to-improving-social-wellness.html",
-  "ok": true
+  "ok": false
  },
  {
   "path": "/blogs/news/tips-to-prevent-and-manage-rabies",
@@ -776,8 +779,7 @@
  },
  {
   "path": "/blogs/news/understanding-copd-what-you-should-know",
-  "file": "raw/blogs/news/understanding-copd-what-you-should-know.html",
-  "ok": true
+  "ok": false
  },
  {
   "path": "/blogs/news/understanding-fire-and-how-to-prevent-it",
@@ -786,8 +788,7 @@
  },
  {
   "path": "/blogs/news/understanding-hiv-a-simple-guide",
-  "file": "raw/blogs/news/understanding-hiv-a-simple-guide.html",
-  "ok": true
+  "ok": false
  },
  {
   "path": "/blogs/news/understanding-inflation-and-market-volatility",
