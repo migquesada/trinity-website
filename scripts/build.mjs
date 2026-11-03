@@ -20,6 +20,7 @@ const wix = JSON.parse(await readFile('content/v2/wix-pages.json', 'utf8'));
 const posts = JSON.parse(await readFile('content/posts.json', 'utf8'));
 const shop = {};
 for (const f of await readdir('content/pages')) if (f.endsWith('.json')) { const p = JSON.parse(await readFile(join('content/pages', f), 'utf8')); shop[p.path] = p; }
+const ASSET_V = createHash('sha1').update((await readFile('assets/site.css', 'utf8')) + (await readFile('assets/site.js', 'utf8'))).digest('hex').slice(0, 8);
 const BASE = (process.env.BASE_PATH ?? site.basePath ?? '').replace(/\/$/, '');
 
 await rm(OUT, { recursive: true, force: true });
@@ -154,7 +155,7 @@ function layout({ path, title, description, image, body, bodyClass = '', schema 
 ${IMG_MODE === 'download' ? `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ${site.supabase.url}; form-action 'self'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">` : ''}
 <link rel="preload" href="${url('/assets/fonts/poppins-latin-400-normal.woff2')}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${url('/assets/site.css')}">
+<link rel="stylesheet" href="${url('/assets/site.css')}?v=${ASSET_V}">
 <link rel="icon" href="${url('/assets/favicon.png')}">
 <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': [
   ORG,
@@ -194,7 +195,7 @@ ${body}
   <div class="copyright">© ${new Date().getFullYear()} by ${esc(site.name)}</div>
 </footer>
 <a href="#" class="to-top" aria-label="Back to top">${icon('up')}</a>
-<script src="${url('/assets/site.js')}" defer></script>
+<script src="${url('/assets/site.js')}?v=${ASSET_V}" defer></script>
 </body>
 </html>`;
 }
