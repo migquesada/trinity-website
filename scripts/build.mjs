@@ -561,7 +561,7 @@ ${applyForm(r.title)}`;
     <div class="ci">${icon('phone')}<div><strong>Call us</strong><p><a href="tel:+63288101653">+632 8810 1653</a></p></div></div>
     <div class="ci">${icon('mail')}<div><strong>Email us</strong><p><a href="mailto:${site.email}">${site.email}</a></p></div></div>
     <div class="ci">${icon('clock')}<div><strong>Office hours</strong><p>Mon – Fri: 8:30 AM – 5:30 PM</p></div></div>
-    <div class="quick-links"><a href="${url('/claims')}">${icon('claim', 'ic')}<span><strong>File a claim</strong><small>Guides and checklists</small></span></a><a href="${url('/client-portal')}">${icon('usercheck', 'ic')}<span><strong>Client Portal</strong><small>Apply for cover online</small></span></a><a href="${url('/careers')}">${icon('briefcase', 'ic')}<span><strong>Careers</strong><small>Open roles and applications</small></span></a></div>
+    <div class="quick-links"><a href="${url('/claims')}">${icon('claim', 'ic')}<span><strong>File a claim</strong><small>Guides and checklists</small></span></a><a href="${url('/careers')}">${icon('briefcase', 'ic')}<span><strong>Careers</strong><small>Open roles and applications</small></span></a></div>
     <h3>Makati Head Office</h3><p>7504 Bagtikan St., San Antonio Village, Makati City, 1203 Metro Manila<br>Telephone: +632 8810 1653</p>
     <h3>Cebu Office</h3><p>Unit 610 The Meridian by Avenir, Golam Drive, Brgy. Kasambagan, 6000 Cebu City<br>Telephone: +632 887 4002</p>
     <p>${btn('Open in Google Maps', 'https://www.google.com/maps/search/?api=1&query=7504+Bagtikan+St+San+Antonio+Village+Makati', 'btn-sm')}</p>
@@ -573,14 +573,13 @@ ${applyForm(r.title)}`;
 // ---------- CLIENT PORTAL (online application / KYC) ----------
 {
   const body = `<section class="portal-hero"><div class="wrap"><p class="eyebrow-lg">Client Portal</p><h1>Apply for cover online.</h1><p>Insure your bike, big bike or pet in a few minutes. No printing, no paperwork to mail.</p></div></section>
-<section class="portal-links"><div class="wrap"><a href="#apply" class="on">${icon('doc', 'ic')}<span><strong>Apply online</strong><small>Bike, Big Bike, Pet</small></span></a><a href="${url('/claims')}">${icon('claim', 'ic')}<span><strong>File a claim</strong><small>Guides and checklists</small></span></a><a href="${url('/payments')}">${icon('card', 'ic')}<span><strong>Pay a premium</strong><small>Official payment channels</small></span></a><a href="${url('/contact-us')}">${icon('mail', 'ic')}<span><strong>Policy help</strong><small>Renewals, changes, documents</small></span></a></div></section>
 <section class="sec portal" id="apply"><div class="wrap portal-grid">
 <aside class="portal-aside"><h2>How it works</h2><ol class="mini-steps"><li><strong>Fill in your application</strong><span>It takes about 5 minutes on your phone or computer.</span></li><li><strong>We review it</strong><span>Our team checks your details and sends your quotation and payment instructions.</span></li><li><strong>Get covered</strong><span>Your policy is issued once the insurer approves it and the premium is paid.</span></li></ol>
 <div class="need"><h3>Have these ready</h3><ul class="ticks"><li>A valid ID with your address and 3 specimen signatures</li><li>Your TIN</li><li>Proof of value (official receipt or OR/CR) or your pet's health records</li><li>Photos of the bike or pet</li></ul></div>
 <p class="muted">${icon('lock', 'ic')} Your information is protected under the Data Privacy Act of 2012 and used only to process your application.</p></aside>
 <div class="portal-card"><div data-form="kyc"></div></div>
 </div></section>`;
-  await page('/client-portal', 'Client Portal', body, { description: 'Trinity Client Portal: apply online for bike, big bike and pet insurance, file a claim, pay a premium or get help with your policy.' });
+  await page('/client-portal', 'Client Portal', body, { noindex: true, description: 'Trinity Client Portal: apply online for bike, big bike and pet insurance, file a claim, pay a premium or get help with your policy.' });
 }
 
 // ---------- PAYMENTS ----------
@@ -657,7 +656,7 @@ await page('/search', 'Search', pageHero('Search') + `<section class="sec"><div 
     ['General Insurance', productList('general-insurance').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Employee Benefits', productList('employee-benefits').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Service Solutions', productList('service-solutions').map(p => ({ label: prodTitle(p), href: p.path }))],
-    ['Shop', NAV[3].children], ['Help', [{ label: 'Client Portal', href: '/client-portal' }, { label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
+    ['Shop', NAV[3].children], ['Help', [{ label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
     ['Legal', [{ label: 'Privacy Policy', href: '/privacy-policy' }, { label: 'Terms & Conditions', href: '/terms-and-conditions' }, { label: 'Disclaimer', href: '/disclaimer' }, { label: 'Cybersecurity', href: '/cybersecurity' }]]
   ];
   await page('/site-map', 'Site Map', pageHero('Site Map') + `<section class="sec"><div class="wrap sitemap">${groups.map(([g, l]) => `<div><h2>${esc(g)}</h2><ul>${l.map(x => `<li><a href="${url(x.href)}">${esc(x.label)}</a></li>`).join('')}</ul></div>`).join('')}</div></section>`, { description: 'Site map of the Trinity Insurance Brokers website.' });
