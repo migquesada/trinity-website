@@ -63,8 +63,22 @@ const mapPath = h => {
   const [p, q] = h.split('#');
   if (OLD2NEW[p]) return OLD2NEW[p] + (q ? '#' + q : '');
   const m = p.match(/^\/blogs\/news\/(.+)$/); if (m) return '/blog/' + m[1];
+  const legacy = legacyProduct(p); if (legacy) return legacy + (q ? '#' + q : '');
   return h;
 };
+// Old Shopify product / collection links inside migrated articles → new product pages
+function legacyProduct(p) {
+  let d; try { d = decodeURIComponent(p); } catch { d = p; }
+  d = d.replace(/[”"’].*$/, '').trim();
+  if (/^\/collections\/products\/?$/.test(d)) return '/solutions';
+  const cat = d.match(/^\/collections\/(general-insurance|employee-benefits|service-solutions)\/?$/); if (cat) return '/solutions/' + cat[1];
+  const mm = d.match(/^\/(?:collections\/[^/]+\/products|products|pages)\/([^/?]+)\/?$/); if (!mm) return null;
+  const norm = x => x.toLowerCase().replace(/motocar/, 'motorcar').replace(/-eei$/, '').replace(/^full-/, '').replace(/\b(and|insurance|product)\b/g, '').replace(/[^a-z]/g, '');
+  const want = norm(mm[1]); if (!want) return null;
+  const list = Object.values(products).filter(x => x.path.startsWith('/solutions/'));
+  const hit = list.find(x => norm(x.path.split('/').pop()) === want) || list.find(x => { const n = norm(x.path.split('/').pop()); return n.startsWith(want) || want.startsWith(n); });
+  return hit ? hit.path : null;
+}
 const rewrite = html => String(html || '')
   .replace(/(src|href)="([^"]+)"/g, (m, a, v) => {
     const d = v.replace(/&amp;/g, '&');
@@ -410,6 +424,10 @@ ${whyChoose()}${ctaBand()}`;
 
 // ---------- PRODUCT PAGES ----------
 const renderSection = s => {
+  // "Item A / Item B" + one "o x o y" paragraph per item → labelled checklists side by side
+  if (s.items.length && s.paras.length === s.items.length && s.paras.every(t => /^o\s/.test(t))) {
+    return `<div class="p-sec">${s.icon ? `<div class="p-ic">${img(s.icon, '')}</div>` : ''}<div class="p-body">${s.title ? `<h3>${esc(s.title)}</h3>` : ''}<div class="req-cols">${s.items.map((it, i) => `<div><p class="req-h">${esc(it)}</p><ul class="ticks">${s.paras[i].replace(/^o\s+/, '').split(/\s+o\s+/).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}</div></div></div>`;
+  }
   const items = s.items.map(t => t.replace(/^\s*o\s+/, ''));
   const listHtml = items.length ? `<ul class="ticks">${items.map(t => {
     const m = t.match(/^([A-Z][A-Z &'’-]{3,})\.\s*(.*)$/); // "KNOWLEDGE & EXPERTISE. text"

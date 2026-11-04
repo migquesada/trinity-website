@@ -12,7 +12,17 @@ const isCaps = t => t.length > 3 && t === t.toUpperCase() && /[A-Z]{3}/.test(t);
 
 // Turn one <br>-separated chunk into lines with indent + marker info.
 function lines(html) {
-  return html.split(/<br\s*\/?>/i).map(raw => {
+  html = html
+    .replace(/<\/(strong|b)>((?:\s|&nbsp;|&#160;|\u00a0)*)<(strong|b)>/gi, '$2')          // <b>1. </b><b>Title</b> → one bold run
+    .replace(/<(strong|b)>\s*([•●▪])\s*<\/\1>/gi, '$2')                    // <strong>•</strong> text
+    .replace(/((?:<br\s*\/?>\s*)+)<\/(strong|b)>/gi, '</$2>$1')               // <strong>Title<br><br></strong>Body
+    .replace(/\s*([•●])\s*/g, '<br>$1 ');                                   // inline "• a • b" bullets
+  return html.split(/<br\s*\/?>/i).flatMap(raw => {
+    const sm = raw.replace(NB, ' ').trim().match(/^<(strong|b)>\s*(\d{1,2})[.)]\s+(.*?)<\/\1>\s*(\S.*)$/is);
+    // "<strong>1. Title</strong>Body text" on one line → heading + body (only when the title is short)
+    if (sm && plain(sm[3]).length < 90 && !/[;,]$/.test(plain(sm[3])) && plain(sm[4]).length > 20) return [`<strong>${sm[2]}. ${sm[3].replace(/[.:]\s*$/, '')}</strong>`, sm[4].replace(/^\s*:\s*/, '')];
+    return [raw];
+  }).map(raw => {
     const r = raw.replace(NB, ' ').replace(ZW, '');
     const lead = (r.replace(/<\/?(strong|b|em|i|span)[^>]*>/gi, '').match(/^\s*/) || [''])[0].length;
     let h = r.trim();
@@ -20,10 +30,10 @@ function lines(html) {
     const inStrong = h.match(/^<(strong|b)>\s*(.*?)<\/\1>(.*)$/is);
     const probe = inStrong ? inStrong[2] : h;
     const m = plain(probe) ? probe.trim().match(MARK) : null;
-    if (m && inStrong && !plain(inStrong[3]) && m[2]) return { indent: lead, type: null, numHead: true, html: h };
+    if (m && inStrong && !plain(inStrong[3]) && m[2] && plain(m[4]).length < 110) return { indent: lead, type: null, numHead: true, html: h };
     if (m) {
       const body = inStrong ? `<strong>${m[4]}</strong>${inStrong[3]}` : m[4];
-      return { indent: lead, type: m[2] ? 'ol' : m[3] ? 'ol' : 'ul', marker: m[1] || (m[2] ? 'n' : 'a'), html: body.trim() };
+      return { indent: lead, type: m[2] ? 'ol' : m[3] ? 'ol' : 'ul', marker: m[1] || (m[2] ? 'n' : 'a'), num: m[2] ? +m[2] : null, html: body.trim() };
     }
     return { indent: lead, type: null, html: h };
   }).filter(l => plain(l.html) || /<img/i.test(l.html));
@@ -43,7 +53,7 @@ function buildList(items) {
     const d = depthOf(it);
     while (stack.length > d + 1) out += `</li></${stack.pop()}>`;
     if (stack.length === d + 1) out += '</li>';
-    while (stack.length < d + 1) { const t = it.type || 'ul'; out += `<${t} class="${stack.length ? 'sublist' : t === 'ol' ? 'steps' : 'ticks'}">`; stack.push(t); }
+    while (stack.length < d + 1) { const t = it.type || 'ul'; const st = !stack.length && t === 'ol' && it.num > 1 ? ` start="${it.num}" style="counter-reset:st ${it.num - 1}"` : ''; out += `<${t} class="${stack.length ? 'sublist' : t === 'ol' ? 'steps' : 'ticks'}"${st}>`; stack.push(t); }
     out += `<li>${it.html}`;
   }
   while (stack.length) out += `</li></${stack.pop()}>`;
@@ -64,7 +74,11 @@ function flow(ls, level) {
   let out = '', buf = [], items = [];
   const flushP = () => { if (buf.length) { out += `<p>${buf.join('<br>')}</p>`; buf = []; } };
   const flushL = () => { if (items.length) { out += buildList(items); items = []; } };
-  for (const l of ls) {
+  for (let i = 0; i < ls.length; i++) {
+    const l = ls[i], nx = ls[i + 1];
+    if (l.type === 'ol' && l.num && !items.length && nx && !nx.type && plain(l.html).length < 100 && !/[.;,]$/.test(plain(l.html))) {
+      flushP(); const t = plain(l.html); out += `<h${level + 1} id="${slug(t)}"><span class="h-num">${l.num}</span>${t}</h${level + 1}>`; continue;
+    }
     if (l.type) { flushP(); items.push(l); continue; }
     flushL();
     const t = plain(l.html);
@@ -92,7 +106,7 @@ export function polish(html, { level = 2, tips = true } = {}) {
   root.querySelectorAll('b').forEach(b => { const s = document.createElement('strong'); s.innerHTML = b.innerHTML; b.replaceWith(s); });
   root.querySelectorAll('h1').forEach(h => { const n = document.createElement('h2'); n.innerHTML = h.innerHTML; h.replaceWith(n); });
   root.querySelectorAll('h4,h5,h6').forEach(h => { const n = document.createElement('h3'); n.innerHTML = h.innerHTML; h.replaceWith(n); });
-  root.querySelectorAll('*').forEach(el => { for (const a of [...el.attributes]) if (!['href', 'src', 'alt', 'colspan', 'rowspan', 'target', 'rel'].includes(a.name)) el.removeAttribute(a.name); });
+  root.querySelectorAll('*').forEach(el => { for (const a of [...el.attributes]) if (!['href', 'src', 'alt', 'colspan', 'rowspan', 'target', 'rel', 'start'].includes(a.name)) el.removeAttribute(a.name); });
   // divs: unwrap (layout leftovers), but keep their block boundaries
   root.querySelectorAll('div').forEach(d => { d.insertAdjacentHTML('beforebegin', '<br data-split>'); unwrap(d); });
   // stray inline content directly in root → wrap into paragraphs
@@ -106,7 +120,7 @@ export function polish(html, { level = 2, tips = true } = {}) {
     const ls = lines(p.innerHTML);
     if (!ls.length) { if (!p.querySelector('img')) p.remove(); continue; }
     const hasMark = ls.some(l => l.type), multi = ls.length > 1;
-    const firstStrong = pureStrong(ls[0].html);
+    const firstStrong = pureStrong(ls[0].html) || ls.some(l => l.numHead);
     if (hasMark || (multi && firstStrong) || (ls.length === 1 && firstStrong)) p.outerHTML = flow(ls, level);
   }
   for (const li of [...root.querySelectorAll('li')]) {
@@ -122,7 +136,7 @@ export function polish(html, { level = 2, tips = true } = {}) {
       while (kids[i] && kids[i].tagName === 'P') { const m = plain(kids[i].innerHTML).match(/^(?:(\d{1,2})[.)]|[•●▪])\s+/); if (!m || pureStrong(kids[i].innerHTML)) break; run.push(kids[i]); i++; }
       if (run.length >= 2) {
         const num = /^\d/.test(plain(run[0].innerHTML));
-        const list = document.createElement(num ? 'ol' : 'ul');
+        const list = document.createElement(num ? 'ol' : 'ul'); const n0 = num ? +plain(run[0].innerHTML).match(/^(\d+)/)[1] : 1; if (n0 > 1) { list.setAttribute('start', n0); list.setAttribute('style', `counter-reset:st ${n0 - 1}`); }
         list.innerHTML = run.map(p => `<li>${p.innerHTML.replace(/^\s*(?:\d{1,2}[.)]|[•●▪])\s*/, '')}</li>`).join('');
         run[0].before(list); run.forEach(p => p.remove());
       }
@@ -131,12 +145,57 @@ export function polish(html, { level = 2, tips = true } = {}) {
   // Classes for real lists.
   root.querySelectorAll('ul').forEach(u => { if (!u.className) u.className = u.parentElement.closest('li') ? 'sublist' : 'ticks'; });
   root.querySelectorAll('ol').forEach(o => { if (!o.className) o.className = o.parentElement.closest('li') ? 'sublist' : 'steps'; });
+  // Numbered sub-headings in one sequence share the same level
+  { let last = null;
+    for (const el of [...root.children]) {
+      const hn = /^H[23]$/.test(el.tagName) && el.querySelector('.h-num');
+      if (!hn) { if (/^H[12]$/.test(el.tagName)) last = null; continue; }
+      const n = +hn.textContent;
+      if (last && n === last.n + 1 && el.tagName !== last.tag) { const h = document.createElement(last.tag); h.innerHTML = el.innerHTML; h.id = el.id; el.replaceWith(h); }
+      last = { n, tag: last && n === last.n + 1 ? last.tag : el.tagName };
+    }
+  }
+  // Adjacent lists of the same kind (editor split them) → one list.
+  for (const l of [...root.querySelectorAll('ul.ticks, ol.steps')]) {
+    if (!l.isConnected) continue;
+    let n = l.nextElementSibling;
+    while (n && n.tagName === l.tagName && n.className === l.className) { while (n.firstChild) l.appendChild(n.firstChild); const r = n; n = n.nextElementSibling; r.remove(); }
+  }
+  { // single-item numbered lists whose item is a short title followed by text → numbered sub-headings; keep numbering running
+    let count = 0;
+    for (const el of [...root.children]) {
+      if (/^H[12]$/.test(el.tagName)) { count = 0; continue; }
+      if (el.tagName !== 'OL' || el.className !== 'steps') continue;
+      const st = +el.getAttribute('start') || 0;
+      if (el.children.length === 1 && plain(el.children[0].innerHTML).length < 100 && /^(P|UL)$/.test(el.nextElementSibling?.tagName || '') && !/[.;,]$/.test(plain(el.children[0].innerHTML))) {
+        count = st || count + 1;
+        const t = plain(el.children[0].innerHTML); const h = document.createElement('h3'); h.id = slug(t);
+        h.innerHTML = `<span class="h-num">${count}</span>${t}`; el.replaceWith(h); continue;
+      }
+      const lis = [...el.children], lastT = plain(lis[lis.length - 1]?.innerHTML || '');
+      if (lis.length > 1 && lastT.length < 100 && !/[.;,:]$/.test(lastT) && /^(P|UL)$/.test(el.nextElementSibling?.tagName || '')) {
+        // mixed list that ends in a sub-heading → turn every item into a numbered sub-heading (+ its text)
+        const frag = [];
+        for (const li of lis) {
+          count = count + 1;
+          const lead = li.innerHTML.match(/^\s*<strong>(.*?)<\/strong>\s*:?\s*([\s\S]*)$/i);
+          const t = plain(lead ? lead[1] : li.innerHTML), rest = lead ? lead[2] : '';
+          if (!lead && t.length >= 100) { frag.push(`<p>${li.innerHTML}</p>`); continue; }
+          frag.push(`<h3 id="${slug(t)}"><span class="h-num">${count}</span>${t}</h3>` + (plain(rest) ? `<p>${rest}</p>` : ''));
+        }
+        el.insertAdjacentHTML('beforebegin', frag.join('')); el.remove(); continue;
+      }
+      const start = st || (el.children.length === 1 && count ? count + 1 : 1);
+      if (start > 1) { el.setAttribute('start', start); el.setAttribute('style', `counter-reset:st ${start - 1}`); }
+      count = start + el.children.length - 1;
+    }
+  }
   // Tip pattern: single-item <ul> followed by explanatory paragraph(s) → numbered tip cards.
   if (tips) {
     const kids = [...root.children]; let i = 0;
     while (i < kids.length) {
       const grp = [];
-      while (kids[i] && kids[i].tagName === 'UL' && kids[i].children.length === 1) {
+      while (kids[i] && kids[i].tagName === 'UL' && kids[i].children.length === 1 && plain(kids[i].children[0].innerHTML).length < 120) {
         const it = { t: kids[i].children[0].innerHTML, ps: [], el: [kids[i]] }; i++;
         while (kids[i] && kids[i].tagName === 'P' && !(it.ps.length && /(:|following are[^.]*\.?)\s*$/i.test(plain(kids[i].innerHTML)))) { it.ps.push(kids[i].innerHTML); it.el.push(kids[i]); i++; }
         grp.push(it);
@@ -151,6 +210,8 @@ export function polish(html, { level = 2, tips = true } = {}) {
   }
   root.querySelectorAll('h2,h3').forEach(h => h.querySelectorAll('strong').forEach(unwrap));
   root.querySelectorAll('ul,ol').forEach(l => { if (!l.children.length) l.remove(); });
+  root.querySelectorAll('h2,h3').forEach(h => { if (!plain(h.innerHTML)) { if (h.querySelector('img')) { const f = document.createElement('figure'); f.innerHTML = [...h.querySelectorAll('img')].map(i => i.outerHTML).join(''); h.replaceWith(f); } else h.remove(); } });
+  root.querySelectorAll('li').forEach(li => { if (!plain(li.innerHTML) && !li.querySelector('img,ul,ol')) li.remove(); });
   // Paragraph that is a short bold heading → heading (already done in flow for most); strip empty paragraphs.
   root.querySelectorAll('p').forEach(p => { if (!plain(p.innerHTML) && !p.querySelector('img')) p.remove(); });
   root.querySelectorAll('p').forEach(p => { if (/^\s*(<strong>)?\s*note\s*:/i.test(p.innerHTML)) p.className = 'note'; });
@@ -167,6 +228,12 @@ export function polish(html, { level = 2, tips = true } = {}) {
     const hs = [...root.querySelectorAll('h2')]; const fi = hs.findIndex(h => h.querySelector('.h-num'));
     if (fi >= 0) hs.slice(fi).forEach(h => { if (!h.querySelector('.h-num')) { const n = document.createElement('h3'); n.innerHTML = h.innerHTML; n.id = h.id; h.replaceWith(n); } });
   }
+  [...root.children].forEach((p, i, arr) => {
+    if (p.tagName !== 'P' || p.className || p.children.length || i === 0) return;
+    const t = plain(p.innerHTML), nx = arr[i + 1];
+    if (t.length < 3 || t.length > 70 || /[.!?:,;)]$/.test(t) || t.split(' ').length > 9 || !nx || !/^(H3|OL|UL)$/.test(nx.tagName)) return;
+    const h = document.createElement('h2'); h.textContent = t; h.id = slug(t); p.replaceWith(h);
+  });
   // Short sub-topics introduced by "…include:" → compact cards (Observation / Bracing / Surgery …)
   for (const li of [...root.querySelectorAll('p.lead-in')]) {
     let h = li.nextElementSibling; const cards = [];

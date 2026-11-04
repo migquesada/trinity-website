@@ -58,7 +58,8 @@ export function enhance(html, title) {
   const cands = [];
   kids.forEach((k, i) => {
     if (k.tagName !== 'P' || k.className || i < 2) return;
-    for (const s of sentences(plain(k.innerHTML))) {
+    const ss = sentences(plain(k.innerHTML)); if (ss.length < 2) return;
+    for (const s of ss) {
       if (s.length < 70 || s.length > 190 || BAD.test(s) || /[?:]|https?:|\(|\d{3,}/.test(s) || used.has(s)) continue;
       cands.push({ s, i, score: (GOOD.test(s) ? 2 : 0) + (s.length > 90 && s.length < 160 ? 1 : 0) });
     }
@@ -67,10 +68,13 @@ export function enhance(html, title) {
   const picks = [];
   for (const c of cands) { if (picks.length >= (out.words > 900 ? 2 : 1)) break; if (picks.every(p => Math.abs(p.i - c.i) > 4)) picks.push(c); }
   picks.sort((a, b) => b.i - a.i).forEach(p => {
-    const anchor = kids[p.i];
+    // place the quote a little further on (before the next heading), never right under its own paragraph
+    let j = p.i + 1; while (j < kids.length && j < p.i + 6 && !/^H[23]$/.test(kids[j].tagName)) j++;
+    const before = kids[j] && /^H[23]$/.test(kids[j].tagName) && j > p.i + 1 ? kids[j] : null;
+    const anchor = before ? null : (kids[Math.min(p.i + 2, kids.length - 1)]);
     const bq = document.createElement('figure'); bq.className = 'pull-quote';
     bq.innerHTML = `<blockquote><p>${p.s.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</p></blockquote>`;
-    anchor.after(bq); out.quotes.push(p.s);
+    if (before) before.before(bq); else anchor.after(bq); out.quotes.push(p.s);
   });
   // Native blockquotes in the source get the same treatment.
   r.querySelectorAll('blockquote').forEach(b => { if (!b.closest('.pull-quote')) b.classList.add('quote'); });

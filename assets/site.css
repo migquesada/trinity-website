@@ -883,3 +883,7 @@ ol.warn-list>li::before{content:"!";position:absolute;left:0;top:10px;width:20px
 .hero-strip p:not(.hs-title){margin:0;max-width:720px}
 .hero-strip .btns{margin:0}
 .hero-strip .btn:not(.btn-orange){background:transparent;border-color:#fff}
+.req-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.req-cols>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.req-h{font-weight:600;color:var(--navy-2);margin:0 0 4px}
+@media (max-width:640px){.req-cols{grid-template-columns:1fr}}
