@@ -529,7 +529,7 @@ const roleSlug = r => r.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
   const vals = ['EXCELLENCE', 'INTEGRITY', 'COLLABORATION', 'GROWTH'].map(v => ({ t: sentenceCase(v), d: sec(v)[0], img: w[w.findIndex(b => b.text === v) - 1]?.src }));
   const blocks = ['Challenging Career', 'Supportive Management', 'Meaningful Work'].map((h, i) => ({ h, ps: sec(h), img: w.filter(x => x.t === 'img' && /webp/.test(x.src))[i]?.src }));
   const testi = []; for (let i = 0; i < w.length; i++) if (w[i].t === 'h5') testi.push({ img: w[i - 1]?.t === 'img' ? w[i - 1].src : null, n: w[i].text, r: w[i + 1]?.text, q: w[i + 2]?.text });
-  const life = w.slice(w.findIndex(b => /life at trinity/i.test(b.text || ''))).filter(b => b.t === 'img').slice(0, 5).map(b => b.src);
+  const life = w.slice(w.findIndex(b => /life at trinity/i.test(b.text || ''))).filter(b => b.t === 'img').slice(0, 4).map(b => b.src);
   const open = CAREERS.openings || [];
   const rolesAttr = esc(JSON.stringify(open.map(r => ({ title: r.title }))));
   const roleCard = r => `<a class="role-card" href="${url('/careers/' + roleSlug(r))}"><div><p class="kicker">${esc(r.team || 'Trinity')}</p><h3>${esc(r.title)}</h3><p class="role-meta"><span>${icon('building', 'ic')}${esc(r.location || 'Makati')}</span><span>${icon('clock', 'ic')}${esc(r.type || 'Full-time')}</span></p></div><span class="role-go">View role ${icon('arrow', 'ic')}</span></a>`;

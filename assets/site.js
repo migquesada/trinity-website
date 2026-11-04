@@ -356,7 +356,7 @@
           payload: { ref, test: isTest, site: location.hostname, anonymous, details, attachments, uploads_pending: uploadIssue }
         });
         const first = (d.first_name || (name || '').split(' ')[0] || '');
-        el.innerHTML = `<div class="form-done"><div class="tick" aria-hidden="true">✓</div><h3>${TITLES[kind] || 'Message sent'}</h3><p>Thank you${!anonymous && first ? ', ' + esc(first) : ''}. ${NEXT[kind] || 'Our team will get back to you within one business day.'}</p>${uploadIssue ? `<p class="muted">We couldn't upload some of your files. Please email them to <a href="mailto:trinity@trinity-insures.com">trinity@trinity-insures.com</a> with your reference number.</p>` : ''}<p class="muted">Reference: <strong>${ref}</strong>${isTest ? ' · TEST submission' : ''}</p></div>`;
+        el.innerHTML = `<div class="form-done"><div class="tick" aria-hidden="true">✓</div><h3>${TITLES[kind] || 'Message sent'}</h3><p>Thank you${!anonymous && first ? ', ' + esc(first) : ''}. ${NEXT[kind] || 'Our team will get back to you within one business day.'}</p>${!anonymous && d.email ? `<p class="sent-to">We've emailed a confirmation to <strong>${esc(d.email)}</strong>. If it isn't in your inbox in a few minutes, please check your spam folder.</p>` : ''}${uploadIssue ? `<p class="muted">We couldn't upload some of your files. Please email them to <a href="mailto:trinity@trinity-insures.com">trinity@trinity-insures.com</a> with your reference number.</p>` : ''}<p class="muted">Reference: <strong>${ref}</strong>${isTest ? ' · TEST submission' : ''}</p></div>`;
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } catch (x) {
         btn.disabled = false; btn.textContent = label;

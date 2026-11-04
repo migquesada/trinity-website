@@ -390,6 +390,8 @@ details[open] summary::after{content:"–"}
 .test-flag{background:#fff4e5;color:#8a4b00;border-radius:8px;padding:8px 12px;font-size:13px;margin:0}
 .form-done{background:#fff;border-radius:var(--r);padding:40px 28px;text-align:center;box-shadow:0 8px 24px rgba(8,31,48,.06);margin-top:22px}
 .form-done .tick{width:64px;height:64px;border-radius:50%;background:#e6f4ea;color:#2e7d32;font-size:34px;line-height:64px;margin:0 auto 14px}
+.form-done .sent-to{display:inline-block;background:#f2f7f9;border-radius:8px;padding:10px 16px;font-size:.95em;margin:4px 0 6px}
+.form-done .sent-to strong{color:var(--teal,#0e5f73);word-break:break-all}
 @media(max-width:640px){.tform .who{grid-template-columns:1fr}.tform .actions .btn{width:100%}}
 
 /* ===== v2.1 – consistent professional components across all pages ===== */
