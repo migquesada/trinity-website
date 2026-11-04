@@ -887,3 +887,4 @@ ol.warn-list>li::before{content:"!";position:absolute;left:0;top:10px;width:20px
 .req-cols>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
 .req-h{font-weight:600;color:var(--navy-2);margin:0 0 4px}
 @media (max-width:640px){.req-cols{grid-template-columns:1fr}}
+.quick-item .qa-ic{width:58px;height:58px;color:#fff;stroke-width:1.4}.quick-item:hover .qa-ic{color:var(--orange)}

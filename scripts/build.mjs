@@ -154,6 +154,7 @@ const crumbsFor = (path, title) => {
   return { '@type': 'BreadcrumbList', itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, item: x.item })) };
 };
 function layout({ path, title, description, image, body, bodyClass = '', schema = [], type = 'website', published = null, noindex = false }) {
+  if (description) description = description.replace(/&nbsp;|&#160;|\u00a0/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&rsquo;/g, '’').replace(/\s+/g, ' ').trim();
   const full = path === '/' ? 'Trinity Insurance Brokers | General Insurance, Employee Benefits & Risk Management, Philippines' : `${title} | Trinity Insurance Brokers`;
   const canonical = site.url + (path === '/' ? '/' : path);
   return `<!doctype html>
@@ -231,7 +232,7 @@ async function page(path, title, body, opts = {}) {
 
 // ---------- shared sections ----------
 const pageHero = (title, text = '', image = null, buttons = '') => `<section class="page-hero${image ? ' has-img' : ''}"${image ? ` style="--hero:url('${media(image)}')"` : ''}><div class="wrap"><h1>${esc(title)}</h1>${text ? `<p>${esc(text)}</p>` : ''}${buttons ? `<div class="btns">${buttons}</div>` : ''}</div></section>`;
-const quickAccess = () => `<section class="quick"><div class="wrap"><h2>Quick Access Portal</h2><div class="quick-grid">${D.home.quickAccess.map(q => `<a class="quick-item" href="${url(q.href)}">${img(q.icon, '')}<span>${esc(q.label)}</span></a>`).join('')}</div></div></section>`;
+const quickAccess = () => `<section class="quick"><div class="wrap"><h2>Quick Access Portal</h2><div class="quick-grid">${D.home.quickAccess.map(q => `<a class="quick-item" href="${url(q.href)}">${icon({ '/solutions': 'pesohand', '/claims': 'claim', '/careers': 'usercheck' }[q.href] || 'shield', 'qa-ic')}<span>${esc(q.label)}</span></a>`).join('')}</div></div></section>`;
 const statsPartners = (heading = 'Our International Network Partners') => `<section class="trust"><div class="wrap"><h2>Trust &amp; Legacy</h2><div class="stats">${D.stats.map(s => `<div><strong>${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`).join('')}</div><hr><h2>${esc(heading)}</h2><div class="partners">${D.partners.map(p => `<figure>${img(p.logo, p.name)}<figcaption>${esc(p.name)}</figcaption></figure>`).join('')}</div></div></section>`;
 const whyChoose = () => `<section class="why"><div class="wrap"><h2>Why Choose Trinity?</h2><div class="why-grid">${D.why.map(w => `<div class="why-item">${img(w.icon, '')}<h3>${esc(w.title)}</h3><p>${esc(w.text)}</p></div>`).join('')}</div></div></section>`;
 const ctaBand = () => `<section class="cta-band" style="--cta:url('${media(D.ctaImage)}')"><div class="wrap"><h2>We protect what matters most to you.</h2><p>Let's build a safer and more secure future together.</p><div class="btns">${btn('Get a Quote', '/contact-us', 'btn-orange')}${btn('Talk to Us', '/contact-us', 'btn-light')}</div></div></section>`;
@@ -320,7 +321,7 @@ ${statsPartners()}
   const sh = shop['/pages/why-trinity'];
   const shHtml = sh ? sh.sections.map(s => s.html).join('') : '';
   const re = /<h3[^>]*>(.*?)<\/h3>\s*(?:<[^h][^>]*>)*\s*<p>(.*?)<\/p>/g; let m;
-  while ((m = re.exec(shHtml))) if (!/core values|why trinity|partners/i.test(m[1])) adv.push({ t: m[1].replace(/<[^>]+>/g, ''), d: m[2].replace(/<[^>]+>/g, '') });
+  while ((m = re.exec(shHtml))) if (!/core values|why trinity|partners/i.test(m[1])) adv.push({ t: m[1].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&'), d: m[2].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;|&#160;/g, ' ') });
   const icons = ['knowledge', 'focus', 'cost', 'peace', 'personalized', 'global'];
   const body = pageHero('Why Trinity', 'Protection backed by expertise, driven by trust.', w.find(b => b.t === 'img')?.src, btn('Get a Quote', '/contact-us') + btn('Our Solutions', '/solutions', 'btn-orange')) + quickAccess() + `
 <section class="intro"><div class="wrap split"><div><h2>A Partner in Risk Management</h2><p>${esc(w.find(b => /we help businesses/i.test(b.text || ''))?.text || '')}</p></div>${img(w.find((b, i) => b.t === 'img' && i > 5)?.src, '', 'rounded')}</div></section>
