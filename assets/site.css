@@ -889,3 +889,5 @@ ol.warn-list>li::before{content:"!";position:absolute;left:0;top:10px;width:20px
 @media (max-width:640px){.req-cols{grid-template-columns:1fr}}
 .quick-item .qa-ic{width:58px;height:58px;color:#fff;stroke-width:1.4}.quick-item:hover .qa-ic{color:var(--orange)}
 .bento-imgs.single{grid-template-columns:1fr}.bento-imgs.single img{aspect-ratio:16/9;width:100%;object-fit:cover}
+.portal .narrow{max-width:860px}.portal-hero{padding-bottom:64px}.portal .portal-card{margin-top:-40px;position:relative;z-index:2}
+.tform .kstep{padding:0;margin:0;background:none}

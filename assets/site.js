@@ -217,6 +217,36 @@
         `<label class="check full"><input type="checkbox" name="consent" required><span>${esc(DECL.privacy)} <a href="${base}/data-privacy-consent-form" target="_blank">Read the full consent</a>.</span></label>`);
   };
 
+  // ---------- Client Portal registration (general, exploratory) ----------
+  const portalSteps = () => {
+    const step = (title, sub, html) => `<section class="kstep" data-title="${esc(title)}"><header><h3>${esc(title)}</h3><p>${sub}</p></header><div class="kgrid">${html}</div></section>`;
+    const ic = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+    return step('Account type', 'Tell us how you are connected to Trinity.',
+        cards('account_type', 'I am registering as', [
+          { v: 'Policyholder', d: 'I hold a policy in my own name', ic: ic('<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/>') },
+          { v: 'Company administrator', d: 'I manage my company\'s policies or benefits', ic: ic('<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 21v-4h6v4M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01"/>') },
+          { v: 'Plan member', d: 'I am covered under my employer\'s plan', ic: ic('<circle cx="9" cy="7" r="3.5"/><path d="M2 20v-1a6 6 0 0 1 12 0v1M16 3.5a3.5 3.5 0 0 1 0 7M22 20v-1a6 6 0 0 0-4-5.6"/>') }])) +
+      step('Your details', 'Use your name exactly as it appears on your ID.',
+        FIRSTLAST + field('email', 'Email', { type: 'email', ac: 'email', hint: 'This will be your sign-in email.' }) + PHONE(true) +
+        field('dob', 'Date of birth', { type: 'date', ac: 'bday' }) +
+        when('account_type=Company administrator|Plan member', field('company', 'Company name', { ac: 'organization' }) + field('position', 'Position / department', { req: false })) +
+        when('account_type=Plan member', field('employee_id', 'Employee ID', { req: false }))) +
+      step('Your coverage', 'This helps us match your account to the right records. Leave anything you don\'t know blank.',
+        field('policy', 'Policy or member number', { req: false, hint: 'Found on your policy schedule or member card.' }) + field('insurer', 'Insurer or HMO provider', { req: false }) +
+        pills('coverage', 'Type of coverage', ['HMO / Group medical', 'Life & accident', 'Property / Fire', 'Motor', 'Marine', 'Liability', 'Travel', 'Other'], { multi: true, req: false, hint: 'Choose all that apply.' })) +
+      step('Verify your identity', 'We confirm every account before access is granted.',
+        select('id_type', 'Valid ID', ['PhilSys National ID', 'Passport', 'Driver\'s License', 'UMID', 'SSS ID', 'PRC ID', 'Postal ID', 'Other government ID'], { full: false }) +
+        field('id_number', 'ID number', { ac: 'off' }) +
+        file('id_photo', 'Photo of your ID', false, 'Front side, clear and readable · JPG, PNG or PDF · up to 10 MB')) +
+      step('Notifications', 'Choose how you\'d like to hear from us.',
+        pills('channel', 'Send updates by', ['Email', 'SMS', 'Email and SMS']) +
+        pills('alerts', 'Notify me about', ['Policy renewals', 'Claim status', 'Billing reminders', 'New documents'], { multi: true, req: false })) +
+      step('Review and submit', 'Please check your details before you submit.',
+        '<div class="kreview full"></div>' +
+        `<label class="check full"><input type="checkbox" name="declare" required><span>I confirm that the information I provided is true and correct.</span></label>` +
+        `<label class="check full"><input type="checkbox" name="consent" required><span>I consent to Trinity processing my personal information to create and verify my client account, in line with the <a href="${base}/privacy-policy" target="_blank">Privacy Policy</a>.</span></label>`);
+  };
+
   const CONSENT = `<label class="check full"><input type="checkbox" name="consent" required><span>I agree that Trinity may use these details to respond to my request, in line with the <a href="${base}/privacy-policy" target="_blank">Privacy Policy</a>.</span></label>`;
   const SUBMIT_WHEN = { contact: 'topic!=Careers' };
   const LABEL_SUBMIT = { career: 'Submit application', claim: 'Submit claim', kyc: 'Submit application', whistleblowing: 'Submit report' };
@@ -249,16 +279,16 @@
     if (!ok) { const first = scope.querySelector('.bad input,.bad textarea,.bad select'); first && first.focus({ preventScroll: true }); first && first.closest('.fld,fieldset,label').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
     return ok;
   };
-  const TITLES = { contact: 'Message sent', product: 'Request received', shop: 'Request received', claim: 'Claim received', career: 'Application received', payment: 'Message sent', whistleblowing: 'Report received', kyc: 'Application received' };
-  const NEXT = { career: 'Our HR team reviews every application and will contact you if there is a match.', whistleblowing: 'Your report will be handled confidentially by our compliance team.', claim: 'A claims officer will contact you within one business day.', kyc: 'Our team will review your application and send your quotation and payment instructions by email.' };
+  const TITLES = { portal: 'Registration received', contact: 'Message sent', product: 'Request received', shop: 'Request received', claim: 'Claim received', career: 'Application received', payment: 'Message sent', whistleblowing: 'Report received', kyc: 'Application received' };
+  const NEXT = { portal: 'We will verify your details and email you once your client portal access is ready.', career: 'Our HR team reviews every application and will contact you if there is a match.', whistleblowing: 'Your report will be handled confidentially by our compliance team.', claim: 'A claims officer will contact you within one business day.', kyc: 'Our team will review your application and send your quotation and payment instructions by email.' };
   const COLS = ['name', 'email', 'phone', 'company', 'topic', 'message', 'consent', 'website', 'anonymous', 'declare'];
 
   $$('[data-form]').forEach(el => {
     const kind = el.dataset.form;
-    const wizard = kind === 'kyc';
-    const inner = wizard ? kycSteps(el) : (LAYOUTS[kind] || LAYOUTS.contact)(el);
+    const wizard = kind === 'kyc' || kind === 'portal';
+    const inner = kind === 'portal' ? portalSteps(el) : wizard ? kycSteps(el) : (LAYOUTS[kind] || LAYOUTS.contact)(el);
     const tail = (wizard ? '' : (SUBMIT_WHEN[kind] ? when(SUBMIT_WHEN[kind], CONSENT) : CONSENT)) +
-      (wizard ? `<div class="full actions wiz-nav"><button class="btn btn-ghost" type="button" data-back>Back</button><button class="btn" type="button" data-next>Continue</button><button class="btn btn-orange" type="submit">${LABEL_SUBMIT.kyc}</button><p class="form-msg" role="status"></p></div>`
+      (wizard ? `<div class="full actions wiz-nav"><button class="btn btn-ghost" type="button" data-back>Back</button><button class="btn" type="button" data-next>Continue</button><button class="btn btn-orange" type="submit">${kind === 'portal' ? 'Submit registration' : LABEL_SUBMIT.kyc}</button><p class="form-msg" role="status"></p></div>`
         : (SUBMIT_WHEN[kind] ? when(SUBMIT_WHEN[kind], `<div class="actions"><button class="btn" type="submit">${LABEL_SUBMIT[kind] || 'Send'}</button><p class="form-msg" role="status"></p></div>`) : `<div class="full actions"><button class="btn" type="submit">${LABEL_SUBMIT[kind] || 'Send'}</button><p class="form-msg" role="status"></p></div>`));
     el.innerHTML = `<form class="tform${wizard ? ' wizard' : ''}" novalidate>${isTest ? '<p class="test-flag full">Test site: submissions here are marked TEST.</p>' : ''}${wizard ? '<ol class="wiz-progress full" aria-hidden="true"></ol>' : ''}${inner}<input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">${tail}</form>`;
     const f = $('form', el);
@@ -298,7 +328,7 @@
         else if (e.target.closest('[data-back]')) go(cur - 1);
         else if (e.target.closest('[data-go]')) go(+e.target.closest('[data-go]').dataset.go);
       });
-      f.addEventListener('change', e => { if (cur === 0 && e.target.name === 'product') setTimeout(() => go(1), 250); });
+      f.addEventListener('change', e => { if (cur === 0 && (e.target.name === 'product' || e.target.name === 'account_type')) setTimeout(() => go(1), 250); });
     }
 
     f.addEventListener('submit', async e => {
@@ -310,7 +340,7 @@
       for (const [k, v] of Object.entries(d)) if (!COLS.includes(k) && v !== '') details[k] = v;
       const btn = $('button[type=submit]', f); const label = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…';
       const m = msg(); if (m) { m.className = 'form-msg'; m.textContent = ''; }
-      const ref = (wizard ? 'KYC-' : 'TRN-') + Date.now().toString(36).toUpperCase().slice(-6);
+      const ref = (kind === 'portal' ? 'CP-' : wizard ? 'KYC-' : 'TRN-') + Date.now().toString(36).toUpperCase().slice(-6);
       const name = d.name || [d.first_name, d.middle_name, d.last_name, d.suffix].filter(Boolean).join(' ') || null;
       try {
         const attachments = {}; let uploadIssue = false;
@@ -322,7 +352,7 @@
         const subject = d.topic || d.product || d.claim_type || d.subject || null;
         await sbInsert('inquiries', {
           kind, name: anonymous ? null : name, email: anonymous ? null : (d.email || null), phone: d.phone || null,
-          company: d.company || null, subject: wizard ? `${d.product} insurance application` : subject, message: d.message || null, page: location.pathname,
+          company: d.company || null, subject: kind === 'portal' ? `Client portal registration – ${d.account_type || ''}` : wizard ? `${d.product} insurance application` : subject, message: d.message || null, page: location.pathname,
           payload: { ref, test: isTest, site: location.hostname, anonymous, details, attachments, uploads_pending: uploadIssue }
         });
         const first = (d.first_name || (name || '').split(' ')[0] || '');

@@ -571,16 +571,11 @@ ${applyForm(r.title)}`;
   await page('/contact-us', 'Contact Us', body, { description: 'Contact Trinity Insurance Brokers – quotes, policy questions, claims and careers. Makati head office and Cebu office.', schema: [{ '@type': 'ContactPage', url: site.url + '/contact-us', about: { '@id': ORG_ID } }] });
 }
 
-// ---------- CLIENT PORTAL (online application / KYC) ----------
+// ---------- CLIENT PORTAL (exploratory: general registration form, not part of launch) ----------
 {
-  const body = `<section class="portal-hero"><div class="wrap"><p class="eyebrow-lg">Client Portal</p><h1>Apply for cover online.</h1><p>Insure your bike, big bike or pet in a few minutes. No printing, no paperwork to mail.</p></div></section>
-<section class="sec portal" id="apply"><div class="wrap portal-grid">
-<aside class="portal-aside"><h2>How it works</h2><ol class="mini-steps"><li><strong>Fill in your application</strong><span>It takes about 5 minutes on your phone or computer.</span></li><li><strong>We review it</strong><span>Our team checks your details and sends your quotation and payment instructions.</span></li><li><strong>Get covered</strong><span>Your policy is issued once the insurer approves it and the premium is paid.</span></li></ol>
-<div class="need"><h3>Have these ready</h3><ul class="ticks"><li>A valid ID with your address and 3 specimen signatures</li><li>Your TIN</li><li>Proof of value (official receipt or OR/CR) or your pet's health records</li><li>Photos of the bike or pet</li></ul></div>
-<p class="muted">${icon('lock', 'ic')} Your information is protected under the Data Privacy Act of 2012 and used only to process your application.</p></aside>
-<div class="portal-card"><div data-form="kyc"></div></div>
-</div></section>`;
-  await page('/client-portal', 'Client Portal', body, { noindex: true, description: 'Trinity Client Portal: apply online for bike, big bike and pet insurance, file a claim, pay a premium or get help with your policy.' });
+  const body = `<section class="portal-hero"><div class="wrap"><p class="eyebrow-lg">Client Portal</p><h1>Create your client account.</h1><p>Register once to access your Trinity client account.</p></div></section>
+<section class="sec portal" id="register"><div class="wrap narrow"><div class="portal-card"><div data-form="portal"></div></div></div></section>`;
+  await page('/client-portal', 'Client Portal', body, { noindex: true, description: 'Trinity Client Portal registration.' });
 }
 
 // ---------- PAYMENTS ----------
