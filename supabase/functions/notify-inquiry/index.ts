@@ -8,6 +8,7 @@
 //   SMTP_USER        – e.g. migquesada@gmail.com
 //   SMTP_PASS        – a Google *App Password* (16 characters), not the normal password
 //   SENDER_NAME      – sender name shown in the inbox, default "Trinity Insures"
+//   SITE_URL         – optional; site used for the logo and Website link (default https://trinity-insures.pages.dev)
 //   CONFIRM_REPLY_TO – optional; where replies to confirmations go (default: first NOTIFY_TO)
 //   SMTP_HOST / SMTP_PORT – optional, default smtp.gmail.com / 465
 // Sending, option 2 (launch): Resend with the verified trinity-insures.com domain
@@ -22,6 +23,15 @@ const LABEL: Record<string, string> = {
 };
 const esc = (s: unknown) => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
 const nice = (k: string) => k.replace(/[_-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+const SITE = (Deno.env.get('SITE_URL') || 'https://trinity-insures.pages.dev').replace(/\/$/, '');
+const LINKS: [string, string][] = [
+  ['Website', SITE],
+  ['Facebook', 'https://www.facebook.com/trinityinsures'],
+  ['Instagram', 'https://www.instagram.com/trinityinsures/'],
+  ['LinkedIn', 'https://www.linkedin.com/company/trinity-insurance-brokers-inc./'],
+];
+const LOGO = `<img src="${SITE}/email/trinity-logo.png" width="180" height="51" alt="Trinity Insurance Brokers" style="display:block;width:180px;height:51px;border:0">`;
+const linkRow = (color: string) => LINKS.map(([l, h]) => `<a href="${h}" style="color:${color};text-decoration:none;font-weight:bold">${l}</a>`).join('<span style="color:#b7c2ca">&nbsp;&nbsp;·&nbsp;&nbsp;</span>');
 const val = (v: unknown) => Array.isArray(v) ? v.join(', ') : (v && typeof v === 'object' ? JSON.stringify(v) : v);
 
 Deno.serve(async (req) => {
@@ -46,9 +56,9 @@ Deno.serve(async (req) => {
   if (p.uploads_pending) rows.push(['Note', 'Some files could not be uploaded; ask the sender to email them.']);
   rows.push(['Page', r.page], ['Submitted', new Date(r.created_at).toLocaleString('en-PH', { timeZone: 'Asia/Manila' })], ['Reference', p.ref]);
 
-  const html = `${test ? '<p style="background:#fff4e5;padding:10px;border-radius:6px"><strong>TEST:</strong> sent from the staging site, not from a real visitor.</p>' : ''}
+  const html = `<div style="font-family:Arial,sans-serif"><div style="margin-bottom:14px">${LOGO}</div>${test ? '<p style="background:#fff4e5;padding:10px;border-radius:6px"><strong>TEST:</strong> sent from the staging site, not from a real visitor.</p>' : ''}
 <table cellpadding="6" style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px">${rows.filter(([, v]) => v).map(([k, v]) =>
-  `<tr><td style="color:#666;vertical-align:top">${esc(k)}</td><td>${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('')}</table>`;
+  `<tr><td style="color:#666;vertical-align:top">${esc(k)}</td><td>${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('')}</table><p style="font-size:12px;color:#888;margin-top:18px">Reply to this email to answer the sender directly.</p></div>`;
   const to = (Deno.env.get('NOTIFY_TO') || '').split(',').map(s => s.trim()).filter(Boolean);
   const replyTo = !p.anonymous && r.email ? r.email : undefined;
 
@@ -60,22 +70,30 @@ Deno.serve(async (req) => {
     portal: 'We will verify your details and email you once your client portal access is ready.',
     kyc: 'Our team will review your application and send your quotation and payment instructions by email.',
   };
+  const NOUN: Record<string, string> = { contact: 'message', product: 'inquiry', shop: 'inquiry', claim: 'claim', career: 'application', payment: 'payment inquiry', whistleblowing: 'report', portal: 'registration', kyc: 'application' };
+  const noun = NOUN[r.kind] || 'message';
   const first = String(p.details?.first_name || (r.name || '').split(' ')[0] || '').trim();
   const confirmTo = !p.anonymous && r.email ? String(r.email).trim() : '';
   const hide = new Set(['Type', 'Page', 'Note', 'Attachments', 'Submitted', 'Reference']);
   const summary = r.kind === 'whistleblowing' ? [] : rows.filter(([k, v]) => v && !hide.has(k));
-  const cSubject = `${test ? '[TEST] ' : ''}We received your ${kind.toLowerCase()}${p.ref ? ' – ' + p.ref : ''}`;
+  const cSubject = `${test ? '[TEST] ' : ''}We received your ${noun}${p.ref ? ' – ' + p.ref : ''}`;
   const cHtml = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#1f2a33;max-width:600px;margin:auto">
 ${test ? '<p style="background:#fff4e5;padding:10px;border-radius:6px;font-size:13px"><strong>TEST:</strong> sent from the staging site.</p>' : ''}
-<div style="background:#1c3d50;color:#fff;padding:18px 22px;border-radius:8px 8px 0 0"><strong style="font-size:18px;letter-spacing:.5px">TRINITY</strong><br><span style="font-size:12px;opacity:.8">Insurance Brokers Inc.</span></div>
-<div style="border:1px solid #e3e8ec;border-top:0;padding:22px;border-radius:0 0 8px 8px">
+<div style="padding:22px 24px;border:1px solid #e3e8ec;border-bottom:0;border-radius:10px 10px 0 0;background:#fff">${LOGO}</div>
+<div style="height:4px;background:linear-gradient(90deg,#0e5f73,#f07c22)"></div>
+<div style="border:1px solid #e3e8ec;border-top:0;padding:24px;border-radius:0 0 10px 10px">
 <p>Hi${first ? ' ' + esc(first) : ''},</p>
-<p>Thank you for reaching out. We received your ${esc(kind.toLowerCase())}${p.ref ? ` (reference <strong>${esc(p.ref)}</strong>)` : ''}.</p>
+<p>Thank you for reaching out. We received your ${noun}${p.ref ? ` (reference <strong style="white-space:nowrap">${esc(p.ref)}</strong>)` : ''}.</p>
 <p>${esc(NEXT[r.kind] || 'Our team will get back to you within one business day.')}</p>
 ${summary.length ? `<p style="margin-top:22px;color:#666;font-size:13px">What you sent us:</p><table cellpadding="6" style="border-collapse:collapse;font-size:14px;width:100%">${summary.map(([k, v]) =>
   `<tr style="border-top:1px solid #eef1f3"><td style="color:#666;vertical-align:top;width:38%">${esc(k)}</td><td>${esc(v).replace(/\n/g, '<br>')}</td></tr>`).join('')}</table>` : ''}
 <p style="margin-top:22px">If anything needs correcting, just reply to this email.</p>
-<p style="color:#666;font-size:13px;margin-top:22px">Trinity Insurance Brokers Inc.<br>+632 8810 1653 · trinity@trinity-insures.com<br>Mon–Fri, 8:30 AM – 5:30 PM</p>
+<p style="margin-top:22px">Warm regards,<br><strong>The Trinity Team</strong></p>
+</div>
+<div style="text-align:center;padding:20px 12px;font-size:13px;color:#667784">
+<p style="margin:0 0 10px">${linkRow('#0e5f73')}</p>
+<p style="margin:0 0 6px">Trinity Insurance Brokers Inc. · +632 8810 1653 · <a href="mailto:trinity@trinity-insures.com" style="color:#667784">trinity@trinity-insures.com</a></p>
+<p style="margin:0">7504 Bagtikan St., San Antonio Village, Makati City · Mon–Fri, 8:30 AM – 5:30 PM</p>
 </div></div>`;
   const confirmReplyTo = Deno.env.get('CONFIRM_REPLY_TO') || to[0];
 

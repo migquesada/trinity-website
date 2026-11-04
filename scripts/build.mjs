@@ -698,6 +698,9 @@ ${IMG_MODE === 'download' ? `  Content-Security-Policy: default-src 'self'; img-
 `);
 
 // ---------- download media (CI) ----------
+// Stable logo path for emails (notify-inquiry Edge Function): /email/trinity-logo.png
+const EMAIL_LOGO = site.logo.replace('_300x', '_600x');
+media(EMAIL_LOGO);
 if (IMG_MODE === 'download') {
   await mkdir(join(OUT, 'media'), { recursive: true });
   await mkdir('.imgcache', { recursive: true });
@@ -722,5 +725,7 @@ if (IMG_MODE === 'download') {
   }
   await Promise.all(Array.from({ length: 4 }, worker));
   console.log('media', ok, 'ok', fail, 'failed');
+  await mkdir(join(OUT, 'email'), { recursive: true });
+  try { await cp(join(OUT, mediaMap.get(EMAIL_LOGO).replace(/^\//, '')), join(OUT, 'email', 'trinity-logo.png')); } catch (e) { console.warn('email logo', e.message); }
 }
 console.log('built', all.length, 'pages');
