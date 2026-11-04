@@ -909,3 +909,16 @@ ol.warn-list>li::before{content:"!";position:absolute;left:0;top:10px;width:20px
 .ind-note{display:flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:14px;color:#4d5b66;background:#f4f7f9;border-radius:10px;padding:14px 16px}
 .ind-note .ic{flex:none;width:20px;height:20px;color:var(--teal,#0e5f73)}
 @media (max-width:980px){.ind-grid{grid-template-columns:1fr}}
+/* Product hero: text left, image right (images keep their own shape) */
+.prod-hero.has-img .ph-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center}
+.prod-hero .ph-media{margin:0;border-radius:var(--r);overflow:hidden;box-shadow:0 18px 40px rgba(8,31,48,.12);aspect-ratio:4/5;max-height:560px}
+.prod-hero .ph-media img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+@media (max-width:980px){.prod-hero.has-img .ph-grid{grid-template-columns:1fr;gap:24px}.prod-hero .ph-media{order:-1;aspect-ratio:16/10;max-height:none}}
+/* Option A: brand badge on product hero images (icon + logo dots), drawn by the site */
+.prod-hero .ph-media{position:relative}
+.ph-badge{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:8px 14px 8px 8px;box-shadow:0 8px 22px rgba(8,31,48,.18);max-width:calc(100% - 32px)}
+.ph-badge .prod-ic{margin:0;flex:0 0 38px;width:38px;height:38px;border-radius:10px}.ph-badge .prod-ic .ic{width:22px;height:22px}
+.ph-dots{display:grid;grid-template-columns:repeat(3,7px);gap:3px;flex:none}
+.ph-dots i{width:7px;height:7px;border-radius:2.5px;display:block;background:#00a890}
+.ph-dots i:nth-child(2){background:#78c018}.ph-dots i:nth-child(3){background:#f07824}
+.ph-cat{font-size:12.5px;font-weight:600;color:var(--navy-2,#0c3c54);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
