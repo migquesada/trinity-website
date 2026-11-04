@@ -30,7 +30,7 @@ const LINKS: [string, string][] = [
   ['Instagram', 'https://www.instagram.com/trinityinsures/'],
   ['LinkedIn', 'https://www.linkedin.com/company/trinity-insurance-brokers-inc./'],
 ];
-const LOGO = `<img src="${SITE}/email/trinity-logo.png" width="180" height="51" alt="Trinity Insurance Brokers" style="display:block;width:180px;height:51px;border:0">`;
+const LOGO = `<img src="${SITE}/email/trinity-logo.png" width="180" height="43" alt="Trinity Insurance Brokers" style="display:block;width:180px;height:43px;border:0">`;
 const linkRow = (color: string) => LINKS.map(([l, h]) => `<a href="${h}" style="color:${color};text-decoration:none;font-weight:bold">${l}</a>`).join('<span style="color:#b7c2ca">&nbsp;&nbsp;·&nbsp;&nbsp;</span>');
 const val = (v: unknown) => Array.isArray(v) ? v.join(', ') : (v && typeof v === 'object' ? JSON.stringify(v) : v);
 

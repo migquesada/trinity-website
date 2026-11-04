@@ -15,6 +15,16 @@ const IMG_MODE = process.env.IMG_MODE || 'remote';
 const site = JSON.parse(await readFile('content/site.json', 'utf8'));
 const D = JSON.parse(await readFile('content/v2/site-data.json', 'utf8'));
 const products = applyProductRevisions(JSON.parse(await readFile('content/v2/products.json', 'utf8')));
+// Personal lines (formerly the "Shop" menu) live under Solutions → For Individuals.
+const PERSONAL = { 'travel-insurance': { name: 'Travel Insurance', note: 'Buy online via Starr' }, 'bicycle-insurance': { name: 'Bicycle Insurance', note: 'Get a quote' }, 'big-bike-insurance': { name: 'Big Bike Insurance', note: 'Get a quote' } };
+const pName = p => PERSONAL[p.path.split('/').pop()]?.name || sentenceCase(p.title);
+const clip = (t, n) => { t = String(t || '').replace(/<[^>]+>/g, ''); if (t.length <= n) return t; const c = t.slice(0, n); return c.slice(0, c.lastIndexOf(' ')).replace(/[,.;:]$/, '') + '…'; };
+const PERSONAL_BASE = '/solutions/for-individuals';
+for (const [k, p] of Object.entries(products)) if (k.startsWith('/shop/')) {
+  const slug = k.split('/').pop(); p.oldPath = k; p.path = PERSONAL_BASE + '/' + slug; p.personal = true;
+  delete products[k]; products[p.path] = p;
+}
+const personalList = () => Object.keys(PERSONAL).map(sl => products[PERSONAL_BASE + '/' + sl]).filter(Boolean);
 const categories = JSON.parse(await readFile('content/v2/categories.json', 'utf8'));
 const wix = JSON.parse(await readFile('content/v2/wix-pages.json', 'utf8'));
 const posts = JSON.parse(await readFile('content/posts.json', 'utf8'));
@@ -55,8 +65,8 @@ const OLD2NEW = {
   '/pages/general-insurance': '/solutions/general-insurance', '/pages/employee-benefits': '/solutions/employee-benefits', '/pages/service-solutions': '/solutions/service-solutions',
   '/pages/contact-us': '/contact-us', '/pages/claims': '/claims', '/pages/career': '/careers', '/pages/privacy-policy': '/privacy-policy',
   '/pages/terms-and-conditions': '/terms-and-conditions', '/pages/disclaimer': '/disclaimer', '/pages/cybersecurity': '/cybersecurity', '/pages/site-map': '/site-map',
-  '/blogs/news': '/blog', '/products/bike-insurance': '/shop/bicycle-insurance', '/products/big-bike-insurance-inquiry-only': '/shop/big-bike-insurance',
-  '/pages/travel-insurance-starr': '/shop/travel-insurance', '/pages/file-a-claim': '/claims', '/pages/payments': '/payments'
+  '/blogs/news': '/blog', '/products/bike-insurance': '/solutions/for-individuals/bicycle-insurance', '/products/big-bike-insurance-inquiry-only': '/solutions/for-individuals/big-bike-insurance',
+  '/pages/travel-insurance-starr': '/solutions/for-individuals/travel-insurance', '/pages/file-a-claim': '/claims', '/pages/payments': '/payments'
 };
 const mapPath = h => {
   if (!h) return h;
@@ -75,7 +85,7 @@ function legacyProduct(p) {
   const mm = d.match(/^\/(?:collections\/[^/]+\/products|products|pages)\/([^/?]+)\/?$/); if (!mm) return null;
   const norm = x => x.toLowerCase().replace(/motocar/, 'motorcar').replace(/-eei$/, '').replace(/^full-/, '').replace(/\b(and|insurance|product)\b/g, '').replace(/[^a-z]/g, '');
   const want = norm(mm[1]); if (!want) return null;
-  const list = Object.values(products).filter(x => x.path.startsWith('/solutions/'));
+  const list = Object.values(products).filter(x => x.path.startsWith('/solutions/') && !x.personal);
   const hit = list.find(x => norm(x.path.split('/').pop()) === want) || list.find(x => { const n = norm(x.path.split('/').pop()); return n.startsWith(want) || want.startsWith(n); });
   return hit ? hit.path : null;
 }
@@ -102,13 +112,14 @@ const NAV = [
     { label: 'Industries We Serve', href: '/about-us/industries-we-serve' },
     { label: 'Corporate Governance', href: '/about-us/corporate-governance' }] },
   { label: 'Solutions', href: '/solutions', children: [
+    { group: 'For Businesses' },
     { label: 'General Insurance', href: '/solutions/general-insurance' },
     { label: 'Employee Benefits', href: '/solutions/employee-benefits' },
-    { label: 'Service Solutions', href: '/solutions/service-solutions' }] },
-  { label: 'Shop', children: [
-    { label: 'Bicycle Insurance', href: '/shop/bicycle-insurance' },
-    { label: 'Big Bike Insurance', href: '/shop/big-bike-insurance' },
-    { label: 'Travel Insurance', href: '/shop/travel-insurance' }] },
+    { label: 'Service Solutions', href: '/solutions/service-solutions' },
+    { group: 'For Individuals' },
+    { label: 'Travel Insurance', href: '/solutions/for-individuals/travel-insurance', note: 'Buy online via Starr' },
+    { label: 'Bicycle Insurance', href: '/solutions/for-individuals/bicycle-insurance', note: 'Get a quote' },
+    { label: 'Big Bike Insurance', href: '/solutions/for-individuals/big-bike-insurance', note: 'Get a quote' }] },
   { label: 'Blog', href: '/blog' },
   { label: 'Claims', href: '/claims' },
   { label: 'Careers', href: '/careers' },
@@ -122,7 +133,7 @@ const SOCIAL = [
 ];
 const isCur = (href, cur) => href === cur || (href !== '/' && cur.startsWith(href + '/'));
 const navHtml = cur => NAV.map(it => it.children
-  ? `<li class="has-sub${it.children.some(c => isCur(c.href, cur)) || (it.href && isCur(it.href, cur)) ? ' active' : ''}"><a href="${it.href ? url(it.href) : '#'}" class="nav-parent" aria-haspopup="true">${esc(it.label)}${icon('chevron', 'caret')}</a><ul class="sub">${it.children.map(c => `<li><a href="${url(c.href)}"${isCur(c.href, cur) ? ' aria-current="page"' : ''}>${esc(c.label)}</a></li>`).join('')}</ul></li>`
+  ? `<li class="has-sub${it.children.some(c => c.href && isCur(c.href, cur)) || (it.href && isCur(it.href, cur)) ? ' active' : ''}"><a href="${it.href ? url(it.href) : '#'}" class="nav-parent" aria-haspopup="true">${esc(it.label)}${icon('chevron', 'caret')}</a><ul class="sub">${it.children.map(c => c.group ? `<li class="sub-group" role="presentation">${esc(c.group)}</li>` : `<li><a href="${url(c.href)}"${isCur(c.href, cur) ? ' aria-current="page"' : ''}>${esc(c.label)}${c.note ? `<small>${esc(c.note)}</small>` : ''}</a></li>`).join('')}</ul></li>`
   : `<li${isCur(it.href, cur) && it.href !== '/' || (it.href === '/' && cur === '/') ? ' class="active"' : ''}><a href="${url(it.href)}">${esc(it.label)}</a></li>`).join('');
 
 const gate = () => site.gate?.enabled ? `<meta name="robots" content="noindex,nofollow">
@@ -148,7 +159,7 @@ const ORG = {
 const crumbsFor = (path, title) => {
   if (path === '/' || path === '/404') return null;
   const parts = path.split('/').filter(Boolean); const items = [{ name: 'Home', item: site.url + '/' }];
-  const label = { 'about-us': 'About Us', solutions: 'Solutions', shop: 'Shop', blog: 'Blog', 'general-insurance': 'General Insurance', 'employee-benefits': 'Employee Benefits', 'service-solutions': 'Service Solutions' };
+  const label = { 'about-us': 'About Us', solutions: 'Solutions', shop: 'Shop', 'for-individuals': 'For Individuals', blog: 'Blog', 'general-insurance': 'General Insurance', 'employee-benefits': 'Employee Benefits', 'service-solutions': 'Service Solutions' };
   let acc = '';
   parts.forEach((seg, i) => { acc += '/' + seg; const last = i === parts.length - 1; items.push({ name: last ? title : (label[seg] || seg), item: site.url + acc }); });
   return { '@type': 'BreadcrumbList', itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, item: x.item })) };
@@ -405,14 +416,23 @@ const CAT_META = {
 const productList = cat => Object.values(products).filter(p => p.path.startsWith('/solutions/' + cat + '/'))
   .sort((a, b) => categories[cat].list.findIndex(x => x.href === a.path) - categories[cat].list.findIndex(x => x.href === b.path));
 const prodTitle = p => (categories[p.category]?.list.find(x => x.href === p.path)?.title) || sentenceCase(p.title);
+const personalGrid = () => `<ul class="prod-grid">${personalList().map(p => `<li><a href="${url(p.path)}">${productIcon(p.path)}<span>${esc(pName(p))}<small class="pg-note">${esc(PERSONAL[p.path.split('/').pop()].note)}</small></span></a></li>`).join('')}</ul>`;
 const productGrid = cat => `<ul class="prod-grid">${productList(cat).map(p => `<li><a href="${url(p.path)}">${productIcon(p.path)}<span>${esc(prodTitle(p))}</span></a></li>`).join('')}</ul>`;
 {
   const body = pageHero('Our Solutions', 'Tailored insurance solutions designed to meet your unique operational needs.', categories['general-insurance'].heroImage, btn('Claims', '/claims') + btn('Talk to Us', '/contact-us', 'btn-orange')) + `
 <section class="featured"><div class="wrap"><h2>Featured Solutions</h2><div class="card-grid three">${D.home.featured.map(f => `<article class="card">${img(f.image, f.title)}<div class="card-body"><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p>${btn('Learn More', f.href, 'btn-sm')}</div></article>`).join('')}</div></div></section>
 ${spotlight()}
 ${Object.keys(CAT_META).map(cat => `<section class="cat-block"><div class="wrap"><h2><a href="${url('/solutions/' + cat)}">${CAT_META[cat].title}</a></h2>${productGrid(cat)}</div></section>`).join('')}
+<section class="cat-block"><div class="wrap"><h2><a href="${url(PERSONAL_BASE)}">For Individuals</a></h2>${personalGrid()}</div></section>
 ${whyChoose()}${ctaBand()}`;
-  await page('/solutions', 'Solutions', body, { description: 'All Trinity insurance solutions: general insurance, employee benefits and service solutions.' });
+  await page('/solutions', 'Solutions', body, { description: 'All Trinity insurance solutions: general insurance, employee benefits and service solutions for businesses, plus travel, bicycle and big bike insurance for individuals.' });
+  {
+    const cards = personalList().map(p => { const sl = p.path.split('/').pop(), m = PERSONAL[sl]; return `<a class="ind-card" href="${url(p.path)}">${productIcon(p.path)}<h3>${esc(pName(p))}</h3><p>${esc(clip((p.intro || [])[0], 150))}</p><span class="ind-tag${sl === 'travel-insurance' ? ' buy' : ''}">${esc(m.note)} ${icon('arrow', 'ic')}</span></a>`; }).join('');
+    const body2 = pageHero('For Individuals', 'Personal cover for your trips and your rides, arranged by the same team that protects businesses.', personalList()[0]?.heroImage || categories['general-insurance'].heroImage, btn('Talk to Us', '/contact-us', 'btn-orange')) + `
+<section class="sec"><div class="wrap"><div class="ind-grid">${cards}</div><p class="ind-note">${icon('info', 'ic')}<span>Travel Insurance is bought online through our partner Starr Insurance. For Bicycle and Big Bike Insurance, send us a few details and we will get back to you with a quote.</span></p></div></section>
+${ctaBand()}`;
+    await page(PERSONAL_BASE, 'For Individuals', body2, { description: 'Personal insurance from Trinity Insurance Brokers: travel insurance (buy online via Starr), bicycle insurance and big bike insurance.', schema: [{ '@type': 'ItemList', name: 'Insurance for individuals', itemListElement: personalList().map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: pName(p), url: site.url + p.path })) }] });
+  }
   for (const cat of Object.keys(CAT_META)) {
     const c = categories[cat];
     const body = pageHero(CAT_META[cat].title, c.tagline || CAT_META[cat].tagline, c.heroImage, btn('Get a Quote', '/contact-us') + btn('Talk to Us', '/contact-us', 'btn-orange')) + `
@@ -448,11 +468,11 @@ const premiumTable = s => {
   return `<div class="p-sec">${s.icon ? `<div class="p-ic">${img(s.icon, '')}</div>` : ''}<div class="p-body"><h3>${esc(s.title)}</h3><table class="premium"><thead><tr><th>Value</th><th>Premium</th></tr></thead><tbody>${vals.map((v, i) => `<tr><td>${esc(v)}</td><td>${esc(prem[i] || '')}</td></tr>`).join('')}</tbody></table></div></div>`;
 };
 for (const p of Object.values(products)) {
-  const isShop = p.path.startsWith('/shop/');
-  const title = isShop ? sentenceCase(p.title).replace('Insurance', 'Insurance') : prodTitle(p);
+  const isShop = !!p.personal;
+  const title = isShop ? pName(p) : prodTitle(p);
   const intro = p.intro.filter(t => !/^​?$/.test(t));
   let secs = p.sections.filter(s => s.kind !== 'why');
-  const travel = p.path === '/shop/travel-insurance';
+  const travel = p.path === PERSONAL_BASE + '/travel-insurance';
   const heroBtns = travel ? btn('Proceed to Starr Portal', D.starrPortal, 'btn-orange') : isShop ? btn('Inquire Now', '#inquire', 'btn-orange') : btn('Inquire Now', '#inquire', 'btn-orange');
   let bodySecs = secs.map(s => premiumTable(s) || renderSection(s)).join('');
   if (travel) {
@@ -463,7 +483,7 @@ for (const p of Object.values(products)) {
     bodySecs = `<h3 class="tc">The following are just some of the major coverage and benefits:</h3><div class="cov-grid">${cov.map(c => `<div>${img(c.img, '')}<p>${esc(c.t)}</p></div>`).join('')}<div class="more"><p>and more</p></div></div>
       <div class="starr-cta"><h3>Ready to secure your trip?</h3><p>Click “Proceed” below to get your Travel Insurance. You'll be redirected to STARR Insurance's Travel Insurance portal.</p>${btn('Proceed', D.starrPortal, 'btn-orange')}<p class="muted">For any questions or assistance, email us at <a href="mailto:${site.email}">${site.email}</a>.</p></div>`;
   }
-  const body = `<section class="prod-hero"><div class="wrap">${p.heroImage && !isShop ? img(p.heroImage, title, 'prod-banner') : ''}<div class="prod-head"><p class="crumbs"><a href="${url('/solutions')}">Solutions</a> / ${isShop ? 'Shop' : `<a href="${url('/solutions/' + p.category)}">${CAT_META[p.category]?.title}</a>`}</p><h1>${esc(title)}</h1>${intro.map(t => t.includes('•') ? (() => { const [h, ...li] = t.split(/\s*•\s*/); return (h.trim() ? `<p>${esc(h.trim())}</p>` : '') + `<ul class="ticks">${li.filter(Boolean).map(x => `<li>${esc(x)}</li>`).join('')}</ul>`; })() : `<p>${esc(t)}</p>`).join('')}<div class="btns">${heroBtns}</div></div></div></section>
+  const body = `<section class="prod-hero"><div class="wrap">${p.heroImage && !isShop ? img(p.heroImage, title, 'prod-banner') : ''}<div class="prod-head"><p class="crumbs"><a href="${url('/solutions')}">Solutions</a> / ${isShop ? `<a href="${url(PERSONAL_BASE)}">For Individuals</a>` : `<a href="${url('/solutions/' + p.category)}">${CAT_META[p.category]?.title}</a>`}</p><h1>${esc(title)}</h1>${intro.map(t => t.includes('•') ? (() => { const [h, ...li] = t.split(/\s*•\s*/); return (h.trim() ? `<p>${esc(h.trim())}</p>` : '') + `<ul class="ticks">${li.filter(Boolean).map(x => `<li>${esc(x)}</li>`).join('')}</ul>`; })() : `<p>${esc(t)}</p>`).join('')}<div class="btns">${heroBtns}</div></div></div></section>
 <section class="prod-body"><div class="wrap narrow">${bodySecs}${p.cta ? `<div class="p-cta">${p.cta.icon ? img(p.cta.icon, '') : ''}<p>${esc(p.cta.text)}</p>${btn('Inquire Now', '#inquire', 'btn-orange')}</div>` : ''}</div></section>
 ${whyChoose()}${travel ? '' : formSection(isShop ? 'shop' : 'product', "Let's Talk", undefined, title)}`;
   await page(p.path, title, body, { description: (intro[0] || '').slice(0, 158), image: p.heroImage, schema: [{ '@type': 'Service', '@id': site.url + p.path + '#service', name: title, serviceType: title, category: isShop ? 'Personal insurance' : CAT_META[p.category]?.title, description: intro.join(' ').slice(0, 500), provider: { '@id': ORG_ID }, areaServed: { '@type': 'Country', name: 'Philippines' }, url: site.url + p.path }] });
@@ -648,11 +668,11 @@ ${related.length ? `<section class="sec related"><div class="wrap"><h2>More from
 await page('/search', 'Search', pageHero('Search') + `<section class="sec"><div class="wrap narrow"><input id="q" class="search-input" type="search" placeholder="Search insurance solutions, articles…" autofocus><ul id="results" class="search-results"></ul></div></section>`, { description: 'Search the Trinity Insurance Brokers website.' });
 {
   const groups = [
-    ['About Us', NAV[1].children], ['Solutions', [{ label: 'All Solutions', href: '/solutions' }, ...NAV[2].children]],
+    ['About Us', NAV[1].children], ['Solutions', [{ label: 'All Solutions', href: '/solutions' }, ...NAV[2].children.filter(c => c.href && !c.note)]],
     ['General Insurance', productList('general-insurance').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Employee Benefits', productList('employee-benefits').map(p => ({ label: prodTitle(p), href: p.path }))],
     ['Service Solutions', productList('service-solutions').map(p => ({ label: prodTitle(p), href: p.path }))],
-    ['Shop', NAV[3].children], ['Help', [{ label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
+    ['For Individuals', [{ label: 'Overview', href: PERSONAL_BASE }, ...personalList().map(p => ({ label: pName(p), href: p.path }))]], ['Help', [{ label: 'Claims', href: '/claims' }, { label: 'Careers', href: '/careers' }, { label: 'Payments', href: '/payments' }, { label: 'Contact Us', href: '/contact-us' }, { label: 'Blog', href: '/blog' }]],
     ['Legal', [{ label: 'Privacy Policy', href: '/privacy-policy' }, { label: 'Terms & Conditions', href: '/terms-and-conditions' }, { label: 'Disclaimer', href: '/disclaimer' }, { label: 'Cybersecurity', href: '/cybersecurity' }]]
   ];
   await page('/site-map', 'Site Map', pageHero('Site Map') + `<section class="sec"><div class="wrap sitemap">${groups.map(([g, l]) => `<div><h2>${esc(g)}</h2><ul>${l.map(x => `<li><a href="${url(x.href)}">${esc(x.label)}</a></li>`).join('')}</ul></div>`).join('')}</div></section>`, { description: 'Site map of the Trinity Insurance Brokers website.' });
@@ -661,7 +681,7 @@ await writeFile(join(OUT, '404.html'), layout({ path: '/404', title: 'Page not f
 
 // ---------- redirects from old Shopify URLs ----------
 const redirect = to => `<!doctype html><meta charset="utf-8"><title>Redirecting…</title><link rel="canonical" href="${site.url}${to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${url(to)}"><script>location.replace(${JSON.stringify(url(to))}+location.hash)</script><a href="${url(to)}">Continue</a>`;
-const redirects = { ...OLD2NEW, '/pages/meet-our-cebu-team': '/about-us/meet-the-team', '/about-us/meet-our-cebu-team': '/about-us/meet-the-team', '/account': '/client-portal', '/account/login': '/client-portal', '/pages/client-portal': '/client-portal', '/kyc': '/client-portal', '/pages/motor-claims': '/claims/motor', '/pages/non-motor-claims': '/claims/non-motor', '/pages/property-fire-claims': '/claims/property-fire', '/pages/marine-and-cargo-hull-claims': '/claims/marine-cargo', '/pages/hmo-medical-claims': '/claims/hmo-medical', '/pages/travel-insurance-claims': '/claims/travel', '/about-us': '/about-us/corporate-profile', '/shop': '/shop/travel-insurance', '/pages/whistleblowing-form': '/about-us/corporate-governance#inquire', '/cybersercurity': '/cybersecurity' };
+const redirects = { ...OLD2NEW, '/pages/meet-our-cebu-team': '/about-us/meet-the-team', '/about-us/meet-our-cebu-team': '/about-us/meet-the-team', '/account': '/client-portal', '/account/login': '/client-portal', '/pages/client-portal': '/client-portal', '/kyc': '/client-portal', '/pages/motor-claims': '/claims/motor', '/pages/non-motor-claims': '/claims/non-motor', '/pages/property-fire-claims': '/claims/property-fire', '/pages/marine-and-cargo-hull-claims': '/claims/marine-cargo', '/pages/hmo-medical-claims': '/claims/hmo-medical', '/pages/travel-insurance-claims': '/claims/travel', '/about-us': '/about-us/corporate-profile', '/shop': PERSONAL_BASE, '/shop/travel-insurance': PERSONAL_BASE + '/travel-insurance', '/shop/bicycle-insurance': PERSONAL_BASE + '/bicycle-insurance', '/shop/big-bike-insurance': PERSONAL_BASE + '/big-bike-insurance', '/pages/whistleblowing-form': '/about-us/corporate-governance#inquire', '/cybersercurity': '/cybersecurity' };
 const WIX2OLD = {}; // old Shopify product pages -> new product pages (match by title)
 for (const sp of Object.values(shop)) {
   if (!/^\/pages\//.test(sp.path) || redirects[sp.path]) continue;

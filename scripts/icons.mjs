@@ -43,6 +43,8 @@ const P = {
   migrant: '<rect x="6" y="7" width="12" height="13" rx="2"/><path d="M9 7V4h6v3M9 20v2M15 20v2M10 12h4"/>',
   heartpulse: '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/><path d="M3.5 12h4l2-3 3 6 2-3h6"/>',
   hospital: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 7v10M7 12h10"/>',
+  bicycle: '<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5 9 9h6l3.5 7.5M9 9l3 7.5h-6.5M15 9l-1.5-3H11"/>',
+  motorbike: '<circle cx="5" cy="16" r="3"/><circle cx="19" cy="16" r="3"/><path d="M8 16h6l3-6h-4l-2 3H7.5M14 6h2.5l2.5 7M5 16l3-5h4"/>',
   plane: '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
   group: '<circle cx="9" cy="8" r="3.5"/><path d="M2 20c1-3.5 3.8-5.5 7-5.5s6 2 7 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.3 0 4 1.5 5 4.5"/>',
   umbrella: '<path d="M22 12a10 10 0 0 0-20 0z"/><path d="M12 12v7a2 2 0 0 0 4 0M12 2v1"/>',
@@ -79,7 +81,7 @@ const MAP = {
   'product-recall-contamination': 'recall', 'political-violence-terrorism-insurance': 'violence', 'property-fire-insurance': 'fire', 'parametric-insurance': 'parametric',
   'electronic-equipment-insurance': 'electronics', 'car-ear-insurance': 'construction',
   'hmo': 'hmo', 'international-medical-insurance': 'globeplus', 'amwa-insurance': 'migrant', 'critical-illness': 'heartpulse', 'hospital-income-insurance': 'hospital',
-  'travel-insurance-product': 'plane', 'group-medical-insurance': 'group', 'group-term-life-personal-accident-insurance': 'umbrella', 'shipowners-healthcare-program-for-seafarers-dependents': 'anchor',
+  'travel-insurance-product': 'plane', 'travel-insurance': 'plane', 'bicycle-insurance': 'bicycle', 'big-bike-insurance': 'motorbike', 'group-medical-insurance': 'group', 'group-term-life-personal-accident-insurance': 'umbrella', 'shipowners-healthcare-program-for-seafarers-dependents': 'anchor',
   'third-party-administration': 'admin', 'claims-management': 'claims', 'industry-benchmarking': 'benchmark', 'wellness-program-development-management': 'wellness',
   'employee-benefit-plan-design': 'plandesign', 'technical-underwriting': 'underwriting', 'risk-management-loss-prevention': 'riskmgmt', 'insurance-policy-audit': 'audit'
 };
