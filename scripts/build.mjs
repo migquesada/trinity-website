@@ -21,7 +21,8 @@ const posts = JSON.parse(await readFile('content/posts.json', 'utf8'));
 const shop = {};
 for (const f of await readdir('content/pages')) if (f.endsWith('.json')) { const p = JSON.parse(await readFile(join('content/pages', f), 'utf8')); shop[p.path] = p; }
 const ASSET_V = createHash('sha1').update((await readFile('assets/site.css', 'utf8')) + (await readFile('assets/site.js', 'utf8'))).digest('hex').slice(0, 8);
-const BASE = (process.env.BASE_PATH ?? site.basePath ?? '').replace(/\/$/, '');
+// Cloudflare Pages serves from the domain root; GitHub Pages serves from /trinity-website
+const BASE = (process.env.BASE_PATH ?? (process.env.CF_PAGES ? '' : site.basePath) ?? '').replace(/\/$/, '');
 
 await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
@@ -668,6 +669,20 @@ await writeFile(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?
 await writeFile(join(OUT, 'robots.txt'), site.gate?.enabled ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
 await writeFile(join(OUT, '.nojekyll'), '');
 if (process.env.CNAME) await writeFile(join(OUT, 'CNAME'), process.env.CNAME);
+// Security headers (Cloudflare Pages reads _headers; GitHub Pages ignores it)
+await writeFile(join(OUT, '_headers'), `/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+${IMG_MODE === 'download' ? `  Content-Security-Policy: default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ${site.supabase.url}; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'\n` : ''}${site.gate?.enabled ? '  X-Robots-Tag: noindex, nofollow\n' : ''}
+/assets/*
+  Cache-Control: public, max-age=86400
+/media/*
+  Cache-Control: public, max-age=31536000, immutable
+`);
 
 // ---------- download media (CI) ----------
 if (IMG_MODE === 'download') {
