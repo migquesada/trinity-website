@@ -272,7 +272,7 @@ const spotlight = (heading = 'In the spotlight', sub = 'Specialized protection f
 ${quickAccess()}
 <section class="solutions-bento"><div class="wrap"><h2>Trinity Insurance Solutions</h2>
   <div class="bento">
-    <a class="bento-big" href="${url(H.bento[0].href)}" style="--bg:url('${media(H.bento[0].image)}')"><h3>${esc(H.bento[0].title)}</h3><p>${esc(H.bento[0].text)}</p><div class="bento-imgs">${H.bento[0].images.map(i => img(i, '')).join('')}</div></a>
+    <a class="bento-big" href="${url(H.bento[0].href)}" style="--bg:url('${media(H.bento[0].image)}')"><h3>${esc(H.bento[0].title)}</h3><p>${esc(H.bento[0].text)}</p><div class="bento-imgs single">${img(H.bento[0].images[0], 'Cargo vessel at sea – corporate risk and marine insurance')}</div></a>
     ${H.bento.slice(1).map(b => `<a class="bento-card" href="${url(b.href)}"><div><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></div>${img(b.image, '')}</a>`).join('')}
   </div>
   <div class="tiles">${H.tiles.map(t => `<a class="tile" href="${url(t.href)}" style="--bg:url('${media(t.image)}')"><span>${esc(t.title)}</span></a>`).join('')}</div>
