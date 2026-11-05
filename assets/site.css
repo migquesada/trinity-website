@@ -5,7 +5,7 @@
 @font-face{font-family:Poppins;font-style:italic;font-weight:600;font-display:swap;src:url(fonts/poppins-latin-600-italic.woff2) format('woff2')}
 /* Trinity Insurance Brokers – v2 theme (based on the approved Wix design) */
 :root{
-  --navy:#081f30; --navy-2:#0b3d51; --teal:#006a7b; --teal-2:#00a3a8; --orange:#ef7622; --green:#6cb33f; --gold:#c89b5a;
+  --navy:#0b3d51; --navy-2:#0b3d51; --teal:#006a7b; --teal-2:#00a3a8; --orange:#ef7622; --green:#6cb33f; --gold:#c89b5a;
   --ink:#081f30; --text:#33424d; --muted:#6b7780; --line:#e3e8ec; --soft:#f2f4f6; --card:#f7f9fb;
   --wrap:1200px; --r:14px;
   --head:Poppins,system-ui,-apple-system,"Segoe UI",Arial,sans-serif; --body:Poppins,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
@@ -58,7 +58,7 @@ section>.wrap>h2{text-align:center}
 
 /* page hero */
 .page-hero{background:var(--navy-2);color:#fff;padding:70px 0 60px;position:relative;overflow:hidden}
-.page-hero.has-img{background:linear-gradient(90deg,rgba(8,31,48,.92) 0%,rgba(8,31,48,.7) 45%,rgba(8,31,48,.25) 100%),var(--hero) center/cover no-repeat}
+.page-hero.has-img{background:linear-gradient(90deg,rgba(11,61,81,.92) 0%,rgba(11,61,81,.7) 45%,rgba(11,61,81,.25) 100%),var(--hero) center/cover no-repeat}
 .page-hero h1{color:#fff;margin:0}
 .page-hero p{font-size:19px;max-width:640px;margin:14px 0 0;color:#e8eef2}
 
@@ -93,7 +93,7 @@ section>.wrap>h2{text-align:center}
 .bento a:hover,.tile:hover{transform:translateY(-3px);color:var(--ink)}
 .bento a{transition:.2s}
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
-.tile{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:linear-gradient(rgba(8,31,48,.15),rgba(8,31,48,.55)),var(--bg) center/cover;display:flex;align-items:flex-end;justify-content:center;padding:16px;transition:.2s}
+.tile{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:linear-gradient(rgba(8,31,48,.15),rgba(11,61,81,.55)),var(--bg) center/cover;display:flex;align-items:flex-end;justify-content:center;padding:16px;transition:.2s}
 .tile span{font-weight:600;font-size:22px;color:#fff}
 
 /* cards */
@@ -147,7 +147,7 @@ blockquote{margin:0 0 18px;font-family:var(--body);font-style:italic;font-weight
 .videos{padding-top:0}
 .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .video-thumb{position:relative;aspect-ratio:3/4;border:0;border-radius:var(--r);background:#ccd center/cover no-repeat;cursor:pointer;overflow:hidden;padding:0}
-.video-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(8,31,48,.55))}
+.video-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(11,61,81,.55))}
 .video-thumb .play{position:absolute;left:50%;top:50%;width:76px;height:76px;transform:translate(-50%,-50%);color:#fff;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));transition:.2s}
 .video-thumb:hover .play{transform:translate(-50%,-50%) scale(1.1)}
 .video-thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
@@ -200,7 +200,7 @@ blockquote{margin:0 0 18px;font-family:var(--body);font-style:italic;font-weight
 .why-item img{height:60px;width:auto;margin:0 auto 12px}
 .why-item h3{font-size:23px}
 .why-item p{font-size:15px;margin:0}
-.cta-band{background:linear-gradient(90deg,rgba(8,31,48,.9),rgba(8,31,48,.55)),var(--cta) center/cover;color:#fff;text-align:center}
+.cta-band{background:linear-gradient(90deg,rgba(11,61,81,.9),rgba(11,61,81,.55)),var(--cta) center/cover;color:#fff;text-align:center}
 .cta-band h2{color:#fff}.cta-band .btns{justify-content:center}
 
 /* product page */
