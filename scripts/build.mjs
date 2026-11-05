@@ -179,7 +179,7 @@ function layout({ path, title, description, image, body, bodyClass = '', schema 
 <meta property="og:site_name" content="Trinity Insurance Brokers"><meta property="og:locale" content="en_PH"><meta property="og:title" content="${esc(full)}"><meta property="og:description" content="${esc(description || site.footer.about)}"><meta property="og:type" content="${type}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(image ? abs(image) : site.url + '/assets/img/hero-40-team.jpg')}">${published ? `<meta property="article:published_time" content="${esc(published)}">` : ''}
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(full)}"><meta name="twitter:description" content="${esc(description || site.footer.about)}"><meta name="twitter:image" content="${esc(image ? abs(image) : site.url + '/assets/img/hero-40-team.jpg')}">
 <meta name="theme-color" content="#081f30">
-${IMG_MODE === 'download' ? `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ${site.supabase.url}; form-action 'self'; base-uri 'self'; object-src 'none'">
+${IMG_MODE === 'download' ? `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' ${site.supabase.url} https://cloudflareinsights.com; form-action 'self'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">` : ''}
 <link rel="preload" href="${url('/assets/fonts/poppins-latin-400-normal.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${url('/assets/site.css')}?v=${ASSET_V}">
@@ -710,7 +710,7 @@ await writeFile(join(OUT, '_headers'), `/*
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
-${IMG_MODE === 'download' ? `  Content-Security-Policy: default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' ${site.supabase.url}; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'\n` : ''}${site.gate?.enabled ? '  X-Robots-Tag: noindex, nofollow\n' : ''}
+${IMG_MODE === 'download' ? `  Content-Security-Policy: default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; connect-src 'self' ${site.supabase.url} https://cloudflareinsights.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'\n` : ''}${site.gate?.enabled ? '  X-Robots-Tag: noindex, nofollow\n' : ''}
 /assets/*
   Cache-Control: public, max-age=86400
 /media/*
